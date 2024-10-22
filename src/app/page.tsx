@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -13,9 +14,12 @@ export default function Home() {
           height={300}
         />
       </div>
-      <button className='text-white font-PokeFont shadow-2xl active:shadow-none py-2 px-4 font-black rounded-md border-solid border-4 border-blue-700 bg-yellow-400 '>
+      <Link
+        href='/quiz'
+        className='text-white font-PokeFont shadow-2xl active:shadow-none py-2 px-4 font-black rounded-md border-solid border-4 border-blue-700 bg-yellow-400 '
+      >
         スタート！
-      </button>
+      </Link>
     </div>
   );
 }
