@@ -1,16 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getRandom100PokemonData } from './utils/dataHandle';
+import {
+  createRandomPokemonData,
+  getRandomPokemonDetailDate,
+} from './utils/dataHandle';
 
 export default async function Home() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const data = await fetch(`${API_URL}/api/pokemon/all`);
   const allPokemonDate = await data.json();
-  const randomPokemonDate = getRandom100PokemonData(
+  const hundredRandomPokemonDate = createRandomPokemonData(
     allPokemonDate.results
   ).slice(0, 100);
-  // console.log(randomPokemonDate);
+
+  const pokes = await getRandomPokemonDetailDate(hundredRandomPokemonDate);
+  // console.error(pokes);
 
   return (
     <div className='w-full h-screen bg-red-300 flex flex-col justify-center items-center'>
@@ -29,8 +34,12 @@ export default async function Home() {
       >
         スタート！
       </Link>
-      {randomPokemonDate.map((pokemon) => {
-        return <div>{}</div>;
+      {pokes.map((poke) => {
+        return (
+          <div>
+            <img src={poke.sprites.front_default} alt='' />
+          </div>
+        );
       })}
     </div>
   );
