@@ -12,36 +12,47 @@ export default async function Home() {
   const allPokemonDate = await data.json();
   const hundredRandomPokemonDate = createRandomPokemonData(
     allPokemonDate.results
-  ).slice(0, 100);
+  ).slice(0, 200);
 
   const pokes = await getRandomPokemonDetailDate(hundredRandomPokemonDate);
   // console.error(pokes);
 
   return (
-    <div className='w-full h-screen bg-red-300 flex flex-col justify-center items-center'>
-      {/* <div className=''>
-        <Image
-          className='animate-chime mx-auto'
-          src='/images/Poke-quiz.png'
-          alt='My Image'
-          width={500}
-          height={300}
-        />
-      </div>
-      <Link
-        href='/quiz'
-        className='text-white font-PokeFont shadow-2xl active:shadow-none py-2 px-4 font-black rounded-md border-solid border-4 border-blue-700 bg-yellow-400 '
-      >
-        スタート！
-      </Link> */}
-      <div className='flex flex-row flex-wrap'>
-        {pokes.map((poke) => {
+    <div className='w-full h-screen  bg-red-300 fixed'>
+      <div className='absolute inset-0 z-0 opacity-85 flex flex-wrap'>
+        {pokes.map((poke, index) => {
           return (
-            <div>
-              <img src={poke.sprites.front_default} alt='' />
+            <div key={index}>
+              <Image
+                src={
+                  poke.sprites.front_default ||
+                  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png`
+                }
+                width={110}
+                height={110}
+                alt={poke.name}
+              />
             </div>
           );
         })}
+      </div>
+
+      <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>
+        <div className='fade-in'>
+          <Image
+            className='animate-chime mx-auto'
+            src='/images/Poke-quiz.png'
+            alt='My Image'
+            width={500}
+            height={300}
+          />
+        </div>
+        <Link
+          href='/quiz'
+          className='text-white shadow-2xl active:shadow-none py-2 px-4 font-black rounded-md border-solid border-4 border-blue-700 bg-yellow-400 mt-4 ring-offset-2 ring-4'
+        >
+          スタート！
+        </Link>
       </div>
     </div>
   );

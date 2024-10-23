@@ -1,10 +1,11 @@
 import React from 'react';
-import { getAllPokemons } from '../poleApi';
 
 const Page = async () => {
-  const allPokemonDate = await getAllPokemons();
-  return <div>{allPokemonDate}</div>;
+  // const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  // const allPokemonDate = await fetch(`${API_URL}/api/pokemon/all`);
+
+  // console.log(allPokemonDate);
+  return <div>hello</div>;
 };
 
 export default Page;
-NEXR;
