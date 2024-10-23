@@ -19,7 +19,7 @@ export default async function Home() {
 
   return (
     <div className='w-full h-screen bg-red-300 flex flex-col justify-center items-center'>
-      <div className=''>
+      {/* <div className=''>
         <Image
           className='animate-chime mx-auto'
           src='/images/Poke-quiz.png'
@@ -33,14 +33,16 @@ export default async function Home() {
         className='text-white font-PokeFont shadow-2xl active:shadow-none py-2 px-4 font-black rounded-md border-solid border-4 border-blue-700 bg-yellow-400 '
       >
         スタート！
-      </Link>
-      {pokes.map((poke) => {
-        return (
-          <div>
-            <img src={poke.sprites.front_default} alt='' />
-          </div>
-        );
-      })}
+      </Link> */}
+      <div className='flex flex-row flex-wrap'>
+        {pokes.map((poke) => {
+          return (
+            <div>
+              <img src={poke.sprites.front_default} alt='' />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
