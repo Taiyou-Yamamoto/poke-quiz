@@ -32,12 +32,23 @@ const config: Config = {
           '78%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(0deg)' },
         },
+        shake: {
+          '0%': { transform: 'translateX(0%)' },
+          '5%': { transform: 'translateX(-3%)' },
+          '10%': { transform: 'translateX(3%)' },
+          '15%': { transform: 'translateX(-3%)' },
+          '20%': { transform: 'translateX(3%)' },
+          '25%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
       },
       animation: {
-        chime: 'chime 3.5s ease-in-out infinite', // 2秒ごとに無限ループ
+        chime: 'chime 3.5s ease-in-out infinite', // 3.5秒ごとに無限ループ
+        shake: ' shake 3s ease-in-out infinite',
       },
     },
   },
   plugins: [],
 };
+
 export default config;
