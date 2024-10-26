@@ -1,26 +1,28 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  createRandomPokemonData,
-  getRandomPokemonDetailDate,
+  getAllPokemonDetail,
+  // createRandomPokemonData,
+  getAllPokemonNameAndUrl,
+  // getRandomPokemonDetailDate,
 } from './utils/dataHandle';
 
 export default async function Home() {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
 
-  const data = await fetch(`${API_URL}/api/pokemon/all`);
-  const allPokemonDate = await data.json();
-  const hundredRandomPokemonDate = createRandomPokemonData(
-    allPokemonDate.results
-  ).slice(0, 200);
+  const allPokemonDate = await getAllPokemonNameAndUrl(API_URL ? API_URL : '');
+  getAllPokemonDetail(allPokemonDate);
+  // const hundredRandomPokemonDate = createRandomPokemonData(
+  //   allPokemonDate.results
+  // ).slice(0, 200);
 
-  const pokes = await getRandomPokemonDetailDate(hundredRandomPokemonDate);
+  // const pokes = await getRandomPokemonDetailDate(hundredRandomPokemonDate);
   // console.error(pokes);
 
   return (
     <div className='w-full h-screen  bg-red-300 fixed'>
       <div className='absolute inset-0 z-0 opacity-85 flex flex-wrap'>
-        {pokes.map((poke, index) => {
+        {/* {pokes.map((poke, index) => {
           return (
             <div key={index}>
               <Image
@@ -34,7 +36,7 @@ export default async function Home() {
               />
             </div>
           );
-        })}
+        })} */}
       </div>
 
       <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>
