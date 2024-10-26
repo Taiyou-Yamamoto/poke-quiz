@@ -1,5 +1,12 @@
 import { Pokemon } from '../type';
 
+export const getAllPokemonNameAndUrl = async (
+  url: string
+): Promise<Pokemon[]> => {
+  const res = await fetch(url);
+  return res.json();
+};
+
 export const createRandomPokemonData = (array: Pokemon[]): Pokemon[] => {
   // ここではFisher-Yates Shuffleというアルゴリズムを使用している
   // それを使うとspliceや古い配列の要素を削除しなくて済むので効率的らしい
