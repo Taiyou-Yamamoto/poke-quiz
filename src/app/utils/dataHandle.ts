@@ -53,24 +53,28 @@ export const createRandomPokemonData = (array: any[]): any[] => {
   return array;
 };
 
-// // 100の各ポケモンの画像データを取得
-// export const getRandomPokemonDetailDate = async (
-//   array: Pokemon[]
-// ): Promise<any[]> => {
-//   const eachData = [];
-//   for (let i = 0; i <= 199; ++i) {
-//     try {
-//       const url = array[i].url;
+// 200の各ポケモンの画像データを取得
+export const getTwoHundredPokemonDetailDate = async (
+  array: any[]
+): Promise<any[]> => {
+  const eachData = [];
+  let i = 0;
+  while (eachData.length < 200) {
+    try {
+      const url = await array[i].sprites.front_default;
 
-//       const eachPokemonRes = await fetch(`${url}`);
+      const eachPokemonRes = await fetch(`${url}`);
 
-//       const eachPokemonData = await eachPokemonRes.json();
+      const eachPokemonData = await eachPokemonRes.json();
 
-//       eachData.push(eachPokemonData);
-//     } catch (error) {
-//       // ポケモンによってurlがない場合があるので、その場合スキップ
-//       continue;
-//     }
-//   }
-//   return eachData;
-// };
+      eachData.push(eachPokemonData);
+    } catch (error) {
+      // ポケモンによってurlがない場合があるので、その場合スキップ
+      continue;
+    }
+
+    ++i;
+  }
+
+  return eachData;
+};
