@@ -1,32 +1,49 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  createRandomPokemonData,
   getAllPokemonDetail,
   // createRandomPokemonData,
   getAllPokemonNameAndUrl,
+  getTwoHundredPokemonDetailDate,
   // getRandomPokemonDetailDate,
 } from './utils/dataHandle';
 
 export default async function Home() {
-  const API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
+  const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
+  const ORIGINAL_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const allPokemonDate = await getAllPokemonNameAndUrl(API_URL ? API_URL : '');
+  const allPokemonDate = await getAllPokemonNameAndUrl(
+    POKEMON_API_URL ? POKEMON_API_URL : ''
+  );
   const allPokemonDetail = await getAllPokemonDetail(allPokemonDate);
-  // console.log(allPokemonDetail);
-  const twoHundredRandomPokemonDate = createRandomPokemonData(
-    allPokemonDetail
-  ).slice(0, 200);
 
-  // console.log(hundredRandomPokemonDate);
+  // デプロイ後変更が必要だ
+  // これでシャッフルされたデータを取ってくる
+  const shuffledTwoHundredData = await fetch(
+    `${ORIGINAL_API_URL}/api/pokemon/random`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(allPokemonDetail),
+      next: { revalidate: 2500 },
+    }
+  );
 
-  // const pokes = await getRandomPokemonDetailDate(hundredRandomPokemonDate);
-  // console.error(pokes);
+  if (!shuffledTwoHundredData.ok) {
+    throw new Error(`API error: ${shuffledTwoHundredData.status}`);
+  }
+  const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
+
+  const array = await getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
+
+  console.log(array);
 
   return (
     <div className='w-full h-screen  bg-red-300 fixed'>
       <div className='absolute inset-0 z-0 opacity-85 flex flex-wrap'>
-        {twoHundredRandomPokemonDate.map((poke, index) => {
+        {/* {array.map((poke, index) => {
           return (
             <div key={index}>
               <Image
@@ -40,7 +57,7 @@ export default async function Home() {
               />
             </div>
           );
-        })}
+        })} */}
       </div>
 
       <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>
