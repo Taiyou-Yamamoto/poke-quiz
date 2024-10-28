@@ -1,1 +1,2 @@
-アプリ内BGM 　「イワシロ音楽素材」様より
+音楽:イワシロ音楽素材
+URL:https://iwashiro-sounds.work/
