@@ -20,5 +20,4 @@ export const excludedUrls: string[] = [
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10149.png',
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10150.png',
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10151.png',
-  // 他の除外したいURLを追加
 ];
