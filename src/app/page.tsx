@@ -27,7 +27,7 @@ export default async function Home() {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(allPokemonDetail),
-      next: { revalidate: 2500 },
+      next: { revalidate: 180 },
     }
   );
 
