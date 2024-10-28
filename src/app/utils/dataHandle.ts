@@ -40,7 +40,7 @@ export const createRandomPokemonData = (array: any[]): any[] => {
   // それを使うとspliceや古い配列の要素を削除しなくて済むので効率的らしい
 
   // 配列の最後の要素とランダムで決められたインデックスをarray.length回交換し続ける
-  for (let i = array.length; i >= 0; i--) {
+  for (let i = array.length - 1; i >= 0; i--) {
     //length以内のランダムな値を生成
     const randomNum = Math.floor(Math.random() * (i + 1));
 
@@ -53,21 +53,20 @@ export const createRandomPokemonData = (array: any[]): any[] => {
   return array;
 };
 
-// 200の各ポケモンの画像データを取得
-export const getTwoHundredPokemonDetailDate = async (
-  array: any[]
-): Promise<any[]> => {
+// // 200の各ポケモンの画像データを取得
+export const getTwoHundredPokemonDetailDate = (array: any[]): any[] => {
   const eachData = [];
   let i = 0;
   while (eachData.length < 200) {
     try {
-      const url = await array[i].sprites.front_default;
+      const url = array[i].sprites.front_default;
 
-      const eachPokemonRes = await fetch(`${url}`);
+      if (!url) {
+        ++i;
+        continue;
+      }
 
-      const eachPokemonData = await eachPokemonRes.json();
-
-      eachData.push(eachPokemonData);
+      eachData.push(url);
     } catch (error) {
       // ポケモンによってurlがない場合があるので、その場合スキップ
       continue;

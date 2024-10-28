@@ -36,28 +36,21 @@ export default async function Home() {
   }
   const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
 
-  const array = await getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
-
-  console.log(array);
-
   return (
     <div className='w-full h-screen  bg-red-300 fixed'>
       <div className='absolute inset-0 z-0 opacity-85 flex flex-wrap'>
-        {/* {array.map((poke, index) => {
+        {shuffledTwoHundredArray.map((pokemonUrl: string, index: number) => {
           return (
             <div key={index}>
               <Image
-                src={
-                  poke.sprites.front_default ||
-                  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png`
-                }
+                src={pokemonUrl}
                 width={110}
                 height={110}
-                alt={poke.name}
+                alt={String(index)}
               />
             </div>
           );
-        })} */}
+        })}
       </div>
 
       <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>
