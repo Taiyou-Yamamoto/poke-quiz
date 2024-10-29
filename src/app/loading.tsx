@@ -4,7 +4,7 @@ import React from 'react';
 const Loading = () => {
   return (
     <div className='min-h-screen flex flex-row justify-center items-center'>
-      <div className='font-PokeGB '>
+      <div className='font-PokeGB text-3xl'>
         <span
           className='inline-block myBounce'
           style={{ animationDelay: '0s' }}
@@ -52,26 +52,27 @@ const Loading = () => {
         className='myBounce'
         style={{ animationDelay: '2.1s' }}
         src={'/images/フシギダネ.png'}
-        width={15}
-        height={15}
+        width={35}
+        height={35}
         alt={'1'}
       />
       <Image
         className='myBounce'
         style={{ animationDelay: '2.4s' }}
         src={'/images/ヒトカゲ.png'}
-        width={15}
-        height={15}
+        width={35}
+        height={35}
         alt={'1'}
       />
       <Image
         className='myBounce'
         style={{ animationDelay: '2.7s' }}
         src={'/images/ゼニガメ.png'}
-        width={15}
-        height={15}
+        width={35}
+        height={35}
         alt={'1'}
       />
+    </div>
   );
 };
 
