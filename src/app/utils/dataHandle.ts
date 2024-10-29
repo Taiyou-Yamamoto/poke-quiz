@@ -1,4 +1,5 @@
 import { Pokemon } from '../type';
+import { excludedUrls } from './exclidedUrls';
 
 // 1302匹ぶんのnameとurlをSSGで取得
 export const getAllPokemonNameAndUrl = async (
@@ -56,12 +57,13 @@ export const createRandomPokemonData = (array: any[]): any[] => {
 // // 200の各ポケモンの画像データを取得
 export const getTwoHundredPokemonDetailDate = (array: any[]): any[] => {
   const eachData = [];
+
   let i = 0;
   while (eachData.length < 200) {
     try {
       const url = array[i].sprites.front_default;
 
-      if (!url) {
+      if (!url || excludedUrls.includes(url)) {
         ++i;
         continue;
       }

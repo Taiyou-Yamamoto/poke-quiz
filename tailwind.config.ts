@@ -14,6 +14,7 @@ const config: Config = {
       },
       fontFamily: {
         PokeFont: ['Pokemon Hollow', 'sans-serif'],
+        PokeGB: ['PokeGB', 'sans-serif'],
       },
       keyframes: {
         chime: {

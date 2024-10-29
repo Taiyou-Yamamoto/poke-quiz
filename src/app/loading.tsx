@@ -72,7 +72,6 @@ const Loading = () => {
         height={15}
         alt={'1'}
       />
-    </div>
   );
 };
 
