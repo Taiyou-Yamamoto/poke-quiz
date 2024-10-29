@@ -7,7 +7,6 @@ const BGM = () => {
 
   useEffect(() => {
     const playBGM = async () => {
-      // muted属性を一時的に設定し、再生を開始してから解除する（自動再生制限を回避）
       if (audioRef.current) {
         await audioRef.current.play();
       }

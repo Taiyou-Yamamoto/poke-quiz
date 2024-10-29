@@ -65,7 +65,7 @@ export default async function Home() {
           </div>
           <Link
             href='/quiz'
-            className='hover:animate-shake font-PokeGB text-white shadow-2xl active:shadow-none py-2 px-4 font-black rounded-md border-solid border-4 border-blue-700 bg-yellow-400 mt-4 ring-offset-2 ring-4'
+            className='hover:animate-shake font-extrabold font-PokeGB text-white shadow-2xl active:shadow-none py-2 px-4 rounded-md border-solid border-4 border-blue-700 bg-yellow-400 mt-4 ring-offset-2 ring-4'
           >
             スタート！
           </Link>
