@@ -25,6 +25,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.gray-shadow {
+  text-shadow: 3px 4px 6px rgba(65, 53, 53, 0.63);
+}
+
 @keyframes myBounce {
   0%,
   25% {
