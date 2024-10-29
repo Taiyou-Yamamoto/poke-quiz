@@ -3,16 +3,19 @@ import React from 'react';
 
 const QuizImage = () => {
   return (
-    <div className='main'>
-      <h1>個のポケモンの名前は？</h1>
-      <Image
-        className='myBounce'
-        style={{ animationDelay: '2.1s' }}
-        src={'/images/フシギダネ.png'}
-        width={35}
-        height={35}
-        alt={'1'}
-      />
+    <div className='main my-10'>
+      <div className='p-12 bg-white inline-block'>
+        <div className='bg-white p-12'>
+          <Image
+            src={
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10072.png'
+            }
+            width={120}
+            height={120}
+            alt={'1'}
+          />
+        </div>
+      </div>
     </div>
   );
 };
