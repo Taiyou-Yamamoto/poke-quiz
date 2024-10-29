@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
-import QuizImage from '../../../features/quiz/components/QuizImage';
+
 import AnswerButtons from '../../../features/quiz/components/AnswerButtons';
+import QuizImage from '../../../features/quiz/components/QuizImage';
 
 const Page = async () => {
   return (
