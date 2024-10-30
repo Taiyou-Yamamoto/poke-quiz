@@ -16,6 +16,7 @@ export const excludedUrls: string[] = [
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10133.png',
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10134.png',
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10135.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10144.png',
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10145.png',
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10148.png',
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10149.png',
