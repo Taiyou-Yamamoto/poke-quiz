@@ -55,6 +55,7 @@ const Loading = () => {
         width={35}
         height={35}
         alt={'1'}
+        priority
       />
       <Image
         className='myBounce'
@@ -63,6 +64,7 @@ const Loading = () => {
         width={35}
         height={35}
         alt={'1'}
+        priority
       />
       <Image
         className='myBounce'
@@ -71,6 +73,7 @@ const Loading = () => {
         width={35}
         height={35}
         alt={'1'}
+        priority
       />
     </div>
   );
