@@ -5,14 +5,13 @@ import {
   getAllPokemonNameAndUrl,
 } from './utils/dataHandle';
 import BGM from './utils/bgm';
+import { supabase } from './utils/supabaseClient';
 
 export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
   const ORIGINAL_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const allPokemonDate = await getAllPokemonNameAndUrl(
-    POKEMON_API_URL ? POKEMON_API_URL : ''
-  );
+  const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
   const allPokemonDetail = await getAllPokemonDetail(allPokemonDate);
 
   // デプロイ後変更が必要だ
@@ -34,6 +33,11 @@ export default async function Home() {
   }
   const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
   console.log(shuffledTwoHundredArray);
+
+  // const res = getAllArticles = async():Promise<any[]> => {
+  //   const
+  // }
+
   return (
     <>
       <BGM />
@@ -61,6 +65,7 @@ export default async function Home() {
               alt='My Image'
               width={500}
               height={300}
+              priority
             />
           </div>
           <Link
