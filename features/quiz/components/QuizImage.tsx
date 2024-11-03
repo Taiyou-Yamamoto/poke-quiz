@@ -1,4 +1,4 @@
-import { PokemonImage } from '@/app/type';
+import { PokemonImage, quizArrayProps } from '@/app/type';
 import Image from 'next/image';
 import React from 'react';
 
