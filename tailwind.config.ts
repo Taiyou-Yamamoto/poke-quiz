@@ -43,10 +43,16 @@ const config: Config = {
           '25%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(0%)' },
         },
+        blink: {
+          '0%': { opacity: '1' },
+          '50%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
       },
       animation: {
-        chime: 'chime 3.5s ease-in-out infinite', // 3.5秒ごとに無限ループ
-        shake: ' shake 3s ease-in-out infinite',
+        chime: 'chime 3.5s ease-in-out infinite',
+        shake: 'shake 3s ease-in-out infinite',
+        blink: 'blink 0.7s steps(1) infinite',
       },
     },
   },

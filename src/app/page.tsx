@@ -5,7 +5,6 @@ import {
   getAllPokemonNameAndUrl,
 } from './utils/dataHandle';
 import BGM from './utils/bgm';
-import { supabase } from './utils/supabaseClient';
 
 export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
@@ -40,7 +39,6 @@ export default async function Home() {
 
   return (
     <>
-      <BGM />
       <div className='w-full h-screen  bg-red-300 fixed'>
         <div className='absolute inset-0 z-0 opacity-85 flex flex-wrap'>
           {shuffledTwoHundredArray.map((pokemonUrl: string, index: number) => {

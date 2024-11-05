@@ -6,10 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "json-server": "json-server --watch src/test/poke.json --port 3002"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.46.1",
     "axios": "^1.7.7",
+    "json-server": "^1.0.0-beta.3",
     "next": "15.0.0",
     "react": "19.0.0-rc-65a56d0e-20241020",
     "react-dom": "19.0.0-rc-65a56d0e-20241020"

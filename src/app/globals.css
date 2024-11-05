@@ -7,6 +7,11 @@
   font-family: 'PokeGB';
   src: url('/fonts/PokemonGb-RAeo.ttf');
 }
+
+@font-face {
+  font-family: 'PokeJp';
+  src: url('/fonts/PokemonGbJapanKt-8Rw2.ttf');
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -26,7 +31,7 @@ body {
 }
 
 .gray-shadow {
-  text-shadow: 3px 4px 6px rgba(65, 53, 53, 0.63);
+  text-shadow: 2px 2px 4px rgba(65, 53, 53, 0.63);
 }
 
 @keyframes myBounce {

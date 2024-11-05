@@ -6,7 +6,7 @@ import Input from './Input';
 import { quizArrayProps } from '@/app/type';
 import { useRouter } from 'next/navigation';
 
-const QuizMain = ({ quizArray }: quizArrayProps) => {
+const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const router = useRouter();
   const [count, setCount] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
@@ -16,11 +16,12 @@ const QuizMain = ({ quizArray }: quizArrayProps) => {
     router.push('/');
     router.refresh();
   };
+  console.log(quizArray);
+  console.log(detailArray);
   return (
     <div className='bg-red-300 min-h-screen w-full'>
-      {/* <Battle /> */}
       {count > 9 ? (
-        <div>
+        <div className='flex justify-center'>
           <h1>{score}</h1>
           <form onSubmit={goToHome}>
             <button type='submit'>戻る</button>

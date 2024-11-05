@@ -19,4 +19,5 @@ export type Quiz = {
 
 export type quizArrayProps = {
   quizArray: Quiz[];
+  detailArray: any[];
 };

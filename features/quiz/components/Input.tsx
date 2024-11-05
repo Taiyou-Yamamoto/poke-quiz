@@ -11,6 +11,7 @@ const Input = ({ PokemonName, setCount, setScore }: PokemonName) => {
   };
 
   const judgeAnswer = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (inputElement.current!.value === PokemonName) {
       setScore((prev) => prev + 1);
     }
@@ -19,14 +20,18 @@ const Input = ({ PokemonName, setCount, setScore }: PokemonName) => {
     inputElement.current!.value = '';
   };
   return (
-    <form onSubmit={judgeAnswer}>
-      <input
-        type='submit'
-        className='text-3xl font-extrabold rounded w-2'
-        ref={inputElement}
-        autoFocus
-      />
-    </form>
+    <div className='rounded w-2'>
+      {' '}
+      <form onSubmit={judgeAnswer} className='rounded w-2'>
+        <input
+          type='text'
+          className='text-3xl font-extrabold rounded w-2'
+          ref={inputElement}
+          autoFocus
+        />
+      </form>
+      <div>{PokemonName}</div>
+    </div>
   );
 };
 
