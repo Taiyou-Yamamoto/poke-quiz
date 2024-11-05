@@ -1,16 +1,10 @@
-import Image from 'next/image';
 import React, { useState } from 'react';
-import AnswerButtons from '../../../features/quiz/components/AnswerButtons';
-import QuizImage from '../../../features/quiz/components/QuizImage';
 import {
   createRandomPokemonData,
   getAllPokemonNameAndUrl,
 } from '../utils/dataHandle';
-import Input from '../../../features/quiz/components/Input';
-import Battle from '../utils/battle';
 import { excludedUrls } from '../utils/exclidedUrls';
 import QuizMain from '../../../features/quiz/components/QuizMain';
-// import QuizMain from '../../../features/quiz/components/QuizMain';
 
 const Page = async () => {
   const quizArray = [];

@@ -1,5 +1,4 @@
 'use client';
-import Battle from '@/app/utils/battle';
 import React, { useState } from 'react';
 import QuizImage from './QuizImage';
 import Input from './Input';

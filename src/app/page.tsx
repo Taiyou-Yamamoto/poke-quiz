@@ -4,7 +4,6 @@ import {
   getAllPokemonDetail,
   getAllPokemonNameAndUrl,
 } from './utils/dataHandle';
-import BGM from './utils/bgm';
 
 export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
