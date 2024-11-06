@@ -15,8 +15,8 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     router.push('/');
     router.refresh();
   };
-  console.log(quizArray);
-  console.log(detailArray);
+  console.log('クイズ', quizArray);
+  console.log('詳細', detailArray);
   return (
     <div className='bg-red-300 min-h-screen w-full'>
       {count > 9 ? (
@@ -27,9 +27,9 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
           </form>
         </div>
       ) : (
-        <div className='bg-red-300 min-h-screen w-full flex flex-col justify-center items-center'>
+        <div className='bg-red-300 min-h-screen w-full flex flex-col justify-center'>
           <h1 className='font-PokeGB text-3xl text-white font-extrabold my-14 gray-shadow'>
-            このポケモンの名前は？ カウントは{count}、 スコアは{score}
+            {count}/10 このポケモンの名前は？
           </h1>
           <QuizImage image={quizArray[count].image} />
           <Input

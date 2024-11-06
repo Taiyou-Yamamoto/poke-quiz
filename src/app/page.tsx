@@ -67,9 +67,21 @@ export default async function Home() {
           </div>
           <Link
             href='/quiz'
-            className='hover:animate-shake font-extrabold font-PokeGB text-white shadow-2xl active:shadow-none py-2 px-4 rounded-md border-solid border-4 border-blue-700 bg-yellow-400 mt-4 ring-offset-2 ring-4'
+            className='gray-shadow hover:animate-shake font-extrabold font-PokeGB text-black shadow-2xl active:shadow-none py-2 px-[0.6rem] rounded-md border-solid border-4 border-red-600 bg-white mt-4 ring-offset-2 ring-4'
           >
-            スタート！
+            モンスターレベル
+          </Link>
+          <Link
+            href='/quiz'
+            className='hover:animate-shake font-extrabold font-PokeGB text-white shadow-2xl active:shadow-none py-2 px-4 rounded-md border-solid border-4 border-red-600 bg-blue-500 mt-4 ring-offset-2 ring-4'
+          >
+            スーパーレベル
+          </Link>
+          <Link
+            href='/quiz'
+            className='hover:animate-shake font-extrabold font-PokeGB text-white shadow-2xl active:shadow-none py-2 px-4 rounded-md border-solid border-4 border-yellow-400 bg-gray-700 mt-4 ring-offset-2 ring-4'
+          >
+            ハイパーレベル
           </Link>
         </div>
       </div>

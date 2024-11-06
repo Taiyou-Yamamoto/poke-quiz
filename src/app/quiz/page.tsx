@@ -31,7 +31,12 @@ const Page = async () => {
 
   // 以上のデータを元に10匹分のデータを取得する。初めに画像データより10匹を選別
   for (let i = 0; quizArray.length < 10; ++i) {
-    if (excludedUrls.includes(detailArray[i].sprites.front_default)) {
+    if (
+      excludedUrls.includes(
+        detailArray[i].sprites.front_default ||
+          !detailArray[i].sprites.front_default
+      )
+    ) {
       continue;
     }
 
