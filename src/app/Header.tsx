@@ -20,6 +20,12 @@ const Header = () => {
       case '/quiz':
         setBgmSrc('/bgm/iwashiro_pokemoso_battle_1.mp3');
         break;
+      case '/result_high':
+        setBgmSrc('/bgm/audiostock_1116777.wav');
+        break;
+      case '/result_low':
+        setBgmSrc('/bgm/iwa_gameover010.mp3');
+        break;
       default:
         setBgmSrc('');
     }
@@ -48,7 +54,10 @@ const Header = () => {
 
   return (
     <div className='bg-opacity-0 m-10'>
-      <audio ref={audioRef} loop />
+      <audio
+        ref={audioRef}
+        loop={!(pathname === '/result_high' || pathname === '/result_low')}
+      />
       <label className='inline-flex items-center cursor-pointer bg-orange-400 px-2 py-4 rounded shadow'>
         <input
           type='checkbox'
