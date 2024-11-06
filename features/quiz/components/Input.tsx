@@ -20,12 +20,11 @@ const Input = ({ PokemonName, setCount, setScore }: PokemonName) => {
     inputElement.current!.value = '';
   };
   return (
-    <div className=' w-10/12 block'>
-      {' '}
-      <form onSubmit={judgeAnswer} className=''>
+    <div className=' w-1/4 block'>
+      <form onSubmit={judgeAnswer} className='shadow'>
         <input
           type='text'
-          className='text-3xl font-extrabold rounded'
+          className='text-3xl font-extrabold rounded border-4 border-y-slate-700'
           ref={inputElement}
           autoFocus
         />
