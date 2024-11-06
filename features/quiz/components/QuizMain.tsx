@@ -12,14 +12,18 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
 
   const goToHome = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setScore(0);
+    setCount(0);
     router.push('/');
     router.refresh();
   };
 
   useEffect(() => {
     if (count > 9) {
+      const resultUrl = score > 7 ? '/result_high' : '/result_low';
       // 検索パラメータを変更しBGMを変更
-      window.history.replaceState(null, '', '/result');
+      window.history.replaceState(null, '', resultUrl);
+      window.history.replaceState(null, '', resultUrl);
     }
   }, [count]);
   console.log('クイズ', quizArray);
