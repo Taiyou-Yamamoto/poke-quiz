@@ -4,6 +4,7 @@ import QuizImage from './QuizImage';
 import Input from './Input';
 import { quizArrayProps } from '@/app/type';
 import { useRouter } from 'next/navigation';
+import { Http2ServerRequest } from 'http2';
 
 const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const router = useRouter();
@@ -17,10 +18,18 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     router.push('/');
     router.refresh();
   };
+  let resultMessage;
+  if (score > 8) {
+    resultMessage = <div>すごいぞ！君はオーキド博士級だ！</div>;
+  } else if (score > 5) {
+    resultMessage = <div>やったね！君はエリートトレーナー級だ！</div>;
+  } else {
+    resultMessage = <div>がんばれ！君は虫取り少年級だ！</div>;
+  }
 
   useEffect(() => {
     if (count > 9) {
-      const resultUrl = score > 7 ? '/result_high' : '/result_low';
+      const resultUrl = score > 5 ? '/result_high' : '/result_low';
       // 検索パラメータを変更しBGMを変更
       window.history.replaceState(null, '', resultUrl);
       window.history.replaceState(null, '', resultUrl);
@@ -29,13 +38,15 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   console.log('クイズ', quizArray);
   console.log('詳細', detailArray);
   return (
-    <div className='bg-red-300 min-h-screen w-full'>
+    <div className='bg-red-300 min-h-screen w-full mt-24'>
       {count > 9 ? (
-        <div className='h-full w-full flex flex-col justify-center items-center mt-10 bg-red-300'>
-          <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow'>
-            {score}/10
+        <div className='min-h-screen w-full flex flex-col justify-center items-center mt-10 bg-red-300'>
+          <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow mb-11'>
+            スコア: {score}/10
           </h1>
-          <div></div>
+          <div className='font-PokeGB text-3xl text-white font-extrabold gray-shadow'>
+            {resultMessage}
+          </div>
           <form onSubmit={goToHome} className=''>
             <button
               type='submit'
@@ -48,8 +59,8 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
       ) : (
         <div className='bg-red-300 min-h-screen w-full flex flex-col justify-center items-center'>
           <div>
-            <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow items-center'>
-              {count + 1}/10
+            <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow items-center my-1'>
+              {count + 1}問目
             </h1>
             <h2 className='font-PokeGB text-3xl text-white font-extrabold my-14 gray-shadow'>
               このポケモンの名前は？
