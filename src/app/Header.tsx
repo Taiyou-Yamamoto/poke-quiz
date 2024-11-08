@@ -1,6 +1,6 @@
 'use client';
-import { usePathname, useRouter } from 'next/navigation';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Header = () => {
   const [toggle, setToggle] = useState<boolean>(false);
@@ -19,6 +19,12 @@ const Header = () => {
         break;
       case '/quiz':
         setBgmSrc('/bgm/iwashiro_pokemoso_battle_1.mp3');
+        break;
+      case '/quiz2':
+        setBgmSrc('/bgm/iwashiro_pokemoso_battle_2.mp3');
+        break;
+      case '/quiz3':
+        setBgmSrc('/bgm/iwashiro_pokemoso_battle_3.mp3');
         break;
       case '/result_high':
         setBgmSrc('/bgm/audiostock_1116777.wav');
@@ -39,7 +45,7 @@ const Header = () => {
         audioRef.current.play();
       }
     }
-  }, [bgmSrc]);
+  }, [bgmSrc, toggle]);
 
   useEffect(() => {
     if (audioRef.current) {
