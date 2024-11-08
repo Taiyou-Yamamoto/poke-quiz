@@ -1,6 +1,7 @@
 'use client';
 
 import { PokemonName } from '@/app/type';
+import { audioPlay } from '@/app/utils/seHandle';
 import React, { useRef, useState } from 'react';
 
 const Input = ({ PokemonName, setCount, setScore }: PokemonName) => {
@@ -14,6 +15,9 @@ const Input = ({ PokemonName, setCount, setScore }: PokemonName) => {
     e.preventDefault();
     if (inputElement.current!.value === PokemonName) {
       setScore((prev) => prev + 1);
+      audioPlay('/SE/se_itemget_013.wav');
+    } else {
+      audioPlay('/SE/boo.mp3');
     }
 
     setCount((prev) => prev + 1);
@@ -26,6 +30,7 @@ const Input = ({ PokemonName, setCount, setScore }: PokemonName) => {
           type='text'
           className='text-3xl font-extrabold rounded border-4 border-y-slate-700'
           ref={inputElement}
+          placeholder='ヒトカゲ'
           autoFocus
         />
       </form>
