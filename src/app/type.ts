@@ -10,6 +10,7 @@ export type PokemonName = {
   PokemonName: string;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   setScore: React.Dispatch<React.SetStateAction<number>>;
+  setYourResult: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export type Quiz = {

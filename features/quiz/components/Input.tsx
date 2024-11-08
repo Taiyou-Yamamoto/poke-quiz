@@ -4,12 +4,13 @@ import { PokemonName } from '@/app/type';
 import { audioPlay } from '@/app/utils/seHandle';
 import React, { useRef, useState } from 'react';
 
-const Input = ({ PokemonName, setCount, setScore }: PokemonName) => {
-  const [value, SetValue] = useState<string>('');
+const Input = ({
+  PokemonName,
+  setCount,
+  setScore,
+  setYourResult,
+}: PokemonName) => {
   const inputElement = useRef<HTMLInputElement>(null);
-  const changeValue = () => {
-    SetValue(inputElement.current!.value);
-  };
 
   const judgeAnswer = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,6 +22,9 @@ const Input = ({ PokemonName, setCount, setScore }: PokemonName) => {
     }
 
     setCount((prev) => prev + 1);
+    setYourResult((prev) => {
+      return [...prev, inputElement.current!.value];
+    });
     inputElement.current!.value = '';
   };
   return (

@@ -31,22 +31,16 @@ const Page = async () => {
 
   // 以上のデータを元に10匹分のデータを取得する。初めに画像データより10匹を選別
   for (let i = 0; quizArray.length < 10; ++i) {
-    if (
-      excludedUrls.includes(
-        detailArray[i].sprites.front_default ||
-          detailArray[i].sprites.front_default == null
-      )
-    ) {
+    const imageData = detailArray[i].sprites.front_default;
+    if (!imageData || excludedUrls.includes(imageData)) {
       continue;
     }
-
-    const imageData = detailArray[i].sprites.front_default;
-
     const pokemonSpecies = await fetch(detailArray[i].species.url);
     const pokemonName = await pokemonSpecies.json();
 
     const pokemonJpName = pokemonName.names[0].name;
 
+    // quizArrayはresult画面でも活用
     quizArray.push({
       image: imageData,
       name: pokemonJpName,

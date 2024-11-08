@@ -2,14 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import QuizImage from './QuizImage';
 import Input from './Input';
-import { quizArrayProps } from '@/app/type';
+import { Quiz, quizArrayProps } from '@/app/type';
 import { useRouter } from 'next/navigation';
-import { Http2ServerRequest } from 'http2';
+import Image from 'next/image';
 
 const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const router = useRouter();
   const [count, setCount] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
+  const [yourResult, setYourResult] = useState<string[]>([]);
 
   const goToHome = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,11 +34,11 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
       const resultUrl = score > 5 ? '/result_high' : '/result_low';
       // 検索パラメータを変更しBGMを変更
       window.history.replaceState(null, '', resultUrl);
-      window.history.replaceState(null, '', resultUrl);
     }
   }, [count, score]);
   console.log('クイズ', quizArray);
   console.log('詳細', detailArray);
+  console.log('yourResult', yourResult);
   return (
     <div className='bg-red-300 min-h-screen w-full mt-24'>
       {count > 9 ? (
@@ -48,6 +49,22 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
           <div className='font-PokeGB text-3xl text-white font-extrabold gray-shadow'>
             {resultMessage}
           </div>
+          {quizArray.map((pokemon: Quiz) => {
+            return (
+              <>
+                {' '}
+                <Image
+                  src={pokemon.image}
+                  width={80}
+                  height={80}
+                  key={pokemon.image}
+                  alt={''}
+                />
+                <h3>{pokemon.name}</h3>
+                <h3>{yourResult}</h3>
+              </>
+            );
+          })}
           <form onSubmit={goToHome} className=''>
             <button
               type='submit'
@@ -58,7 +75,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
           </form>
         </div>
       ) : (
-        <div className='bg-red-300 min-h-screen w-full flex flex-col justify-center items-center'>
+        <div className=' min-h-screen w-full flex flex-col justify-center items-center'>
           {/* あとで背景として使う */}
           {/* <video
             autoPlay
@@ -69,8 +86,6 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
             <source src='/background/モンスターボール風.mp4' type='video/mp4' />
           </video> */}
           <div className='flex flex-col gap-4'>
-            {' '}
-            {/* gap-4で隙間を調整 */}
             <h1 className='flex font-PokeGB text-3xl text-white font-extrabold gray-shadow justify-center items-center'>
               {count + 1}問目
             </h1>
@@ -84,6 +99,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
             PokemonName={quizArray[count].name}
             setCount={setCount}
             setScore={setScore}
+            setYourResult={setYourResult}
           />
         </div>
       )}
