@@ -34,7 +34,7 @@ const Page = async () => {
     if (
       excludedUrls.includes(
         detailArray[i].sprites.front_default ||
-          !detailArray[i].sprites.front_default
+          detailArray[i].sprites.front_default == null
       )
     ) {
       continue;
