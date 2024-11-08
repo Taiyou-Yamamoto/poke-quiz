@@ -18,6 +18,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     router.push('/');
     router.refresh();
   };
+
   let resultMessage;
   if (score > 8) {
     resultMessage = <div>すごいぞ！君はオーキド博士級だ！</div>;
@@ -34,7 +35,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
       window.history.replaceState(null, '', resultUrl);
       window.history.replaceState(null, '', resultUrl);
     }
-  }, [count]);
+  }, [count, score]);
   console.log('クイズ', quizArray);
   console.log('詳細', detailArray);
   return (
@@ -58,11 +59,22 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
         </div>
       ) : (
         <div className='bg-red-300 min-h-screen w-full flex flex-col justify-center items-center'>
-          <div>
-            <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow items-center my-1'>
+          {/* あとで背景として使う */}
+          {/* <video
+            autoPlay
+            muted
+            loop
+            className='absolute inset-0 w-full h-full object-cover'
+          >
+            <source src='/background/モンスターボール風.mp4' type='video/mp4' />
+          </video> */}
+          <div className='flex flex-col gap-4'>
+            {' '}
+            {/* gap-4で隙間を調整 */}
+            <h1 className='flex font-PokeGB text-3xl text-white font-extrabold gray-shadow justify-center items-center'>
               {count + 1}問目
             </h1>
-            <h2 className='font-PokeGB text-3xl text-white font-extrabold my-14 gray-shadow'>
+            <h2 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow'>
               このポケモンの名前は？
             </h2>
           </div>
