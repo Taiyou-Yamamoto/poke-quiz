@@ -5,10 +5,15 @@ import React, { useEffect, useRef, useState } from 'react';
 const Header = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [bgmSrc, setBgmSrc] = useState<string>('');
+  const [firstPlay, setFirstPlay] = useState<boolean>(true);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const pathname = usePathname();
   const controlToggle = () => {
+    if (firstPlay && audioRef.current) {
+      audioRef.current.play();
+      setFirstPlay(false);
+    }
     setToggle((prev) => !prev);
   };
 
@@ -41,17 +46,12 @@ const Header = () => {
     if (audioRef.current) {
       audioRef.current.src = bgmSrc;
       audioRef.current.load();
-      if (toggle) {
-        audioRef.current.play();
-      }
+      audioRef.current.play();
     }
-  }, [bgmSrc, toggle]);
+  }, [bgmSrc]);
 
   useEffect(() => {
     if (audioRef.current) {
-      if (toggle) {
-        audioRef.current.play();
-      }
       audioRef.current.muted = !toggle;
     }
 
