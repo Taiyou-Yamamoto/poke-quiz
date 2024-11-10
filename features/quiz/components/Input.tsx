@@ -1,40 +1,47 @@
 'use client';
 
-import { PokemonName } from '@/app/type';
+import { InputProps } from '@/app/type';
 import { audioPlay } from '@/app/utils/seHandle';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Input = ({
   PokemonName,
   setCount,
   setScore,
   setYourResult,
-}: PokemonName) => {
-  const inputElement = useRef<HTMLInputElement>(null);
+}: InputProps) => {
+  const [value, setValue] = useState<string>('');
 
+  const handleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setValue(e.target.value);
+  };
   const judgeAnswer = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputElement.current!.value === PokemonName) {
+    if (value === PokemonName) {
       setScore((prev) => prev + 1);
       audioPlay('/SE/se_itemget_013.wav');
     } else {
       audioPlay('/SE/boo.mp3');
     }
-
+    console.log('削除まえ', value);
     setCount((prev) => prev + 1);
-    setYourResult((prev) => {
-      return [...prev, inputElement.current!.value];
-    });
-    inputElement.current!.value = '';
+    setYourResult((prev) => [...prev, value]);
+    setValue('');
+    // inputElement.current!.value = '';
+    console.log('削除後', value);
   };
+
   return (
     <div className=' w-1/4 block'>
       <form onSubmit={judgeAnswer} className='shadow'>
         <input
           type='text'
           className='text-3xl font-extrabold rounded border-4 border-y-slate-700'
-          ref={inputElement}
+          // ref={inputElement}
+          onChange={handleValue}
           placeholder='ヒトカゲ'
+          value={value}
           autoFocus
         />
       </form>
