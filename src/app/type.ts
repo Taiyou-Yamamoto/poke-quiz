@@ -6,7 +6,7 @@ export type Pokemon = {
 export type PokemonImage = {
   image: string;
 };
-export type PokemonName = {
+export type InputProps = {
   PokemonName: string;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   setScore: React.Dispatch<React.SetStateAction<number>>;

@@ -49,22 +49,37 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
           <div className='font-PokeGB text-3xl text-white font-extrabold gray-shadow'>
             {resultMessage}
           </div>
-          {quizArray.map((pokemon: Quiz) => {
-            return (
-              <>
-                {' '}
-                <Image
-                  src={pokemon.image}
-                  width={80}
-                  height={80}
-                  key={pokemon.image}
-                  alt={''}
-                />
-                <h3>{pokemon.name}</h3>
-                <h3>{yourResult}</h3>
-              </>
-            );
-          })}
+          <table className='table-fixed'>
+            <thead>
+              <tr>
+                <th>答え</th>
+                <th>あなたの回答</th>
+              </tr>
+            </thead>
+            <tbody>
+              {quizArray.map((pokemon: Quiz, index) => {
+                return (
+                  <>
+                    <tr>
+                      <td>
+                        <Image
+                          src={pokemon.image}
+                          width={80}
+                          height={80}
+                          key={pokemon.image}
+                          alt={''}
+                        />
+                        <h3>{pokemon.name}</h3>
+                      </td>
+                      <td>
+                        <h3>{yourResult[index]}</h3>
+                      </td>
+                    </tr>
+                  </>
+                );
+              })}
+            </tbody>
+          </table>
           <form onSubmit={goToHome} className=''>
             <button
               type='submit'
