@@ -47,11 +47,7 @@ const Page = async () => {
     });
   }
 
-  return (
-    <>
-      <QuizMain quizArray={quizArray} detailArray={detailArray} />
-    </>
-  );
+  return <QuizMain quizArray={quizArray} detailArray={detailArray} />;
 };
 
 export default Page;

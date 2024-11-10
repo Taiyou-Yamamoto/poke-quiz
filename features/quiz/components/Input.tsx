@@ -33,12 +33,11 @@ const Input = ({
   };
 
   return (
-    <div className=' w-1/4 block'>
+    <div className='block'>
       <form onSubmit={judgeAnswer} className='shadow'>
         <input
           type='text'
-          className='text-3xl font-extrabold rounded border-4 border-y-slate-700'
-          // ref={inputElement}
+          className='text-3xl w-[14rem] font-extrabold rounded border-4 border-y-slate-700'
           onChange={handleValue}
           placeholder='ヒトカゲ'
           value={value}

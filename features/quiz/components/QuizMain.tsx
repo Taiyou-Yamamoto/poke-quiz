@@ -5,6 +5,9 @@ import Input from './Input';
 import { Quiz, quizArrayProps } from '@/app/type';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-regular-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const router = useRouter();
@@ -36,31 +39,35 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
       window.history.replaceState(null, '', resultUrl);
     }
   }, [count, score]);
+
   console.log('クイズ', quizArray);
   console.log('詳細', detailArray);
   console.log('yourResult', yourResult);
+
   return (
-    <div className='bg-red-300 min-h-screen w-full mt-24'>
-      {count > 9 ? (
-        <div className='min-h-screen w-full flex flex-col justify-center items-center mt-10 bg-red-300'>
-          <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow mb-11'>
-            スコア: {score}/10
-          </h1>
-          <div className='font-PokeGB text-3xl text-white font-extrabold gray-shadow'>
-            {resultMessage}
-          </div>
-          <table className='table-fixed'>
-            <thead>
-              <tr>
-                <th>答え</th>
-                <th>あなたの回答</th>
-              </tr>
-            </thead>
-            <tbody>
-              {quizArray.map((pokemon: Quiz, index) => {
-                return (
-                  <>
-                    <tr>
+    <div className='bg-red-300 w-full'>
+      <div className='py-11'>
+        {' '}
+        {count > 9 ? (
+          <div className=' w-full flex flex-col justify-center items-center bg-red-300'>
+            <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow mb-11'>
+              スコア: {score}/10
+            </h1>
+            <div className='font-PokeGB text-3xl text-white font-extrabold gray-shadow'>
+              {resultMessage}
+            </div>
+            <table className='table-fixed'>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>答え</th>
+                  <th>あなたの回答</th>
+                </tr>
+              </thead>
+              <tbody>
+                {quizArray.map((pokemon: Quiz, index) => {
+                  return (
+                    <tr key={index}>
                       <td>
                         <Image
                           src={pokemon.image}
@@ -69,30 +76,46 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
                           key={pokemon.image}
                           alt={''}
                         />
-                        <h3>{pokemon.name}</h3>
                       </td>
                       <td>
-                        <h3>{yourResult[index]}</h3>
+                        <h3 className='text-white gray-shadow font-extrabold'>
+                          {pokemon.name}
+                        </h3>
+                      </td>
+                      <td className='flex flex-row'>
+                        <h3 className='text-white gray-shadow  font-extrabold text-2xl'>
+                          {yourResult[index]}
+                        </h3>
+                        {pokemon.name == yourResult[index] ? (
+                          <FontAwesomeIcon
+                            icon={faCircle}
+                            className='text-lime-500 gray-shadow font-extrabold text-2xl'
+                          />
+                        ) : (
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            className='text-red-600 gray-shadow font-extrabold text-2xl'
+                          />
+                        )}
                       </td>
                     </tr>
-                  </>
-                );
-              })}
-            </tbody>
-          </table>
-          <form onSubmit={goToHome} className=''>
-            <button
-              type='submit'
-              className='bg-yellow-300 gray-shadow return-button max-w-[150px] font-extrabold font-PokeGB text-white py-2 px-4 rounded-md border-solid border-4 mt-4 ring-4 shadow-2xl active:shadow-none'
-            >
-              戻る
-            </button>
-          </form>
-        </div>
-      ) : (
-        <div className=' min-h-screen w-full flex flex-col justify-center items-center'>
-          {/* あとで背景として使う */}
-          {/* <video
+                  );
+                })}
+              </tbody>
+            </table>
+            <form onSubmit={goToHome} className=''>
+              <button
+                type='submit'
+                className='bg-yellow-300 gray-shadow return-button max-w-[150px] font-extrabold font-PokeGB text-white py-2 px-4 rounded-md border-solid border-4 mt-4 ring-4 shadow-2xl active:shadow-none'
+              >
+                戻る
+              </button>
+            </form>
+          </div>
+        ) : (
+          <div className=' min-h-screen w-full flex flex-col justify-center items-center'>
+            {/* あとで背景として使う */}
+            {/* <video
             autoPlay
             muted
             loop
@@ -100,24 +123,25 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
           >
             <source src='/background/モンスターボール風.mp4' type='video/mp4' />
           </video> */}
-          <div className='flex flex-col gap-4'>
-            <h1 className='flex font-PokeGB text-3xl text-white font-extrabold gray-shadow justify-center items-center'>
-              {count + 1}問目
-            </h1>
-            <h2 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow'>
-              このポケモンの名前は？
-            </h2>
-          </div>
+            <div className='flex flex-col gap-4'>
+              <h1 className='flex font-PokeGB text-3xl text-white font-extrabold gray-shadow justify-center items-center'>
+                {count + 1}問目
+              </h1>
+              <h2 className='font-PokeHira text-3xl text-white  font-extrabold gray-shadow'>
+                ポケモ
+              </h2>
+            </div>
 
-          <QuizImage image={quizArray[count].image} />
-          <Input
-            PokemonName={quizArray[count].name}
-            setCount={setCount}
-            setScore={setScore}
-            setYourResult={setYourResult}
-          />
-        </div>
-      )}
+            <QuizImage image={quizArray[count].image} />
+            <Input
+              PokemonName={quizArray[count].name}
+              setCount={setCount}
+              setScore={setScore}
+              setYourResult={setYourResult}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
