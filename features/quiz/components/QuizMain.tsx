@@ -56,12 +56,13 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
             <div className='font-PokeGB text-3xl text-white font-extrabold gray-shadow'>
               {resultMessage}
             </div>
-            <table className='table-fixed'>
+            <table className=''>
               <thead>
                 <tr>
                   <th></th>
-                  <th>答え</th>
-                  <th>あなたの回答</th>
+                  <th colSpan={2}>答え</th>
+                  <th colSpan={2}>あなたの回答</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -78,14 +79,17 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
                         />
                       </td>
                       <td>
-                        <h3 className='text-white gray-shadow font-extrabold'>
+                        <h3 className='text-white gray-shadow font-extrabold text-2xl'>
                           {pokemon.name}
                         </h3>
                       </td>
-                      <td className='flex flex-row'>
+                      <td>
                         <h3 className='text-white gray-shadow  font-extrabold text-2xl'>
                           {yourResult[index]}
                         </h3>
+                      </td>
+                      <td>
+                        {' '}
                         {pokemon.name == yourResult[index] ? (
                           <FontAwesomeIcon
                             icon={faCircle}
