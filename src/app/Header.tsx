@@ -9,6 +9,7 @@ const Header = () => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const pathname = usePathname();
+
   const controlToggle = () => {
     if (firstPlay && audioRef.current) {
       audioRef.current.play();
@@ -44,10 +45,14 @@ const Header = () => {
 
   useEffect(() => {
     if (audioRef.current) {
+      audioRef.current.pause();
       audioRef.current.src = bgmSrc;
       audioRef.current.load();
-      audioRef.current.play();
+      if (toggle) {
+        audioRef.current.play().catch((e) => console.error(e));
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bgmSrc]);
 
   useEffect(() => {
