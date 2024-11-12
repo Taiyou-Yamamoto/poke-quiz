@@ -10,7 +10,12 @@
 
 @font-face {
   font-family: 'PokeJp';
-  src: url('/fonts/PokemonGbJapanKt-8Rw2.ttf');
+  src: url('/fonts/PokemonGbJapanKt-8Rw2.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PokeHira';
+  src: url('/fonts/PokemonGbJapanHrregular-Bq93.ttf') format('truetype');
 }
 :root {
   --background: #ffffff;
