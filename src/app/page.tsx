@@ -67,19 +67,19 @@ export default async function Home() {
           </div>
           <Link
             href='/quiz'
-            className='font-DotJP gray-shadow hover:animate-shake font-extrabold fon text-white shadow-2xl active:shadow-none py-2 px-[0.6rem] rounded-md border-solid border-4 bg-red-600 border-white mt-4 ring-offset-2 ring-4'
+            className='w-[10rem] mx-auto font-DotJP gray-shadow hover:animate-shake font-extrabold text-white shadow-2xl active:shadow-none py-2 px-4 rounded-md border-solid border-4 bg-red-600 border-white mt-4 ring-offset-2 ring-4'
           >
             モンスタ-レベル
           </Link>
           <Link
             href='/quiz2'
-            className='font-DotJP hover:animate-shake font-extrabold text-white shadow-2xl active:shadow-none py-2 px-4 rounded-md border-solid border-4 border-red-600 bg-blue-500 mt-4 ring-offset-2 ring-4'
+            className='w-[10rem] mx-auto font-DotJP hover:animate-shake font-extrabold text-white shadow-2xl active:shadow-none py-2 px-4 pl-6 rounded-md border-solid border-4 border-red-600 bg-blue-500 mt-4 ring-offset-2 ring-4'
           >
             スーパ-レベル
           </Link>
           <Link
             href='/quiz3'
-            className='font-DotJP hover:animate-shake font-extrabold text-white shadow-2xl active:shadow-none py-2 px-4 rounded-md border-solid border-4 border-yellow-400 bg-gray-700 mt-4 ring-offset-2 ring-4'
+            className='w-[10rem] mx-auto font-DotJP hover:animate-shake font-extrabold text-white shadow-2xl active:shadow-none py-2 px-4 pl-6 rounded-md border-solid border-4 border-yellow-400 bg-gray-700 mt-4 ring-offset-2 ring-4'
           >
             ハイパーレベル
           </Link>
