@@ -10,6 +10,7 @@ import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import XPost from './XPost';
+import Isloading from './Isloading';
 
 const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const router = useRouter();
@@ -17,21 +18,22 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const [count, setCount] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [yourResult, setYourResult] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const oneMore = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSecond(50);
-    setScore(0);
-    setCount(0);
+    setIsLoading(true);
     router.push('/quiz');
     router.refresh();
+    setScore(0);
+    setCount(0);
   };
   const goToHome = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setScore(0);
-    setCount(0);
     router.push('/');
     router.refresh();
+    setScore(0);
+    setCount(0);
   };
 
   let resultMessage;
@@ -50,6 +52,14 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
       window.history.replaceState(null, '', resultUrl);
     }
   }, [count, score, second]);
+
+  // fetchが完了したら時間を50にしてloadingを解除
+  useEffect(() => {
+    if (Array.isArray(detailArray) && detailArray.length > 0) {
+      setIsLoading(false);
+      setSecond(50);
+    }
+  }, [detailArray]);
 
   useEffect(() => {
     if (second <= 0) {
@@ -73,10 +83,17 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   console.log('router', router);
 
   return (
-    <div className='bg-red-300 w-full font-DotJP'>
+    <div
+      className={
+        isLoading
+          ? 'bg-white  w-full font-DotJP flex justify-center'
+          : 'bg-red-300   w-full font-DotJP'
+      }
+    >
       <div className='py-11'>
-        {' '}
-        {count > 9 || second <= 0 ? (
+        {isLoading ? (
+          <Isloading />
+        ) : count > 9 || second <= 0 ? (
           <div className=' w-full flex flex-col justify-center items-center bg-red-300'>
             <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow mb-11'>
               スコア: {score}/10
