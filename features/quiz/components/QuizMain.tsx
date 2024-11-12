@@ -13,12 +13,14 @@ import XPost from './XPost';
 
 const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const router = useRouter();
-  const [count, setCount] = useState<number>(10);
+  const [second, setSecond] = useState<number>(50);
+  const [count, setCount] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [yourResult, setYourResult] = useState<string[]>([]);
 
   const oneMore = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSecond(50);
     setScore(0);
     setCount(0);
     router.push('/quiz');
@@ -42,12 +44,28 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   }
 
   useEffect(() => {
-    if (count > 9) {
+    if (count > 9 || second <= 0) {
       const resultUrl = score > 5 ? '/result_high' : '/result_low';
       // 検索パラメータを変更しBGMを変更
-      // window.history.replaceState(null, '', resultUrl);
+      window.history.replaceState(null, '', resultUrl);
     }
-  }, [count, score]);
+  }, [count, score, second]);
+
+  useEffect(() => {
+    if (second <= 0) {
+      return;
+    }
+    const countdown = () => {
+      setSecond((prev) => prev - 1);
+    };
+
+    const AnswerTime = setInterval(countdown, 1000);
+    console.log('answer', AnswerTime);
+    console.log('second', second);
+
+    // setIntervalをクリーンアップ
+    return () => clearInterval(AnswerTime);
+  }, [second]);
 
   console.log('クイズ', quizArray);
   console.log('詳細', detailArray);
@@ -58,7 +76,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     <div className='bg-red-300 w-full font-DotJP'>
       <div className='py-11'>
         {' '}
-        {count > 9 ? (
+        {count > 9 || second <= 0 ? (
           <div className=' w-full flex flex-col justify-center items-center bg-red-300'>
             <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow mb-11'>
               スコア: {score}/10
@@ -154,12 +172,23 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
           >
             <source src='/background/モンスターボール風.mp4' type='video/mp4' />
           </video> */}
-            <div className='flex flex-col gap-4'>
-              <h1 className='flex font-PokeGB text-3xl text-white font-extrabold gray-shadow justify-center items-center'>
+            <div className='h-[7rem] text-2xl text-white gray-shadow'>
+              残り
+              <span
+                className={
+                  second < 11 ? 'text-red-600 font-PokeGB' : 'font-PokeGB'
+                }
+              >
+                {second}
+              </span>
+              秒
+            </div>
+            <div className='flex flex-col gap-4 justify-center items-center'>
+              <h1 className='flex font-PokeGB text-3xl text-white font-extrabold gray-shadow '>
                 {count + 1}問目
               </h1>
               <h2 className='font-PokeHira text-3xl text-white  font-extrabold gray-shadow'>
-                ポケモ
+                このポケモンの名前は？
               </h2>
             </div>
 
