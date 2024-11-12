@@ -10,7 +10,7 @@ const XPost = () => {
       href='https://twitter.com/intent/tweet?text=Hello%20world'
       data-size='large'
     >
-      <FontAwesomeIcon icon={faXTwitter} className='text-white' />
+      <FontAwesomeIcon icon={faXTwitter} className='text-white mr-1' />
       <h1 className='text-white font-extrabold'>POST</h1>
     </a>
   );
