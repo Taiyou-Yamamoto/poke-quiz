@@ -17,7 +17,8 @@ const config: Config = {
         PokeFont: ['Pokemon Hollow', 'sans-serif'],
         PokeGB: ['PokeGB', 'sans-serif'],
         PokeJp: ['PokeJp', 'sans-serif'],
-        PokeHira: ['PokeHira', 'sans-serif'],
+        PokeKana: ['PokeJp', 'sans-serif'],
+        DotJP: ['DotJP', 'sans-serif'],
       },
       keyframes: {
         chime: {

@@ -55,7 +55,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   console.log('router', router);
 
   return (
-    <div className='bg-red-300 w-full'>
+    <div className='bg-red-300 w-full font-DotJP'>
       <div className='py-11'>
         {' '}
         {count > 9 ? (
@@ -63,7 +63,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
             <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow mb-11'>
               スコア: {score}/10
             </h1>
-            <div className='font-PokeGB text-3xl text-white font-extrabold gray-shadow'>
+            <div className='text-3xl text-white font-extrabold gray-shadow'>
               {resultMessage}
             </div>
             <table className='mt-10'>
@@ -124,7 +124,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
               <form onSubmit={oneMore}>
                 <button
                   type='submit'
-                  className='w-[10rem] my-5 bg-yellow-400 hover:bg-yellow-500 gray-shadow max-w-[150px] font-extrabold font-PokeGB text-white py-2 px-4 rounded-md border-solid border-4 ring-4 hover:ring-blue-500 shadow-2xl hover:shadow-none transition-all duration-300'
+                  className='w-[10rem] my-5 bg-yellow-400 hover:bg-yellow-500 gray-shadow max-w-[150px] font-extrabold text-white py-2 px-4 rounded-md border-solid border-4 ring-4 hover:ring-blue-500 shadow-2xl hover:shadow-none transition-all duration-300'
                 >
                   再挑戦する
                 </button>
@@ -133,7 +133,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
               <form onSubmit={goToHome}>
                 <button
                   type='submit'
-                  className='w-[10rem] bg-yellow-400 hover:bg-yellow-500 gray-shadow max-w-[150px] font-extrabold font-PokeGB text-white py-2 px-4 rounded-md border-solid border-4 ring-4 hover:ring-blue-500 shadow-2xl hover:shadow-none transition-all duration-300'
+                  className='w-[10rem] bg-yellow-400 hover:bg-yellow-500 gray-shadow max-w-[150px] font-extrabold text-white py-2 px-4 rounded-md border-solid border-4 ring-4 hover:ring-blue-500 shadow-2xl hover:shadow-none transition-all duration-300'
                 >
                   ホームへ戻る
                 </button>
