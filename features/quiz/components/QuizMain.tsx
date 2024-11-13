@@ -23,17 +23,17 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const oneMore = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    router.push('/quiz');
-    router.refresh();
     setScore(0);
     setCount(0);
+    router.push('/quiz');
+    router.refresh();
   };
   const goToHome = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push('/');
-    router.refresh();
     setScore(0);
     setCount(0);
+    router.push('/');
+    router.refresh();
   };
 
   let resultMessage;
