@@ -26,8 +26,12 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     setScore(0);
     setCount(0);
     setYourResult([]);
-    router.push('/quiz');
+    router.replace('/quiz');
     router.refresh();
+    setTimeout(() => {
+      setSecond(10);
+      setIsLoading(false);
+    }, 2000);
   };
   const goToHome = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,12 +59,12 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   }, [count, score, second]);
 
   // fetchが完了したら時間を50にしてloadingを解除
-  useEffect(() => {
-    if (Array.isArray(detailArray) && detailArray.length > 0) {
-      setIsLoading(false);
-      setSecond(10);
-    }
-  }, [detailArray]);
+  // useEffect(() => {
+  //   if (Array.isArray(detailArray) && detailArray.length > 0) {
+  //     setIsLoading(false);
+  //     setSecond(10);
+  //   }
+  // }, [detailArray]);
 
   useEffect(() => {
     if (second <= 0) {
