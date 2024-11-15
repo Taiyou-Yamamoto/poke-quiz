@@ -8,7 +8,6 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import XPost from './XPost';
 import Isloading from './Isloading';
 
