@@ -10,7 +10,7 @@ const Page = async () => {
   const quizArray = [];
 
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
-  const ORIGINAL_API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 
   // 必要
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
