@@ -9,7 +9,7 @@ const QuizImage = ({ image }: PokemonImage) => {
         src={image}
         width={130}
         height={130}
-        alt={'1'}
+        alt={'2'}
         key={image}
         priority
       />

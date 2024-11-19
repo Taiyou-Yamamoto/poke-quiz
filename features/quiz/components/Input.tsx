@@ -2,7 +2,7 @@
 
 import { InputProps } from '@/app/type';
 import { audioPlay } from '@/app/utils/seHandle';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 const Input = ({
   PokemonName,
