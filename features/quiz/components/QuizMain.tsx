@@ -25,12 +25,12 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     setScore(0);
     setCount(0);
     setYourResult([]);
-    router.replace('/quiz');
+    router.push('/quiz');
     router.refresh();
-    setTimeout(() => {
-      setSecond(10);
-      setIsLoading(false);
-    }, 2000);
+    // setTimeout(() => {
+    //   setSecond(10);
+    //   setIsLoading(false);
+    // }, 2000);
   };
   const goToHome = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,29 +58,29 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   }, [count, score, second]);
 
   // fetchが完了したら時間を50にしてloadingを解除
-  // useEffect(() => {
-  //   if (Array.isArray(detailArray) && detailArray.length > 0) {
-  //     setIsLoading(false);
-  //     setSecond(10);
-  //   }
-  // }, [detailArray]);
-
   useEffect(() => {
-    if (second <= 0) {
-      return;
+    if (Array.isArray(detailArray) && detailArray.length > 0) {
+      setIsLoading(false);
+      setSecond(10);
     }
+  }, [detailArray]);
+
+  // カウントダウン制御
+  useEffect(() => {
     const countdown = () => {
-      setSecond((prev) => prev - 1);
+      setSecond((prev) => {
+        if (prev <= 1) {
+          clearInterval(AnswerTime);
+          return 0;
+        }
+        return prev - 1;
+      });
     };
 
     const AnswerTime = setInterval(countdown, 1000);
     console.log('answer', AnswerTime);
     console.log('second', second);
 
-    if (second <= 0 || count > 9) {
-      return () => clearInterval(AnswerTime);
-    }
-    // setIntervalをクリーンアップ
     return () => clearInterval(AnswerTime);
   }, [count, second]);
 
