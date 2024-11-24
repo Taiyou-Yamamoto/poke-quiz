@@ -25,5 +25,7 @@ export type quizArrayProps = {
 
 export type scoreCalculateProps = {
   score: number;
-  count: number;
+  second: number;
+  calculatedScore: number;
+  setCalculatedScore: React.Dispatch<React.SetStateAction<number>>;
 };

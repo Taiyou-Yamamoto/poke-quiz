@@ -14,13 +14,14 @@ import Score from './Score';
 
 const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const router = useRouter();
-  const [second, setSecond] = useState<number>(10);
+  const [second, setSecond] = useState<number>(50);
   const [count, setCount] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
+  const [calculatedScore, setCalculatedScore] = useState<number>(0);
   const [yourResult, setYourResult] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const oneMore = async (e: React.FormEvent<HTMLFormElement>) => {
+  const oneMore = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setScore(0);
@@ -29,7 +30,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     console.log(score);
     console.log(second);
     console.log(isLoading);
-    await router.replace('/quiz');
+    router.replace('/quiz');
     // setTimeout(() => {
     //   setSecond(10);
     //   setIsLoading(false);
@@ -44,9 +45,9 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   };
 
   let resultMessage;
-  if (score > 8) {
+  if (calculatedScore > 7000) {
     resultMessage = <div>すごいぞ！君はオーキド博士級だ！</div>;
-  } else if (score > 5) {
+  } else if (calculatedScore > 4000) {
     resultMessage = <div>やったね！君はエリートトレーナー級だ！</div>;
   } else {
     resultMessage = <div>がんばれ！君は虫取り少年級だ！</div>;
@@ -54,18 +55,18 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
 
   useEffect(() => {
     if (count > 9 || second <= 0) {
-      const resultUrl = score > 5 ? '/result_high' : '/result_low';
+      const resultUrl = calculatedScore > 4000 ? '/result_high' : '/result_low';
       // 検索パラメータを変更しBGMを変更
       window.history.replaceState(null, '', resultUrl);
     }
-  }, [count, score, second]);
+  }, [count, calculatedScore, second]);
 
   // fetchが完了したら時間を50にしてloadingを解除
   useEffect(() => {
     if (Array.isArray(detailArray) && detailArray.length > 0) {
       console.log('datail更新!!!!!!!!!!!');
       setIsLoading(false);
-      setSecond(10);
+      setSecond(50);
     } else {
       console.log('detailArray 更新が検知されませんでした');
     }
@@ -77,7 +78,6 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     const countdown = () => {
       setSecond((prev) => {
         if (prev <= 1) {
-          clearInterval(AnswerTime);
           return 0;
         }
         return prev - 1;
@@ -113,7 +113,12 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
           {/* <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow mb-11'>
             スコア: {score}/10
           </h1> */}
-          <Score second={second} count={count} />
+          <Score
+            score={score}
+            second={second}
+            calculatedScore={calculatedScore}
+            setCalculatedScore={setCalculatedScore}
+          />
           <div className='text-3xl text-white font-extrabold gray-shadow'>
             {resultMessage}
           </div>
