@@ -24,12 +24,12 @@ const Input = ({
     } else {
       audioPlay('/SE/boo.mp3');
     }
-    console.log('削除まえ', value);
+    // console.log('削除まえ', value);
     setCount((prev) => prev + 1);
     setYourResult((prev) => [...prev, value]);
     setValue('');
     // inputElement.current!.value = '';
-    console.log('削除後', value);
+    // console.log('削除後', value);
   };
 
   return (
