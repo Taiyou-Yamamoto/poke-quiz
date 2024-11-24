@@ -11,7 +11,6 @@ const Page = async () => {
 
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
 
-
   // 必要
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
   const shuffledData = createRandomPokemonData(allPokemonDate);
@@ -28,6 +27,9 @@ const Page = async () => {
   });
   // 全ての非同期が完了
   const detailArray = await Promise.all(quizDetailData);
+  console.log(detailArray);
+  // console.log('サーバーから渡されたdetailArray:', detailArray);
+  // console.log('detailArrayの参照:', JSON.stringify(detailArray));
 
   // 以上のデータを元に10匹分のデータを取得する。初めに画像データより10匹を選別
   for (let i = 0; quizArray.length < 10; ++i) {
