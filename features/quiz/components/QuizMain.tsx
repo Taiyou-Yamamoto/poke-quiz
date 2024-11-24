@@ -27,14 +27,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     setScore(0);
     setCount(0);
     setYourResult([]);
-    console.log(score);
-    console.log(second);
-    console.log(isLoading);
     router.replace('/quiz');
-    // setTimeout(() => {
-    //   setSecond(10);
-    //   setIsLoading(false);
-    // }, 2000);
   };
   const goToHome = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

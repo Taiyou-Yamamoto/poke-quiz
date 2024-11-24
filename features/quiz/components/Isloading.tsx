@@ -50,30 +50,27 @@ const Isloading = () => {
       </div>
       <Image
         className='myBounce'
-        style={{ animationDelay: '2.1s' }}
+        style={{ animationDelay: '2.1s', width: 'auto', height: 'auto' }}
         src={'/images/フシギダネ.png'}
         width={35}
         height={35}
         alt={'1'}
-        priority
       />
       <Image
         className='myBounce'
-        style={{ animationDelay: '2.4s' }}
+        style={{ animationDelay: '2.4s', width: 'auto', height: 'auto' }}
         src={'/images/ヒトカゲ.png'}
         width={35}
         height={35}
         alt={'1'}
-        priority
       />
       <Image
         className='myBounce'
-        style={{ animationDelay: '2.7s' }}
+        style={{ animationDelay: '2.7s', width: 'auto', height: 'auto' }}
         src={'/images/ゼニガメ.png'}
         width={35}
         height={35}
         alt={'1'}
-        priority
       />
     </div>
   );
