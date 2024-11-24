@@ -13,8 +13,12 @@ const Score = ({
   }, [second, score]);
   return (
     <div>
-      <div>スコア: {calculatedScore}</div>
-      <div>{second}</div>
+      <div className='flex font-DotJP text-white text-3xl font-extrabold gray-shadow justify-center items-center mb-5'>
+        スコア:
+        <p className='font-PokeGB text-white text-3xl font-extrabold gray-shadow pt-3'>
+          {calculatedScore}
+        </p>
+      </div>
     </div>
   );
 };
