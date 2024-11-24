@@ -10,6 +10,7 @@ import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import XPost from './XPost';
 import Isloading from './Isloading';
+import Score from './Score';
 
 const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const router = useRouter();
@@ -19,14 +20,16 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const [yourResult, setYourResult] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const oneMore = (e: React.FormEvent<HTMLFormElement>) => {
+  const oneMore = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setScore(0);
     setCount(0);
     setYourResult([]);
-    router.push('/quiz');
-    router.refresh();
+    console.log(score);
+    console.log(second);
+    console.log(isLoading);
+    await router.replace('/quiz');
     // setTimeout(() => {
     //   setSecond(10);
     //   setIsLoading(false);
@@ -60,13 +63,17 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   // fetchが完了したら時間を50にしてloadingを解除
   useEffect(() => {
     if (Array.isArray(detailArray) && detailArray.length > 0) {
+      console.log('datail更新!!!!!!!!!!!');
       setIsLoading(false);
       setSecond(10);
+    } else {
+      console.log('detailArray 更新が検知されませんでした');
     }
   }, [detailArray]);
 
   // カウントダウン制御
   useEffect(() => {
+    if (isLoading || count >= 10) return;
     const countdown = () => {
       setSecond((prev) => {
         if (prev <= 1) {
@@ -82,12 +89,14 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     console.log('second', second);
 
     return () => clearInterval(AnswerTime);
-  }, [count, second]);
+  }, [count, isLoading, second]);
 
-  console.log('クイズ', quizArray);
-  console.log('詳細', detailArray);
-  console.log('yourResult', yourResult);
-  console.log('router', router);
+  // console.log('クイズ', quizArray);
+  // console.log('詳細', detailArray);
+  // console.log('yourResult', yourResult);
+  // console.log('router', router);
+  // console.log('サーバーから渡されたdetailArray:', detailArray);
+  // console.log('detailArrayの参照:', JSON.stringify(detailArray));
 
   return (
     <div
@@ -101,9 +110,10 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
         <Isloading />
       ) : count > 9 || second <= 0 ? (
         <div className=' w-full flex flex-col justify-center items-center bg-red-300 py-11'>
-          <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow mb-11'>
+          {/* <h1 className='font-PokeGB text-3xl text-white font-extrabold gray-shadow mb-11'>
             スコア: {score}/10
-          </h1>
+          </h1> */}
+          <Score second={second} count={count} />
           <div className='text-3xl text-white font-extrabold gray-shadow'>
             {resultMessage}
           </div>
