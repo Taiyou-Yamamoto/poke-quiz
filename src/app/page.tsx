@@ -21,7 +21,7 @@ export default async function Home() {
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(allPokemonDetail),
+      body: JSON.stringify(allPokemonDetail.slice(0, 50)),
       next: { revalidate: 180 },
     }
   );
@@ -46,8 +46,8 @@ export default async function Home() {
                 <Image
                   className='w-auto h-auto'
                   src={pokemonUrl}
-                  width={110}
-                  height={110}
+                  width={300}
+                  height={300}
                   alt={String(index)}
                   priority
                 />
