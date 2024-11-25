@@ -19,7 +19,8 @@ const Score = ({
     console.log('calculatedScore', calculatedScore);
     console.log('second', second);
     console.log('score', score);
-  }, [second, score, setCalculatedScore]);
+    console.log(calculatedData);
+  }, [second, score]);
   return (
     <div>
       <div className='flex font-DotJP text-white text-3xl font-extrabold gray-shadow justify-center items-center mb-5'>
