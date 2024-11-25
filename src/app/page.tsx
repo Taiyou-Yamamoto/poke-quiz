@@ -44,10 +44,12 @@ export default async function Home() {
             return (
               <div key={index}>
                 <Image
+                  className='w-auto h-auto'
                   src={pokemonUrl}
                   width={110}
                   height={110}
                   alt={String(index)}
+                  priority
                 />
               </div>
             );
@@ -57,12 +59,11 @@ export default async function Home() {
         <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>
           <div className='fade-in'>
             <Image
-              className='animate-chime mx-auto'
+              className='animate-chime mx-auto w-auto h-auto'
               src='/images/Poke-quiz.png'
               alt='My Image'
               width={500}
               height={300}
-              priority
             />
           </div>
           <Link
