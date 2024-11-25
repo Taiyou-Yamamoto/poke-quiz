@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import React, { useEffect, useState } from 'react';
 import QuizImage from './QuizImage';
@@ -14,7 +15,7 @@ import Score from './Score';
 
 const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
   const router = useRouter();
-  const [second, setSecond] = useState<number>(50);
+  const [second, setSecond] = useState<number>(10);
   const [count, setCount] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [calculatedScore, setCalculatedScore] = useState<number>(0);
@@ -26,6 +27,9 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     setIsLoading(true);
     setScore(0);
     setCount(0);
+    //setSecond(10)を消すとdetailArrayを依存配列にもつuseEffectが処理されなくなる
+    //input入力&&secondが０の時に再挑戦すると、useEffectが処理されない
+    setSecond(10);
     setYourResult([]);
     router.replace('/quiz');
   };
@@ -52,14 +56,14 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
       // 検索パラメータを変更しBGMを変更
       window.history.replaceState(null, '', resultUrl);
     }
-  }, [count, calculatedScore, second]);
+  }, [count, second]);
 
   // fetchが完了したら時間を50にしてloadingを解除
   useEffect(() => {
     if (Array.isArray(detailArray) && detailArray.length > 0) {
       console.log('datail更新!!!!!!!!!!!');
       setIsLoading(false);
-      setSecond(50);
+      setSecond(10);
     } else {
       console.log('detailArray 更新が検知されませんでした');
     }
@@ -80,9 +84,10 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     const AnswerTime = setInterval(countdown, 1000);
     console.log('answer', AnswerTime);
     console.log('second', second);
+    console.log('calculatedScore', calculatedScore);
 
     return () => clearInterval(AnswerTime);
-  }, [count, isLoading, second]);
+  }, [count, isLoading]);
 
   // console.log('クイズ', quizArray);
   // console.log('詳細', detailArray);
