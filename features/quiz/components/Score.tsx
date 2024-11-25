@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { scoreCalculateProps } from '@/app/type';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 const Score = ({
   score,
@@ -8,9 +9,17 @@ const Score = ({
   setCalculatedScore,
 }: scoreCalculateProps) => {
   useEffect(() => {
-    const calculatedData = score * 1.1 * (second * Math.pow(score, 0.7)) * 10;
+    let calculatedData;
+    if (second === 0) {
+      calculatedData = score * 1.1 * Math.pow(score, 0.7) * 10 * 0.95;
+    } else {
+      calculatedData = score * 1.1 * (second * Math.pow(score, 0.7)) * 10;
+    }
     setCalculatedScore(Math.floor(calculatedData));
-  }, [second, score]);
+    console.log('calculatedScore', calculatedScore);
+    console.log('second', second);
+    console.log('score', score);
+  }, [second, score, setCalculatedScore]);
   return (
     <div>
       <div className='flex font-DotJP text-white text-3xl font-extrabold gray-shadow justify-center items-center mb-5'>
