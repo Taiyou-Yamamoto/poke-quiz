@@ -4,7 +4,7 @@ import React from 'react';
 
 const QuizImage = ({ image }: PokemonImage) => {
   return (
-    <div className='flex justify-center items-center w-40 h-40  border-4 border-yellow-400 bg-white rounded-md m-10 shadow'>
+    <div className='flex justify-center items-center border-4 border-yellow-400 bg-white rounded-md m-10 shadow w-auto h-auto'>
       <Image
         src={image}
         width={130}
