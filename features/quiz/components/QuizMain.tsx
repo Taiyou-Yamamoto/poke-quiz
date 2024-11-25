@@ -193,7 +193,7 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
               </button>
             </form>
             <div className='absolute bottom-0 left-60'>
-              <XPost />
+              <XPost calculatedScore={calculatedScore} />
             </div>
           </div>
         </div>
