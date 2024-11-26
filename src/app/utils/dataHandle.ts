@@ -59,7 +59,7 @@ export const getTwoHundredPokemonDetailDate = (array: any[]): any[] => {
   const eachData = [];
 
   let i = 0;
-  while (eachData.length < 200) {
+  while (eachData.length < 10) {
     try {
       const url = array[i].sprites.front_default;
 
