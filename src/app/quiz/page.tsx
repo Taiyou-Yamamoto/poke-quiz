@@ -7,6 +7,7 @@ import { excludedUrls } from '../utils/exclidedUrls';
 import QuizMain from '../../../features/quiz/components/QuizMain';
 
 const Page = async () => {
+  // 修正必須
   const quizArray = [];
 
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
