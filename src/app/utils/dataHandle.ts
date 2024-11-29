@@ -50,7 +50,7 @@ export const createRandomPokemonData = (array: any[]): any[] => {
   }
   //  ランダムにシャッフルされた配列の0~99の配列を返す。
   if (!Array.isArray(array)) {
-    throw new Error('arrayじゃない');
+    throw new Error('エラーを検知');
   }
   return array;
 };
@@ -60,10 +60,9 @@ export const getTwoHundredPokemonDetailDate = (array: any[]): any[] => {
   const eachData: string[] = [];
 
   let i = 0;
-  while (i < eachData.length) {
+  while (i < array.length) {
     try {
       const url = array[i].sprites.front_default;
-
       if (!url || excludedUrls.includes(url)) {
         ++i;
         // console.error('ダメでした');

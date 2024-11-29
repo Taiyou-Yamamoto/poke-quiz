@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllPokemonNameAndUrl } from './utils/dataHandle';
+import {
+  getAllPokemonNameAndUrl,
+  getTwoHundredPokemonDetailDate,
+} from './utils/dataHandle';
 
 export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
@@ -27,13 +30,14 @@ export default async function Home() {
     throw new Error(`API error: ${shuffledTwoHundredData.status}`);
   }
   const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
-  console.log('最終データの確認', shuffledTwoHundredArray);
+  const imageArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
+  console.log('最終データの確認', imageArray);
 
   return (
     <>
       <div className='w-full h-screen  bg-red-300 fixed'>
         <div className='absolute inset-0 z-0 opacity-85 flex flex-wrap'>
-          {/* {shuffledTwoHundredArray.map((pokemonUrl: string, index: number) => {
+          {imageArray.map((pokemonUrl: string, index: number) => {
             return (
               <div key={index}>
                 <Image
@@ -46,7 +50,7 @@ export default async function Home() {
                 />
               </div>
             );
-          })} */}
+          })}
         </div>
 
         <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>
