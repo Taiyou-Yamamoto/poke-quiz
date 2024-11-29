@@ -23,9 +23,10 @@ export const getAllPokemonNameAndUrl = async (
   }
 };
 
-// 上の関数から撮ってきた1302匹分のurlをfetchし、配列にして返す
-export const getAllPokemonDetail = async (array: Pokemon[]) => {
-  const detailDatas = array.map(async (pokemon) => {
+// ランダムな1302匹分のurlを200匹に絞り,fetchし、配列にして返す
+export const getTwoHandredAllPokemonDetail = async (array: Pokemon[]) => {
+  const twentyPokemo = array.slice(0, 199);
+  const detailDatas = twentyPokemo.map(async (pokemon) => {
     const res = await fetch(pokemon.url);
     return res.json();
   });
@@ -56,10 +57,10 @@ export const createRandomPokemonData = (array: any[]): any[] => {
 
 // // 200の各ポケモンの画像データを取得
 export const getTwoHundredPokemonDetailDate = (array: any[]): any[] => {
-  const eachData = [];
+  const eachData: string[] = [];
 
   let i = 0;
-  while (eachData.length < 10) {
+  while (eachData.length < 200) {
     try {
       const url = array[i].sprites.front_default;
 

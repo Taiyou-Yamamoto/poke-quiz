@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  getAllPokemonDetail,
   getAllPokemonNameAndUrl,
+  getTwoHundredPokemonDetailDate,
 } from './utils/dataHandle';
 
 export default async function Home() {
@@ -10,9 +10,9 @@ export default async function Home() {
   const ORIGINAL_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
-  const allPokemonDetail = await getAllPokemonDetail(allPokemonDate);
+  // console.log('ポケモンデータ', allPokemonDate);
+  // const allPokemonDetail = await getAllPokemonDetail(allPokemonDate);
 
-  // デプロイ後変更が必要だ
   // これでシャッフルされたデータを取ってくる
   const shuffledTwoHundredData = await fetch(
     `${ORIGINAL_API_URL}/api/pokemon/random`,
@@ -21,26 +21,28 @@ export default async function Home() {
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(allPokemonDetail),
+      body: JSON.stringify(allPokemonDate),
       next: { revalidate: 180 },
     }
   );
 
-  if (!shuffledTwoHundredData.ok) {
-    throw new Error(`API error: ${shuffledTwoHundredData.status}`);
-  }
+  // const textData = await shuffledTwoHundredData.text();
+  // console.log('レスポンスの内容:', textData);
   const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
-  console.log(shuffledTwoHundredArray);
-
-  // const res = getAllArticles = async():Promise<any[]> => {
-  //   const
+  const imageUrlArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
+  console.error(imageUrlArray);
+  // if (!shuffledTwoHundredArray.ok) {
+  //   throw new Error(`API error: ${shuffledTwoHundredData.status}`);
   // }
+  // const imageUrlArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
 
+  // console.log('最終データの確認', imageUrlArray);
+  //
   return (
     <>
       <div className='w-full h-screen  bg-red-300 fixed'>
         <div className='absolute inset-0 z-0 opacity-85 flex flex-wrap'>
-          {shuffledTwoHundredArray.map((pokemonUrl: string, index: number) => {
+          {/* {imageUrlArray.map((pokemonUrl: string, index: number) => {
             return (
               <div key={index}>
                 <Image
@@ -53,7 +55,7 @@ export default async function Home() {
                 />
               </div>
             );
-          })}
+          })} */}
         </div>
 
         <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>
