@@ -1,9 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  getAllPokemonNameAndUrl,
-  getTwoHundredPokemonDetailDate,
-} from './utils/dataHandle';
+import { getAllPokemonNameAndUrl } from './utils/dataHandle';
 
 export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
@@ -26,23 +23,17 @@ export default async function Home() {
     }
   );
 
-  // const textData = await shuffledTwoHundredData.text();
-  // console.log('レスポンスの内容:', textData);
+  if (!shuffledTwoHundredData.ok) {
+    throw new Error(`API error: ${shuffledTwoHundredData.status}`);
+  }
   const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
-  const imageUrlArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
-  console.error(imageUrlArray);
-  // if (!shuffledTwoHundredArray.ok) {
-  //   throw new Error(`API error: ${shuffledTwoHundredData.status}`);
-  // }
-  // const imageUrlArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
+  console.log('最終データの確認', shuffledTwoHundredArray);
 
-  // console.log('最終データの確認', imageUrlArray);
-  //
   return (
     <>
       <div className='w-full h-screen  bg-red-300 fixed'>
         <div className='absolute inset-0 z-0 opacity-85 flex flex-wrap'>
-          {/* {imageUrlArray.map((pokemonUrl: string, index: number) => {
+          {/* {shuffledTwoHundredArray.map((pokemonUrl: string, index: number) => {
             return (
               <div key={index}>
                 <Image

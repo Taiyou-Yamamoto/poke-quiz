@@ -60,12 +60,13 @@ export const getTwoHundredPokemonDetailDate = (array: any[]): any[] => {
   const eachData: string[] = [];
 
   let i = 0;
-  while (eachData.length < 200) {
+  while (i < eachData.length) {
     try {
       const url = array[i].sprites.front_default;
 
       if (!url || excludedUrls.includes(url)) {
         ++i;
+        // console.error('ダメでした');
         continue;
       }
 
