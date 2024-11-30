@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req: NextRequest) {
   try {
     const allPokemon = await req.json();
-    // console.error('ポケモンデータ', allPokemon);
+    console.error('ポケモンデータ', allPokemon);
     // 1302匹のurlと名前を含む配列
     const shuffledArray = createRandomPokemonData(allPokemon);
     // console.log('これはテスト', shuffledTwoHundredArray);
@@ -15,8 +15,8 @@ export async function POST(req: NextRequest) {
     const twentyFetchedData = await getTwoHandredAllPokemonDetail(
       shuffledArray
     );
-    // console.log('これはテスト', shuffledTwoHundredArray);
-    console.log('200匹', twentyFetchedData);
+    console.error('これはテスト', shuffledArray);
+    console.error('200匹', twentyFetchedData);
     // return NextResponse.json(shuffledTwoHundredDate);
     return NextResponse.json(twentyFetchedData);
   } catch (error) {
