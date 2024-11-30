@@ -12,7 +12,7 @@ export default async function Home() {
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
   // console.log('ポケモンデータ', allPokemonDate);
   // const allPokemonDetail = await getAllPokemonDetail(allPokemonDate);
-
+  // console.log('ポケモンデータ', allPokemonDetail);
   // これでシャッフルされたデータを取ってくる
   const shuffledTwoHundredData = await fetch(
     `${ORIGINAL_API_URL}/api/pokemon/random`,
@@ -30,14 +30,15 @@ export default async function Home() {
     throw new Error(`API error: ${shuffledTwoHundredData.status}`);
   }
   const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
+  // console.log('これはテスト', shuffledTwoHundredArray);
   const imageArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
-  console.log('最終データの確認', imageArray);
+  // console.log('最終データの確認', imageArray);
 
   return (
     <>
       <div className='w-full h-screen  bg-red-300 fixed'>
         <div className='absolute inset-0 z-0 opacity-85 flex flex-wrap'>
-          {imageArray.map((pokemonUrl: string, index: number) => {
+          {/* {imageArray.map((pokemonUrl: string, index: number) => {
             return (
               <div key={index}>
                 <Image
@@ -50,7 +51,7 @@ export default async function Home() {
                 />
               </div>
             );
-          })}
+          })} */}
         </div>
 
         <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>

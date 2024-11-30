@@ -32,6 +32,7 @@ export const getTwoHandredAllPokemonDetail = async (array: Pokemon[]) => {
   });
 
   const detailArray = await Promise.all(detailDatas);
+  console.error('確認', detailArray);
 
   return detailArray;
 };
