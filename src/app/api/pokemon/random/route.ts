@@ -15,8 +15,6 @@ export async function POST(req: NextRequest) {
     const twentyFetchedData = await getTwoHandredAllPokemonDetail(
       shuffledArray
     );
-    console.error('これはテスト', shuffledArray);
-    console.error('200匹', twentyFetchedData);
     // return NextResponse.json(shuffledTwoHundredDate);
     return NextResponse.json(twentyFetchedData);
   } catch (error) {

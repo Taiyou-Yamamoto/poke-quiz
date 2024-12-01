@@ -18,7 +18,6 @@ export const getAllPokemonNameAndUrl = async (
     const data = await res.json();
     return data.results;
   } catch (error) {
-    console.error('データ取得エラー:', error);
     throw error;
   }
 };
@@ -32,7 +31,6 @@ export const getTwoHandredAllPokemonDetail = async (array: Pokemon[]) => {
   });
 
   const detailArray = await Promise.all(detailDatas);
-  console.error('確認', detailArray);
 
   return detailArray;
 };

@@ -30,9 +30,7 @@ export default async function Home() {
     throw new Error(`API error: ${shuffledTwoHundredData.status}`);
   }
   const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
-  console.log('これはテスト', shuffledTwoHundredArray);
   const imageArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
-  console.log('最終データの確認', imageArray);
 
   return (
     <>
