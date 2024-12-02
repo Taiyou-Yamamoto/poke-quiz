@@ -64,7 +64,7 @@ export const getTwoHundredPokemonDetailDate = (array: any[]): any[] => {
       const url = array[i].sprites.front_default;
       if (!url || excludedUrls.includes(url)) {
         ++i;
-        // console.error('ダメでした');
+
         continue;
       }
 
