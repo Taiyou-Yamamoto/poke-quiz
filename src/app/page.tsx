@@ -10,9 +10,7 @@ export default async function Home() {
   const ORIGINAL_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
-  // console.log('ポケモンデータ', allPokemonDate);
-  // const allPokemonDetail = await getAllPokemonDetail(allPokemonDate);
-  // console.log('ポケモンデータ', allPokemonDate);
+
   // これでシャッフルされたデータを取ってくる
   const shuffledTwoHundredData = await fetch(
     `${ORIGINAL_API_URL}/api/pokemon/random`,
