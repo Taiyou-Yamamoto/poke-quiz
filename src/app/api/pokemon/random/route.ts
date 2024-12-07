@@ -15,7 +15,6 @@ export async function POST(req: NextRequest) {
     const twentyFetchedData = await getTwoHandredAllPokemonDetail(
       shuffledArray
     );
-    // return NextResponse.json(shuffledTwoHundredDate);
     return NextResponse.json(twentyFetchedData);
   } catch (error) {
     console.error('Error in POST /api/pokemon/random:', error);
