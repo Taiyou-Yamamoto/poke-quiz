@@ -89,8 +89,6 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
     return () => clearInterval(AnswerTime);
   }, [count, isLoading]);
 
-  // console.log('クイズ', quizArray);
-  // console.log('詳細', detailArray);
   // console.log('yourResult', yourResult);
   // console.log('router', router);
   // console.log('サーバーから渡されたdetailArray:', detailArray);
