@@ -37,6 +37,7 @@ export const getTwoHandredAllPokemonDetail = async (array: Pokemon[]) => {
 
 // 昇順だったポケモン詳細配列をランダムに並び替えする配列
 export const createRandomPokemonData = (array: any[]): any[] => {
+  
   // ここではFisher-Yates Shuffleというアルゴリズムを使用している
   // それを使うとspliceや古い配列の要素を削除しなくて済むので効率的らしい
 
