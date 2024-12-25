@@ -6,7 +6,7 @@ import {
 import { excludedUrls } from '../utils/exclidedUrls';
 import QuizMain from '../../../features/quiz/components/QuizMain';
 // これを消し
-
+//
 const Page = async () => {
   // 修正必須
   const quizArray = [];
