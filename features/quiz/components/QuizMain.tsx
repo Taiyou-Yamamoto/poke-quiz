@@ -174,19 +174,13 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
 
           <div className='flex flex-col relative'>
             <form onSubmit={oneMore}>
-              <button
-                type='submit'
-                className='w-[10rem] my-5 bg-yellow-400 hover:bg-yellow-500 gray-shadow max-w-[150px] font-extrabold text-white py-2 px-4 rounded-md border-solid border-4 ring-4 hover:ring-blue-500 shadow-2xl hover:shadow-none transition-all duration-300'
-              >
+              <button type='submit' className='my-5 yellow-button'>
                 再挑戦する
               </button>
             </form>
 
             <form onSubmit={goToHome}>
-              <button
-                type='submit'
-                className='w-[10rem] bg-yellow-400 hover:bg-yellow-500 gray-shadow max-w-[150px] font-extrabold text-white py-2 px-4 rounded-md border-solid border-4 ring-4 hover:ring-blue-500 shadow-2xl hover:shadow-none transition-all duration-300'
-              >
+              <button type='submit' className='yellow-button'>
                 ホームへ戻る
               </button>
             </form>
