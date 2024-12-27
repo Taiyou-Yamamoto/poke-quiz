@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import {
   getAllPokemonNameAndUrl,
   getTwoHundredPokemonDetailDate,
 } from './utils/dataHandle';
+import MainContent from '../../features/quiz/components/Home/MainContent';
 
 export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
@@ -49,36 +49,7 @@ export default async function Home() {
             );
           })}
         </div>
-
-        <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>
-          <div className='fade-in'>
-            <Image
-              className='animate-chime mx-auto w-auto h-auto'
-              src='/images/Poke-quiz.png'
-              alt='My Image'
-              width={500}
-              height={300}
-            />
-          </div>
-          <Link
-            href='/quiz'
-            className='w-[10rem] mx-auto font-DotJP gray-shadow hover:animate-shake font-extrabold text-white shadow-2xl active:shadow-none py-2 px-4 rounded-md border-solid border-4 bg-red-600 border-white mt-4 ring-offset-2 ring-4'
-          >
-            モンスタ-レベル
-          </Link>
-          <Link
-            href='/quiz2'
-            className='w-[10rem] mx-auto font-DotJP hover:animate-shake font-extrabold text-white shadow-2xl active:shadow-none py-2 px-4 pl-6 rounded-md border-solid border-4 border-red-600 bg-blue-500 mt-4 ring-offset-2 ring-4'
-          >
-            スーパ-レベル
-          </Link>
-          <Link
-            href='/quiz3'
-            className='w-[10rem] mx-auto font-DotJP hover:animate-shake font-extrabold text-white shadow-2xl active:shadow-none py-2 px-4 pl-6 rounded-md border-solid border-4 border-yellow-400 bg-gray-700 mt-4 ring-offset-2 ring-4'
-          >
-            ハイパーレベル
-          </Link>
-        </div>
+        <MainContent />
       </div>
     </>
   );
