@@ -3,7 +3,7 @@ import {
   getAllPokemonNameAndUrl,
   getTwoHundredPokemonDetailDate,
 } from './utils/dataHandle';
-import MainContent from '../../features/quiz/components/Home/MainContent';
+import MainContent from '../../features/Home/components/MainContent';
 
 export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;

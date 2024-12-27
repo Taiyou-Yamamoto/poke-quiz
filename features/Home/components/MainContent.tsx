@@ -9,7 +9,7 @@ const MainContent = () => {
     SetToggle(!toggle);
   };
   return (
-    <div>
+    <div className='h-full w-full z-50'>
       <div className='relative z-50 start top-14 left-3/4'>
         <button className='yellow-button' onClick={toggleSwitch}>
           ランキング
@@ -17,7 +17,22 @@ const MainContent = () => {
       </div>
 
       {toggle ? (
-        <></>
+        <div className='relative z-50 h-4/6 w-[35rem] flex justify-center items-center mx-auto mt-28 bg-white bg-opacity-80 rounded-3xl shadow-xl border-4 border-sky-400'>
+          <div className='text-4xl font-extrabold gray-shadow overscroll-x-auto'>
+            <div className='font-DotJP'>モンスターボールレベル</div>
+            <div className='flex-col items-center justify-center'>
+              <p className='text-[#FFD700] font-DotJP text-4xl font-extrabold gray-shadow'>
+                1位: --------------
+              </p>
+              <p className='text-[#C0C0C0] font-DotJP text-4xl font-extrabold gray-shadow'>
+                2位: --------------
+              </p>
+              <p className='text-[#B87333] font-DotJP text-4xl font-extrabold gray-shadow'>
+                3位: --------------
+              </p>
+            </div>
+          </div>
+        </div>
       ) : (
         <>
           {' '}
