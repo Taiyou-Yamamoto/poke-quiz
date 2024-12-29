@@ -19,8 +19,8 @@ export const postScore = async (calculatedScore: number, quiz_id: number) => {
 
 export const getScore = async () => {
   try {
-    const response = await api.get(`get`);
-    return response;
+    const response = await api.get('get');
+    return response.data;
   } catch (error) {
     console.log(error);
   }
