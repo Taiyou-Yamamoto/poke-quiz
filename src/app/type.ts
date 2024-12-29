@@ -21,6 +21,7 @@ export type Quiz = {
 export type quizArrayProps = {
   quizArray: Quiz[];
   detailArray: any[];
+  quiz_id: number;
 };
 
 export type scoreCalculateProps = {
