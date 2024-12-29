@@ -1,13 +1,19 @@
 'use client';
+import { getScore } from '@/app/utils/axiosHandle';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const MainContent = () => {
   const [toggle, SetToggle] = useState<boolean>(false);
   const toggleSwitch = () => {
     SetToggle(!toggle);
   };
+
+  useEffect(() => {
+    const res = getScore();
+    console.log(res);
+  }, []);
   return (
     <div className='h-full w-full z-50'>
       <div className='relative z-50 start top-14 left-3/4'>
