@@ -12,8 +12,9 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import XPost from './XPost';
 import Isloading from './Isloading';
 import Score from './Score';
+import axios from 'axios';
 
-const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
+const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
   const router = useRouter();
   const [second, setSecond] = useState<number>(10);
   const [count, setCount] = useState<number>(0);
@@ -55,6 +56,18 @@ const QuizMain = ({ quizArray, detailArray }: quizArrayProps) => {
       const resultUrl = calculatedScore > 4000 ? '/result_high' : '/result_low';
       // 検索パラメータを変更しBGMを変更
       window.history.replaceState(null, '', resultUrl);
+
+      // laravelでスコアを登録するAPIを叩く
+      axios
+        .post('http://127.0.0.1:8000/post', {
+          calculatedScore: calculatedScore,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }, [count, second]);
 
