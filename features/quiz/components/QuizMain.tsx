@@ -61,6 +61,7 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
       axios
         .post('http://127.0.0.1:8000/post', {
           calculatedScore: calculatedScore,
+          quiz_id: quiz_id,
         })
         .then(function (response) {
           console.log(response);
