@@ -12,7 +12,7 @@ const MainContent = () => {
     <div className='h-full w-full z-50'>
       <div className='relative z-50 start top-14 left-3/4'>
         <button className='yellow-button' onClick={toggleSwitch}>
-          ランキング
+          {toggle ? '戻る' : 'ランキング'}
         </button>
       </div>
 
