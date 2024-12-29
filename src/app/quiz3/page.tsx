@@ -53,9 +53,15 @@ const Page = async () => {
     });
   }
 
+  const quiz_id = 3;
+
   return (
     <>
-      <QuizMain quizArray={quizArray} detailArray={detailArray} />
+      <QuizMain
+        quizArray={quizArray}
+        detailArray={detailArray}
+        quiz_id={quiz_id}
+      />
     </>
   );
 };

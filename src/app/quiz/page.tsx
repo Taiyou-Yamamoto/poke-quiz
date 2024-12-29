@@ -49,7 +49,15 @@ const Page = async () => {
     });
   }
 
-  return <QuizMain quizArray={quizArray} detailArray={detailArray} />;
+  const quiz_id = 1;
+
+  return (
+    <QuizMain
+      quizArray={quizArray}
+      detailArray={detailArray}
+      quiz_id={quiz_id}
+    />
+  );
 };
 
 export default Page;
