@@ -6,14 +6,33 @@ import React, { useEffect, useState } from 'react';
 
 const MainContent = () => {
   const [toggle, SetToggle] = useState<boolean>(false);
+  const [rankData, SetRankData] = useState<number[]>([]);
   const toggleSwitch = () => {
     SetToggle(!toggle);
   };
 
   useEffect(() => {
-    const res = getScore();
-    console.log(res);
+    const fetchData = async () => {
+      const res = await getScore();
+      const array = [];
+      for (const data of res.quiz1) {
+        array.push(data.score);
+      }
+
+      while (array.length < 10) {
+        array.push(null);
+      }
+      SetRankData(array);
+      console.log(rankData);
+    };
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    console.log('Updated rankData:', rankData); // rankData が更新された後に出力
+  }, [rankData]);
   return (
     <div className='h-full w-full z-50'>
       <div className='relative z-50 start top-14 left-3/4'>
@@ -24,19 +43,23 @@ const MainContent = () => {
 
       {toggle ? (
         <div className='relative z-50 h-4/6 w-[35rem] flex justify-center items-center mx-auto mt-28 bg-white bg-opacity-80 rounded-3xl shadow-xl border-4 border-sky-400'>
-          <div className='text-4xl font-extrabold gray-shadow overscroll-x-auto'>
-            <div className='font-DotJP'>モンスターボールレベル</div>
-            <div className='flex-col items-center justify-center'>
-              <p className='text-[#FFD700] font-DotJP text-4xl font-extrabold gray-shadow'>
-                1位: --------------
-              </p>
-              <p className='text-[#C0C0C0] font-DotJP text-4xl font-extrabold gray-shadow'>
-                2位: --------------
-              </p>
-              <p className='text-[#B87333] font-DotJP text-4xl font-extrabold gray-shadow'>
-                3位: --------------
-              </p>
-            </div>
+          <div className='font-DotJP h-full w-4/6 marker:text-4xl font-extrabold gray-shadow overscroll-x-auto'>
+            <div className='my-10 text-3xl'>モンスターボールレベル</div>
+            <ul className='flex-col text-2xl items-center justify-center'>
+              {rankData.map((score, index) => (
+                <li
+                  key={index}
+                  className='flex items-center justify-between w-full py-1'
+                >
+                  <span className='flex-shrink-0 w-[5rem] text-right'>
+                    {index + 1}位:
+                  </span>
+                  <span className='ml-3 text-center w-full'>
+                    {score ? score : '---------------------'}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       ) : (
