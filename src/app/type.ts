@@ -49,3 +49,7 @@ export type RankData = {
   quiz2: QuizScore[];
   quiz3: QuizScore[];
 };
+
+export type ImageArray = {
+  imageArray: string[];
+};
