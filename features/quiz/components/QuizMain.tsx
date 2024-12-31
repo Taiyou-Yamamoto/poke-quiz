@@ -12,7 +12,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import XPost from './XPost';
 import Isloading from './Isloading';
 import Score from './Score';
-import axios from 'axios';
+import { postScore } from '@/app/utils/axiosHandle';
 
 const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
   const router = useRouter();
@@ -58,17 +58,7 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
       window.history.replaceState(null, '', resultUrl);
 
       // laravelでスコアを登録するAPIを叩く
-      axios
-        .post('http://127.0.0.1:8000/post', {
-          calculatedScore: calculatedScore,
-          quiz_id: quiz_id,
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      postScore(calculatedScore, quiz_id);
     }
   }, [count, second]);
 

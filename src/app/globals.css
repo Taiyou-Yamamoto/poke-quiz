@@ -44,6 +44,10 @@ body {
   text-shadow: 2px 2px 4px rgba(65, 53, 53, 0.63);
 }
 
+.gold-shadow {
+  text-shadow: 2px 3px 4px rgba(255, 224, 50, 0.931);
+}
+
 @keyframes myBounce {
   0%,
   25% {
