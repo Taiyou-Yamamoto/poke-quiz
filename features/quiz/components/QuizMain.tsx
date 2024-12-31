@@ -51,6 +51,16 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
     resultMessage = <div>がんばれ！君は虫取り少年級だ！</div>;
   }
 
+  // const getVisibleImages = () => {
+  //   const visibleImages = [];
+  //   for (let i = 0; i < 5; i++) {
+  //     visibleImages.push(
+  //       pokemonImages[(currentIndex + i) % pokemonImages.length]
+  //     );
+  //   }
+  //   return visibleImages;
+  // };
+
   useEffect(() => {
     if (count > 9 || second <= 0) {
       const resultUrl = calculatedScore > 4000 ? '/result_high' : '/result_low';
@@ -92,11 +102,6 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
 
     return () => clearInterval(AnswerTime);
   }, [count, isLoading]);
-
-  // console.log('yourResult', yourResult);
-  // console.log('router', router);
-  // console.log('サーバーから渡されたdetailArray:', detailArray);
-  // console.log('detailArrayの参照:', JSON.stringify(detailArray));
 
   return (
     <div
