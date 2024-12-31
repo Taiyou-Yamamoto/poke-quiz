@@ -37,7 +37,7 @@ export default async function Home() {
     <>
       <div className='w-full h-screen  bg-red-300 '>
         <Background fiveImages={fiveImages} />
-        <MainContent />
+        {/* <MainContent /> */}
       </div>
     </>
   );

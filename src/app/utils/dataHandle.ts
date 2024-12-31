@@ -37,7 +37,6 @@ export const getTwoHandredAllPokemonDetail = async (array: Pokemon[]) => {
 
 // 昇順だったポケモン詳細配列をランダムに並び替えする配列
 export const createRandomPokemonData = (array: any[]): any[] => {
-  
   // ここではFisher-Yates Shuffleというアルゴリズムを使用している
   // それを使うとspliceや古い配列の要素を削除しなくて済むので効率的らしい
 
@@ -79,4 +78,14 @@ export const getTwoHundredPokemonDetailDate = (array: any[]): any[] => {
   }
 
   return eachData;
+};
+
+export const makeFiveImageArray = (imageArray: string[]) => {
+  const array = [];
+
+  for (let i = 0; i <= 75; i += 15) {
+    array.push(imageArray.slice(i, i + 15));
+  }
+
+  return array;
 };

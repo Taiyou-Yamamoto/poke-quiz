@@ -51,5 +51,5 @@ export type RankData = {
 };
 
 export type ImageArray = {
-  imageArray: string[];
+  fiveImages: string[][];
 };
