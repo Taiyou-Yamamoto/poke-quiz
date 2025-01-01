@@ -83,8 +83,8 @@ export const getTwoHundredPokemonDetailDate = (array: any[]): any[] => {
 export const makeFiveImageArray = (imageArray: string[]) => {
   const array = [];
 
-  for (let i = 0; i <= 75; i += 15) {
-    array.push(imageArray.slice(i, i + 15));
+  for (let i = 0; i <= 50; i += 10) {
+    array.push(imageArray.slice(i, i + 10));
   }
 
   return array;

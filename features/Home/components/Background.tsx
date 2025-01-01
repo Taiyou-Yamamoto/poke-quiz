@@ -1,21 +1,21 @@
 'use client';
 import { ImageArray } from '@/app/type';
 import Image from 'next/image';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Background = ({ fiveImages }: ImageArray) => {
   const [First, Second, Third, Fourth, Fifth] = fiveImages;
-  console.log('イメージ', First);
-  useEffect(() => {
-    console.log(First);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+  const ArrayRepeater = (array: string[], times: number) => {
+    return Array(times).fill(array).flat();
+  };
+
   return (
     <div className='absolute inset-0 z-0 opacity-85 flex-row flex-wrap'>
       {/* １段目 */}
-      <div className='flex flex-row flex-nowrap'>
+      <div className='flex flex-row justify-items-end flex-nowrap animate-slide'>
         {' '}
-        {First.map((item: string, index) => {
+        {ArrayRepeater(First, 4).map((item: string, index) => {
           return (
             <div key={index} className={'inline-block'}>
               <Image
@@ -32,9 +32,9 @@ const Background = ({ fiveImages }: ImageArray) => {
       </div>
 
       {/* ２段目 */}
-      <div className='flex flex-row flex-nowrap'>
+      <div className='flex flex-row flex-nowrap animate-reverse_slide'>
         {' '}
-        {Second.map((item: string, index) => {
+        {ArrayRepeater(Second, 4).map((item: string, index) => {
           return (
             <div key={index} className={'inline-block'}>
               <Image
@@ -51,9 +51,9 @@ const Background = ({ fiveImages }: ImageArray) => {
       </div>
 
       {/* ３段目 */}
-      <div className='flex flex-row flex-nowrap'>
+      <div className='flex flex-row flex-nowrap animate-slide'>
         {' '}
-        {Third.map((item: string, index) => {
+        {ArrayRepeater(Third, 4).map((item: string, index) => {
           return (
             <div key={index} className={'inline-block'}>
               <Image
@@ -70,9 +70,9 @@ const Background = ({ fiveImages }: ImageArray) => {
       </div>
 
       {/* ４段目 */}
-      <div className='flex flex-row flex-nowrap'>
+      <div className='flex flex-row flex-nowrap animate-reverse_slide'>
         {' '}
-        {Fourth.map((item: string, index) => {
+        {ArrayRepeater(Fourth, 4).map((item: string, index) => {
           return (
             <div key={index} className={'inline-block'}>
               <Image
@@ -89,9 +89,9 @@ const Background = ({ fiveImages }: ImageArray) => {
       </div>
 
       {/* ５段目 */}
-      <div className='flex flex-row flex-nowrap'>
+      <div className='flex flex-row flex-nowrap animate-slide'>
         {' '}
-        {Fifth.map((item: string, index) => {
+        {ArrayRepeater(Fifth, 4).map((item: string, index) => {
           return (
             <div key={index} className={'inline-block'}>
               <Image
