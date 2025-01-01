@@ -48,22 +48,6 @@ body {
   text-shadow: 2px 3px 4px rgba(255, 224, 50, 0.931);
 }
 
-@keyframes myBounce {
-  0%,
-  25% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
-  50% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  75% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
-}
-
 .myBounce {
   animation: myBounce 3s infinite;
 }
