@@ -51,11 +51,22 @@ const config: Config = {
           '50%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        slide: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-800px)' },
+        },
+
+        reverse_slide: {
+          '0%': { transform: 'translateX(-800px)' },
+          '100%': { transform: 'translateX(0px)' },
+        },
       },
       animation: {
         chime: 'chime 3.5s ease-in-out infinite',
         shake: 'shake 3s ease-in-out infinite',
         blink: 'blink 0.7s steps(1) infinite',
+        slide: 'slide 25s linear infinite',
+        reverse_slide: 'reverse_slide 25s linear infinite',
       },
     },
   },
