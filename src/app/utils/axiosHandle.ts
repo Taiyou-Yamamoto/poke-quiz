@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api',
+  baseURL: 'https://poke-quiz-9cb315e1daf1.herokuapp.com/api',
 });
 
 export const postScore = async (calculatedScore: number, quiz_id: number) => {
