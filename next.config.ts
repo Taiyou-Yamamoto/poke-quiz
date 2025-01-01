@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
         pathname: '/PokeAPI/sprites/master/sprites/pokemon/**', // 許可するパス（ワイルドカード `**` を使用）
       },
     ],
+    unoptimized: true,
   },
 };
 
