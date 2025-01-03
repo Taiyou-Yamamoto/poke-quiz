@@ -148,7 +148,7 @@ const MainContent = () => {
           <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>
             <div className=''>
               <Image
-                className='animate-chime mx-auto w-auto h-auto'
+                className='animate-chime mx-auto w-[40rem] h-[15rem]'
                 src='/images/Poke-quiz.png'
                 alt='My Image'
                 width={500}
