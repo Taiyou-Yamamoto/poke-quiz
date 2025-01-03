@@ -70,7 +70,7 @@ const MainContent = () => {
 
       {toggle ? (
         <>
-          <div className='relative flex justify-center items-center mt-28'>
+          <div className='relative flex justify-center items-center h-screen'>
             <Box
               sx={{
                 maxWidth: '500px',
