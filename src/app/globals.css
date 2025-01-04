@@ -9,16 +9,6 @@
 }
 
 @font-face {
-  font-family: 'PokeJp';
-  src: url('/fonts/PokemonGbJapanKt-8Rw2.ttf');
-}
-
-@font-face {
-  font-family: 'PokeHira';
-  src: url('/fonts/PokemonGbJapanHrregular-Bq93.ttf');
-}
-
-@font-face {
   font-family: 'DotJP';
   src: url('/fonts/BestTen-CRT.otf');
 }

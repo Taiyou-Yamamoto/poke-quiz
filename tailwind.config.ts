@@ -14,10 +14,7 @@ const config: Config = {
         foreground: 'var(--foreground)',
       },
       fontFamily: {
-        PokeFont: ['Pokemon Hollow', 'sans-serif'],
         PokeGB: ['PokeGB', 'sans-serif'],
-        PokeJp: ['PokeJp', 'sans-serif'],
-        PokeKana: ['PokeJp', 'sans-serif'],
         DotJP: ['DotJP', 'sans-serif'],
       },
       keyframes: {
