@@ -53,3 +53,20 @@ export type RankData = {
 export type ImageArray = {
   fiveImages: string[][];
 };
+
+export type ResultProps = {
+  score: number;
+  calculatedScore: number;
+  setCalculatedScore: React.Dispatch<React.SetStateAction<number>>;
+  resultMessage: JSX.Element;
+  quizArray: Quiz[];
+  yourResult: string[];
+  oneMore: (e: React.FormEvent<HTMLFormElement>) => void;
+  goToHome: (e: React.FormEvent<HTMLFormElement>) => void;
+};
+
+export type QuizStatusProps = {
+  second: number;
+  count: number;
+  quiz_id: number;
+};
