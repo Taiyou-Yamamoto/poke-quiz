@@ -8,7 +8,9 @@ import Head from 'next/head';
 
 export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
-  const ORIGINAL_API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const ORIGINAL_API_URL =
+    process.env.NEXT_PUBLIC_API_URL || // 環境変数が設定されている場合はこちらを使う
+    `https://${process.env.VERCEL_URL}`;
 
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
 
@@ -24,7 +26,7 @@ export default async function Home() {
   //     next: { revalidate: 180 },
   //   }
   // );
-  console.log(process.env.NEXT_PUBLIC_API_URL);
+
   const shuffledSixtyData = await fetch(
     `${ORIGINAL_API_URL}/api/pokemon/random`,
     {
