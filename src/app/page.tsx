@@ -53,9 +53,9 @@ export default async function Home() {
   //   throw new Error(`API error: ${shuffledTwoHundredData?.status}`);
   // }
   // const imageArray = getFiftyPokemonDetailDate(shuffledSixtyArray);
-  console.log('API Request URL:', `${ORIGINAL_API_URL}/api/pokemon/random`);
-  console.log('Request Body:', allPokemonDate);
-  console.log('Response Status:', shuffledSixtyData.status);
+  // console.log('API Request URL:', `${ORIGINAL_API_URL}/api/pokemon/random`);
+  // console.log('Request Body:', allPokemonDate);
+  // console.log('Response Status:', shuffledSixtyData.status);
   console.log('imageArray', shuffledSixtyArray);
   const fiveImages = makeFiveImageArray(shuffledSixtyArray);
   return (

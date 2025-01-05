@@ -18,3 +18,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(error);
   }
 }
+
+// export async function POST() {
+//   return NextResponse.json({ message: 'API is working' });
+// }
