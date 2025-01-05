@@ -38,11 +38,11 @@ export default async function Home() {
       next: { revalidate: 180 },
     }
   );
-  // if (!shuffledSixtyData.ok) {
-  //   throw new Error(`API error: ${shuffledSixtyData.status}`);
-  // }
+  if (!shuffledSixtyData.ok) {
+    throw new Error(`API error: ${shuffledSixtyData.status}`);
+  }
 
-  // const shuffledSixtyArray = await shuffledSixtyData.json();
+  const shuffledSixtyArray = await shuffledSixtyData.json();
 
   // if (!shuffledTwoHundredData || !shuffledTwoHundredData.ok) {
   //   console.error(
@@ -56,7 +56,7 @@ export default async function Home() {
   // console.log('API Request URL:', `${ORIGINAL_API_URL}/api/pokemon/random`);
   // console.log('Request Body:', allPokemonDate);
   console.log('Response Status:', shuffledSixtyData.status);
-  // console.log('imageArray', shuffledSixtyArray);
+  console.log('imageArray', shuffledSixtyArray);
   // const fiveImages = makeFiveImageArray(shuffledSixtyArray);
   return (
     <>
