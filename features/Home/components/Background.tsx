@@ -1,7 +1,7 @@
 'use client';
 import { ImageArray } from '@/app/type';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const Background = ({ fiveImages }: ImageArray) => {
   const [First, Second, Third, Fourth, Fifth] = fiveImages;
