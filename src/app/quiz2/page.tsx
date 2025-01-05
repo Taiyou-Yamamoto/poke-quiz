@@ -36,7 +36,7 @@ const Page = async () => {
 
   for (let i = 0; quizArray.length < 10; ++i) {
     const imageData = detailArray[i].sprites.front_default;
-    const criesData = detailArray[i].cries.latest;
+    // const criesData = detailArray[i].cries.latest;
     if (!imageData || excludedUrls.includes(imageData)) {
       continue;
     }
@@ -44,12 +44,12 @@ const Page = async () => {
     const pokemonName = await pokemonSpecies.json();
     const pokemonJpName = pokemonName.names[0].name;
 
-    console.log('criesData', criesData);
+    // console.log('criesData', criesData);
     // quizArrayはresult画面でも活用
     quizArray.push({
       image: imageData,
       name: pokemonJpName,
-      cries: criesData,
+      // cries: criesData,
     });
   }
 
