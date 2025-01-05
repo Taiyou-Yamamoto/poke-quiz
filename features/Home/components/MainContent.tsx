@@ -156,7 +156,7 @@ const MainContent = () => {
               />
             </div>
             <Link
-              href='/quiz'
+              href='/quiz1'
               className='w-[10rem] mx-auto font-DotJP gray-shadow hover:animate-shake font-extrabold text-white shadow-2xl active:shadow-none py-2 px-4 rounded-md border-solid border-4 bg-red-600 border-white mt-4 ring-offset-2 ring-4'
             >
               モンスタ-レベル
