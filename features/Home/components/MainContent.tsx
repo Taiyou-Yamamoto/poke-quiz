@@ -37,24 +37,24 @@ const MainContent = () => {
     return array;
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await getScore();
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getScore();
 
-  //     // 空配列チェックとデフォルト値設定
-  //     const updatedRes = {
-  //       quiz1: res.quiz1.length <= 10 ? makeFullArray(res.quiz1) : res.quiz1,
-  //       quiz2: res.quiz2.length <= 10 ? makeFullArray(res.quiz2) : res.quiz2,
-  //       quiz3: res.quiz3.length <= 10 ? makeFullArray(res.quiz3) : res.quiz3,
-  //     };
+      // 空配列チェックとデフォルト値設定
+      const updatedRes = {
+        quiz1: res.quiz1.length <= 10 ? makeFullArray(res.quiz1) : res.quiz1,
+        quiz2: res.quiz2.length <= 10 ? makeFullArray(res.quiz2) : res.quiz2,
+        quiz3: res.quiz3.length <= 10 ? makeFullArray(res.quiz3) : res.quiz3,
+      };
 
-  //     console.log('updatedRes', updatedRes);
-  //     SetRankData(updatedRes);
-  //   };
+      console.log('updatedRes', updatedRes);
+      SetRankData(updatedRes);
+    };
 
-  //   fetchData();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     console.log(rankData);
