@@ -14,6 +14,17 @@ export default async function Home() {
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
 
   // これでシャッフルされたデータを取ってくる
+  // const shuffledTwoHundredData = await fetch(
+  //   `${ORIGINAL_API_URL}/api/pokemon/random`,
+  //   {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify(allPokemonDate),
+  //     next: { revalidate: 180 },
+  //   }
+  // );
   const shuffledTwoHundredData = await fetch(
     `${ORIGINAL_API_URL}/api/pokemon/random`,
     {
@@ -24,14 +35,20 @@ export default async function Home() {
       body: JSON.stringify(allPokemonDate),
       next: { revalidate: 180 },
     }
-  );
+  ).catch((error) => {
+    console.error('エラー', error);
+  });
 
-  // console.log('shuffledTwoHundredData', shuffledTwoHundredData);
-  console.log('API_URL:', process.env.NEXT_PUBLIC_API_URL);
-  console.log('POKEMON_API_URL:', process.env.NEXT_PUBLIC_POKEMON_API_URL);
+  // if (!shuffledTwoHundredData.ok) {
+  //   throw new Error(`API error: ${shuffledTwoHundredData.status}`);
+  // }
 
-  if (!shuffledTwoHundredData.ok) {
-    throw new Error(`API error: ${shuffledTwoHundredData.status}`);
+  if (!shuffledTwoHundredData || !shuffledTwoHundredData.ok) {
+    console.error(
+      'Fetch failed or response not OK:',
+      shuffledTwoHundredData?.status
+    );
+    throw new Error(`API error: ${shuffledTwoHundredData?.status}`);
   }
   const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
   const imageArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
