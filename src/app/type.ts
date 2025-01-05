@@ -53,3 +53,9 @@ export type RankData = {
 export type ImageArray = {
   fiveImages: string[][];
 };
+
+export type QuizStatusProps = {
+  second: number;
+  count: number;
+  quiz_id: number;
+};

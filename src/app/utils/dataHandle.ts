@@ -22,17 +22,37 @@ export const getAllPokemonNameAndUrl = async (
   }
 };
 
-// ランダムな1302匹分のurlを200匹に絞り,fetchし、配列にして返す
-export const getTwoHandredAllPokemonDetail = async (array: Pokemon[]) => {
-  const twentyPokemo = array.slice(0, 199);
-  const detailDatas = twentyPokemo.map(async (pokemon) => {
-    const res = await fetch(pokemon.url);
-    return res.json();
+// ランダムな1302匹分のurlを50匹に絞り,fetchし、配列にして返す
+export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
+  const selectedPokemons = array.slice(0, 60);
+
+  const detailPromises = selectedPokemons.map(async (pokemon) => {
+    try {
+      const res = await fetch(pokemon.url);
+      if (!res.ok) {
+        console.error(`Failed to fetch ${pokemon.url}`);
+        return null; // エラーの場合は null を返す
+      }
+      const data = await res.json();
+
+      // 画像が存在しないか除外リストに含まれる場合は無視
+      if (
+        !data.sprites.front_default ||
+        excludedUrls.includes(data.sprites.front_default)
+      ) {
+        return null;
+      }
+
+      return data.sprites.front_default; // 画像URLを返す
+    } catch (error) {
+      console.error(`Error fetching ${pokemon.url}:`, error);
+      return null; // エラーの場合は null を返す
+    }
   });
 
-  const detailArray = await Promise.all(detailDatas);
+  const detailArray = (await Promise.all(detailPromises)).filter(Boolean);
 
-  return detailArray;
+  return detailArray.slice(0, 50);
 };
 
 // 昇順だったポケモン詳細配列をランダムに並び替えする配列
@@ -47,38 +67,38 @@ export const createRandomPokemonData = (array: any[]): any[] => {
 
     [array[i], array[randomNum]] = [array[randomNum], array[i]];
   }
-  //  ランダムにシャッフルされた配列の0~99の配列を返す。
+
   if (!Array.isArray(array)) {
     throw new Error('エラーを検知');
   }
   return array;
 };
 
-// // 200の各ポケモンの画像データを取得
-export const getTwoHundredPokemonDetailDate = (array: any[]): any[] => {
-  const eachData: string[] = [];
+// // 50の各ポケモンの画像データを取得
+// export const getFiftyPokemonDetailDate = (array: any[]): any[] => {
+//   const eachData: string[] = [];
 
-  let i = 0;
-  while (i < array.length) {
-    try {
-      const url = array[i].sprites.front_default;
-      if (!url || excludedUrls.includes(url)) {
-        ++i;
+//   let i = 0;
+//   while (i < array.length) {
+//     try {
+//       const url = array[i].sprites.front_default;
+//       if (!url || excludedUrls.includes(url)) {
+//         ++i;
 
-        continue;
-      }
+//         continue;
+//       }
 
-      eachData.push(url);
-    } catch (error) {
-      // ポケモンによってurlがない場合があるので、その場合スキップ
-      continue;
-    }
+//       eachData.push(url);
+//     } catch (error) {
+//       // ポケモンによってurlがない場合があるので、その場合スキップ
+//       continue;
+//     }
 
-    ++i;
-  }
+//     ++i;
+//   }
 
-  return eachData;
-};
+//   return eachData;
+// };
 
 export const makeFiveImageArray = (imageArray: string[]) => {
   const array = [];

@@ -1,7 +1,0 @@
-{
-  "pokemon": [
-    { "id": "1", "name": "Pikachu", "image": "example1.url" },
-    { "id": "2", "name": "Charmander", "image": "example2.url" },
-    { "id": "3", "name": "Squirtle", "image": "example3.url" }
-  ]
-}
