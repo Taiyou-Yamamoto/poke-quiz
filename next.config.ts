@@ -13,14 +13,14 @@ const nextConfig: NextConfig = {
   },
 
   // テスト用
-  env: {
-    NEXT_PUBLIC_API_URL:
-      process.env.VERCEL_ENV === 'production'
-        ? 'https://your-app.vercel.app' // 本番用URL
-        : process.env.VERCEL_ENV === 'preview'
-        ? `https://${process.env.VERCEL_URL}` // プレビュー環境URL
-        : 'http://localhost:3000', // ローカル環境URL
-  },
+  // env: {
+  //   NEXT_PUBLIC_API_URL:
+  //     process.env.VERCEL_ENV === 'production'
+  //       ? 'https://your-app.vercel.app' // 本番用URL
+  //       : process.env.VERCEL_ENV === 'preview'
+  //       ? `https://${process.env.VERCEL_URL}` // プレビュー環境URL
+  //       : 'http://localhost:3000', // ローカル環境URL
+  // },
 };
 
 export default nextConfig;
