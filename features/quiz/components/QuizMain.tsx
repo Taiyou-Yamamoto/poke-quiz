@@ -59,7 +59,7 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
       window.history.replaceState(null, '', resultUrl);
 
       // laravelでスコアを登録するAPIを叩く
-      postScore(calculatedScore, quiz_id);
+      // postScore(calculatedScore, quiz_id);
     }
   }, [count, second]);
 
