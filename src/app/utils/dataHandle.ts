@@ -24,7 +24,7 @@ export const getAllPokemonNameAndUrl = async (
 
 // ランダムな1302匹分のurlを50匹に絞り,fetchし、配列にして返す
 export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
-  const twentyPokemo = array.slice(0, 50);
+  const twentyPokemo = array.slice(0, 10);
   const detailDatas = twentyPokemo.map(async (pokemon) => {
     const res = await fetch(pokemon.url);
     return res.json();
