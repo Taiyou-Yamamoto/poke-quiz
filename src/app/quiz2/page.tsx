@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   createRandomPokemonData,
   getAllPokemonNameAndUrl,
 } from '../utils/dataHandle';
 import { excludedUrls } from '../utils/exclidedUrls';
 import QuizMain from '../../../features/quiz/components/QuizMain';
-import Header from '../Header';
+
 // これを消し
 //
 const Page = async () => {
