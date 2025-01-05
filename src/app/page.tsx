@@ -57,7 +57,7 @@ export default async function Home() {
   // console.log('Request Body:', allPokemonDate);
   console.log('Response Status:', shuffledSixtyData.status);
   console.log('imageArray', shuffledSixtyArray);
-  // const fiveImages = makeFiveImageArray(shuffledSixtyArray);
+  const fiveImages = makeFiveImageArray(shuffledSixtyArray);
   return (
     <>
       <Head>
@@ -87,7 +87,7 @@ export default async function Home() {
         />
       </Head>
       <div className='w-full h-screen  bg-red-300 fixed'>
-        {/* <Background fiveImages={fiveImages} /> */}
+        <Background fiveImages={fiveImages} />
         <MainContent />
       </div>
     </>
