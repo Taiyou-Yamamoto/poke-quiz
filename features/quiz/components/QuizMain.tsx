@@ -13,8 +13,8 @@ import XPost from './XPost';
 import Isloading from './Isloading';
 import Score from './Score';
 import { postScore } from '@/app/utils/axiosHandle';
-import Result_1 from './Result_1';
 import QuizStatus from './QuizStatus';
+import RetryAndHome from './RetryAndHome';
 
 const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
   const router = useRouter();
@@ -117,18 +117,7 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
         <Isloading />
       ) : count > 9 || second <= 0 ? (
         <>
-          <Result_1
-            score={score}
-            calculatedScore={calculatedScore}
-            setCalculatedScore={setCalculatedScore}
-            resultMessage={resultMessage}
-            quizArray={quizArray}
-            yourResult={yourResult}
-            oneMore={oneMore}
-            goToHome={goToHome}
-          />
-
-          {/* <div className=' w-full flex flex-col justify-center items-center bg-red-300 py-11'>
+          <div className=' w-full flex flex-col justify-center items-center bg-red-300 py-11'>
             <Score
               score={score}
               second={second}
@@ -192,23 +181,12 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
               </tbody>
             </table>
 
-            <div className='flex flex-col relative'>
-              <form onSubmit={oneMore}>
-                <button type='submit' className='my-5 yellow-button'>
-                  再挑戦する
-                </button>
-              </form>
-
-              <form onSubmit={goToHome}>
-                <button type='submit' className='yellow-button'>
-                  ホームへ戻る
-                </button>
-              </form>
-              <div className='absolute bottom-0 left-60'>
-                <XPost calculatedScore={calculatedScore} />
-              </div>
-            </div>
-          </div> */}
+            <RetryAndHome
+              oneMore={oneMore}
+              goToHome={goToHome}
+              calculatedScore={calculatedScore}
+            />
+          </div>
         </>
       ) : (
         <div className=' min-h-screen w-full flex flex-col justify-center items-center'>
@@ -221,25 +199,6 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
           >
             <source src='/background/モンスターボール風.mp4' type='video/mp4' />
           </video> */}
-          {/* <div className='h-[7rem] text-2xl text-white gray-shadow'>
-            残り
-            <span
-              className={
-                second < 11 ? 'text-red-600 font-PokeGB' : 'font-PokeGB'
-              }
-            >
-              {second}
-            </span>
-            秒
-          </div>
-          <div className='flex flex-col gap-4 justify-center items-center'>
-            <h1 className='flex font-PokeGB text-3xl text-white font-extrabold gray-shadow '>
-              {count + 1}問目
-            </h1>
-            <h2 className='font-PokeHira text-3xl text-white  font-extrabold gray-shadow'>
-              このポケモンの名前は？
-            </h2>
-          </div> */}
 
           <QuizStatus second={second} count={count} quiz_id={quiz_id} />
 
