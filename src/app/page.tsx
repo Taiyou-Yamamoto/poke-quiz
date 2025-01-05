@@ -1,6 +1,6 @@
 import {
   getAllPokemonNameAndUrl,
-  getTwoHundredPokemonDetailDate,
+  getFiftyPokemonDetailDate,
   makeFiveImageArray,
 } from './utils/dataHandle';
 import MainContent from '../../features/Home/components/MainContent';
@@ -51,7 +51,7 @@ export default async function Home() {
     throw new Error(`API error: ${shuffledTwoHundredData?.status}`);
   }
   const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
-  const imageArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
+  const imageArray = getFiftyPokemonDetailDate(shuffledTwoHundredArray);
   const fiveImages = makeFiveImageArray(imageArray);
   console.log(imageArray);
   return (
