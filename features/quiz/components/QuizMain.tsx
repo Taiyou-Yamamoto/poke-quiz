@@ -9,7 +9,6 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import XPost from './XPost';
 import Isloading from './Isloading';
 import Score from './Score';
 import { postScore } from '@/app/utils/axiosHandle';
@@ -52,16 +51,6 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
   } else {
     resultMessage = <div>がんばれ！君は虫取り少年級だ！</div>;
   }
-
-  // const getVisibleImages = () => {
-  //   const visibleImages = [];
-  //   for (let i = 0; i < 5; i++) {
-  //     visibleImages.push(
-  //       pokemonImages[(currentIndex + i) % pokemonImages.length]
-  //     );
-  //   }
-  //   return visibleImages;
-  // };
 
   useEffect(() => {
     if (count > 9 || second <= 0) {
