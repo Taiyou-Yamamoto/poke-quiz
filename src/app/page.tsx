@@ -46,7 +46,8 @@ export default async function Home() {
   if (!shuffledTwoHundredData || !shuffledTwoHundredData.ok) {
     console.error(
       'Fetch failed or response not OK:',
-      shuffledTwoHundredData?.status
+      shuffledTwoHundredData?.status,
+      ORIGINAL_API_URL
     );
     throw new Error(`API error: ${shuffledTwoHundredData?.status}`);
   }
