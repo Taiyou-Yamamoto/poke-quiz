@@ -26,7 +26,7 @@ export default async function Home() {
   //     next: { revalidate: 180 },
   //   }
   // );
-
+  console.log(`https://${process.env.VERCEL_URL}`);
   const shuffledSixtyData = await fetch(
     `${ORIGINAL_API_URL}/api/pokemon/random`,
     {
