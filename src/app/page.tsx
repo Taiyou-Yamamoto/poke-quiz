@@ -27,22 +27,22 @@ export default async function Home() {
   //   }
   // );
   console.log(`https://${process.env.VERCEL_URL}`);
-  const shuffledSixtyData = await fetch(
-    `${ORIGINAL_API_URL}/api/pokemon/random`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(allPokemonDate),
-      next: { revalidate: 180 },
-    }
-  );
-  if (!shuffledSixtyData.ok) {
-    throw new Error(`API error: ${shuffledSixtyData.status}`);
-  }
+  // const shuffledSixtyData = await fetch(
+  //   `${ORIGINAL_API_URL}/api/pokemon/random`,
+  //   {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify(allPokemonDate),
+  //     next: { revalidate: 180 },
+  //   }
+  // );
+  // if (!shuffledSixtyData.ok) {
+  //   throw new Error(`API error: ${shuffledSixtyData.status}`);
+  // }
 
-  const shuffledSixtyArray = await shuffledSixtyData.json();
+  // const shuffledSixtyArray = await shuffledSixtyData.json();
 
   // if (!shuffledTwoHundredData || !shuffledTwoHundredData.ok) {
   //   console.error(
@@ -56,8 +56,8 @@ export default async function Home() {
   // console.log('API Request URL:', `${ORIGINAL_API_URL}/api/pokemon/random`);
   // console.log('Request Body:', allPokemonDate);
   // console.log('Response Status:', shuffledSixtyData.status);
-  console.log('imageArray', shuffledSixtyArray);
-  const fiveImages = makeFiveImageArray(shuffledSixtyArray);
+  // console.log('imageArray', shuffledSixtyArray);
+  // const fiveImages = makeFiveImageArray(shuffledSixtyArray);
   return (
     <>
       <Head>
@@ -87,7 +87,7 @@ export default async function Home() {
         />
       </Head>
       <div className='w-full h-screen  bg-red-300 fixed'>
-        <Background fiveImages={fiveImages} />
+        {/* <Background fiveImages={fiveImages} /> */}
         <MainContent />
       </div>
     </>
