@@ -35,7 +35,7 @@ export default async function Home() {
   console.log(fiveImages);
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Poke-Quiz</title>
         <meta property='og:title' content='Poke-Quiz' />
         <meta
@@ -60,7 +60,7 @@ export default async function Home() {
           name='twitter:image'
           content='https://localhost:3000/background/A97CCB17-E670-41E7-8D99-777C73E69C69_1_201_a.jpeg'
         />
-      </Head>
+      </Head> */}
       <div className='w-full h-screen  bg-red-300 fixed'>
         <Background fiveImages={fiveImages} />
         <MainContent />
