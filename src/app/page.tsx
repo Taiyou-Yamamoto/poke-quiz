@@ -26,6 +26,9 @@ export default async function Home() {
     }
   );
 
+  console.log('API_URL:', process.env.NEXT_PUBLIC_API_URL);
+  console.log('POKEMON_API_URL:', process.env.NEXT_PUBLIC_POKEMON_API_URL);
+
   // if (!shuffledTwoHundredData.ok) {
   //   throw new Error(`API error: ${shuffledTwoHundredData.status}`);
   // }
