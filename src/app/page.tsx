@@ -26,9 +26,9 @@ export default async function Home() {
     }
   );
 
-  if (!shuffledTwoHundredData.ok) {
-    throw new Error(`API error: ${shuffledTwoHundredData.status}`);
-  }
+  // if (!shuffledTwoHundredData.ok) {
+  //   throw new Error(`API error: ${shuffledTwoHundredData.status}`);
+  // }
   // const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
   // const imageArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
   // const fiveImages = makeFiveImageArray(imageArray);
