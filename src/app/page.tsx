@@ -1,6 +1,5 @@
 import {
   getAllPokemonNameAndUrl,
-  getFiftyPokemonDetailDate,
   makeFiveImageArray,
 } from './utils/dataHandle';
 import MainContent from '../../features/Home/components/MainContent';
@@ -25,7 +24,7 @@ export default async function Home() {
   //     next: { revalidate: 180 },
   //   }
   // );
-  const shuffledTwoHundredData = await fetch(
+  const shuffledSixtyData = await fetch(
     `${ORIGINAL_API_URL}/api/pokemon/random`,
     {
       method: 'POST',
@@ -36,23 +35,23 @@ export default async function Home() {
       next: { revalidate: 180 },
     }
   );
-
-  // if (!shuffledTwoHundredData.ok) {
-  //   throw new Error(`API error: ${shuffledTwoHundredData.status}`);
-  // }
-
-  if (!shuffledTwoHundredData || !shuffledTwoHundredData.ok) {
-    console.error(
-      'Fetch failed or response not OK:',
-      shuffledTwoHundredData?.status,
-      ORIGINAL_API_URL
-    );
-    throw new Error(`API error: ${shuffledTwoHundredData?.status}`);
+  if (!shuffledSixtyData.ok) {
+    throw new Error(`API error: ${shuffledSixtyData.status}`);
   }
-  const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
-  const imageArray = getFiftyPokemonDetailDate(shuffledTwoHundredArray);
-  const fiveImages = makeFiveImageArray(imageArray);
-  console.log(imageArray);
+
+  const shuffledSixtyArray = await shuffledSixtyData.json();
+
+  // if (!shuffledTwoHundredData || !shuffledTwoHundredData.ok) {
+  //   console.error(
+  //     'Fetch failed or response not OK:',
+  //     shuffledTwoHundredData?.status,
+  //     ORIGINAL_API_URL
+  //   );
+  //   throw new Error(`API error: ${shuffledTwoHundredData?.status}`);
+  // }
+  // const imageArray = getFiftyPokemonDetailDate(shuffledSixtyArray);
+  console.log('imageArray', shuffledSixtyArray);
+  const fiveImages = makeFiveImageArray(shuffledSixtyArray);
   return (
     <>
       <Head>
