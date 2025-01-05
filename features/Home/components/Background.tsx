@@ -12,7 +12,7 @@ const Background = ({ fiveImages }: ImageArray) => {
 
   return (
     <div className='absolute inset-0 z-0 opacity-85 flex-row flex-wrap'>
-      {/* １段目 */}
+      {/* １段目m */}
       <div className='flex flex-row justify-items-end flex-nowrap animate-slide'>
         {' '}
         {ArrayRepeater(First, 4).map((item: string, index) => {
