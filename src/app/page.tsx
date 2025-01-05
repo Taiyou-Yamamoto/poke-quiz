@@ -35,9 +35,7 @@ export default async function Home() {
       body: JSON.stringify(allPokemonDate),
       next: { revalidate: 180 },
     }
-  ).catch((error) => {
-    console.error('エラー', error);
-  });
+  );
 
   // if (!shuffledTwoHundredData.ok) {
   //   throw new Error(`API error: ${shuffledTwoHundredData.status}`);
