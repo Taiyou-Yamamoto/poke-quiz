@@ -153,6 +153,7 @@ const MainContent = () => {
                 alt='My Image'
                 width={500}
                 height={300}
+                priority
               />
             </div>
             <Link

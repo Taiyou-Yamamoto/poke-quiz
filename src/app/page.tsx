@@ -26,7 +26,7 @@ export default async function Home() {
     }
   );
 
-  console.log('shuffledTwoHundredData', shuffledTwoHundredData);
+  // console.log('shuffledTwoHundredData', shuffledTwoHundredData);
   console.log('API_URL:', process.env.NEXT_PUBLIC_API_URL);
   console.log('POKEMON_API_URL:', process.env.NEXT_PUBLIC_POKEMON_API_URL);
 
@@ -36,7 +36,7 @@ export default async function Home() {
   const shuffledTwoHundredArray = await shuffledTwoHundredData.json();
   const imageArray = getTwoHundredPokemonDetailDate(shuffledTwoHundredArray);
   const fiveImages = makeFiveImageArray(imageArray);
-  console.log(fiveImages);
+  console.log(imageArray);
   return (
     <>
       <Head>
