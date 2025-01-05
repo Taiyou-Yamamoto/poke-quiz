@@ -24,7 +24,7 @@ export default async function Home() {
   //     next: { revalidate: 180 },
   //   }
   // );
-  console.log('ORIGINAL_API_URL', ORIGINAL_API_URL);
+  console.log(process.env.NEXT_PUBLIC_API_URL);
   const shuffledSixtyData = await fetch(
     `${ORIGINAL_API_URL}/api/pokemon/random`,
     {
