@@ -83,8 +83,8 @@ const MainContent = () => {
               <AppBar
                 position='static'
                 sx={{
-                  borderTopLeftRadius: 16, // 左上の角を丸くする
-                  borderTopRightRadius: 16, //
+                  borderTopLeftRadius: 16,
+                  borderTopRightRadius: 16,
                   bgcolor: 'rgba(255, 255, 255, 0)',
                   fontWeight: 500,
                 }}

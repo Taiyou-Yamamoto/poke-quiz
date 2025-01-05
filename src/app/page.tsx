@@ -14,17 +14,17 @@ export default async function Home() {
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
 
   // これでシャッフルされたデータを取ってくる
-  // const shuffledTwoHundredData = await fetch(
-  //   `${ORIGINAL_API_URL}/api/pokemon/random`,
-  //   {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //     },
-  //     body: JSON.stringify(allPokemonDate),
-  //     next: { revalidate: 180 },
-  //   }
-  // );
+  const shuffledTwoHundredData = await fetch(
+    `${ORIGINAL_API_URL}/api/pokemon/random`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(allPokemonDate),
+      next: { revalidate: 180 },
+    }
+  );
 
   // if (!shuffledTwoHundredData.ok) {
   //   throw new Error(`API error: ${shuffledTwoHundredData.status}`);
