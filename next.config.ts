@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
     ],
     unoptimized: true, //Imageの最適化設定を無効化
   },
+
+  // テスト用
   env: {
     NEXT_PUBLIC_API_URL:
       process.env.VERCEL_ENV === 'production'
