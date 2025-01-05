@@ -5,7 +5,7 @@ import {
 } from './utils/dataHandle';
 import MainContent from '../../features/Home/components/MainContent';
 import Background from '../../features/Home/components/Background';
-import Head from 'next/head';
+// import Head from 'next/head';
 
 export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
