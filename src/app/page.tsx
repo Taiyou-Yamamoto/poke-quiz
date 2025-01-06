@@ -21,8 +21,8 @@ export default async function Home() {
   console.log(allPokemonDate);
   // 3分ごとにデータをシャッフルして取得
   const shuffledData = await getShuffledSixtyData(
-    `${ORIGINAL_API_URL}/api`,
-    // `https://${process.env.VERCEL_URL}/api`,
+    // `${ORIGINAL_API_URL}/api`,
+    `https://${process.env.VERCEL_URL}/api`,
     allPokemonDate
   );
 
