@@ -12,24 +12,19 @@ export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
   const ORIGINAL_API_URL =
     process.env.NEXT_PUBLIC_API_URL || // 環境変数が設定されている場合はこちらを使う
-    `https://${process.env.VERCEL_URL}`;
+    `https://poke-quiz-git-main-taiyou-yamamotos-projects.vercel.app`;
 
-  console.log('VERCEL_URL:', process.env.VERCEL_URL);
-  console.log('Original API URL:', ORIGINAL_API_URL);
+  console.log(ORIGINAL_API_URL);
   // SSGで1302匹分のポケモンの名前とURLを取得
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
-  // console.log(allPokemonDate);
-  // 3分ごとにデータをシャッフルして取得
-  const shuffledData = await getShuffledSixtyData(
+
+  // 3分ごとにデータをシャッフルして50匹のデータを取得
+  const shuffledFiftyData = await getShuffledSixtyData(
     `${ORIGINAL_API_URL}/api`,
     allPokemonDate
   );
-
-  // ５０匹の画像データを取得
-  const imageArray = await getFiftyAllPokemonDetail(shuffledData);
-
   // ５つの配列に分割
-  const fiveImages = makeFiveImageArray(imageArray);
+  const fiveImages = makeFiveImageArray(shuffledFiftyData);
   return (
     <>
       <Head>

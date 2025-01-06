@@ -1,4 +1,7 @@
-import { createRandomPokemonData } from '@/app/utils/dataHandle';
+import {
+  createRandomPokemonData,
+  getFiftyAllPokemonDetail,
+} from '@/app/utils/dataHandle';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
@@ -7,7 +10,9 @@ export async function POST(request: Request) {
 
     const randomArray = createRandomPokemonData(req);
 
-    return NextResponse.json(randomArray);
+    const imageArray = await getFiftyAllPokemonDetail(randomArray);
+
+    return NextResponse.json(imageArray);
   } catch (error) {
     console.error('Error in GET /api', error);
     return NextResponse.json(error);

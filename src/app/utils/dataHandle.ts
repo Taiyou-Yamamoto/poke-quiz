@@ -2,7 +2,6 @@ import { Pokemon } from '../type';
 import { excludedUrls } from './exclidedUrls';
 
 // 1302匹ぶんのnameとurlをSSGで取得
-// 使った
 export const getAllPokemonNameAndUrl = async (
   url: string
 ): Promise<Pokemon[]> => {
@@ -25,11 +24,9 @@ export const getAllPokemonNameAndUrl = async (
 };
 
 // 昇順だったポケモン詳細配列をランダムに並び替えする配列
-// 使った
+// Fisher-Yates Shuffleというアルゴリズムを使用している
+// それを使うとspliceや古い配列の要素を削除しなくて済むので効率的らしい
 export const createRandomPokemonData = (array: any[]): any[] => {
-  // ここではFisher-Yates Shuffleというアルゴリズムを使用している
-  // それを使うとspliceや古い配列の要素を削除しなくて済むので効率的らしい
-
   // 配列の最後の要素とランダムで決められたインデックスをarray.length回交換し続ける
   for (let i = array.length - 1; i >= 0; i--) {
     //length以内のランダムな値を生成
@@ -73,6 +70,7 @@ export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
 
   return ImageArray;
 };
+
 // 3分ごとにデータをシャッフル
 export const getShuffledSixtyData = async (url: string, array: Pokemon[]) => {
   const res = await fetch(url, {
