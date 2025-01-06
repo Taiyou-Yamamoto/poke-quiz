@@ -17,13 +17,11 @@ export default async function Home() {
   console.log('VERCEL_URL:', process.env.VERCEL_URL);
   console.log('Original API URL:', `https://${process.env.VERCEL_URL}/api`);
   // SSGで1302匹分のポケモンの名前とURLを取得
-  const allPokemonDate = await getAllPokemonNameAndUrl(
-    `https://${process.env.VERCEL_URL}/api`
-  );
+  const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
   console.log(allPokemonDate);
   // 3分ごとにデータをシャッフルして取得
   const shuffledData = await getShuffledSixtyData(
-    `${ORIGINAL_API_URL}/api`,
+    `https://${process.env.VERCEL_URL}/api`,
     allPokemonDate
   );
 
