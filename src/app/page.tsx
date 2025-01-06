@@ -15,7 +15,7 @@ export default async function Home() {
     `https://${process.env.VERCEL_URL}`;
 
   console.log('VERCEL_URL:', process.env.VERCEL_URL);
-  console.log('Original API URL:', `ORIGINAL_API_URL`);
+  console.log('Original API URL:', ORIGINAL_API_URL);
   // SSGで1302匹分のポケモンの名前とURLを取得
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
   // console.log(allPokemonDate);
