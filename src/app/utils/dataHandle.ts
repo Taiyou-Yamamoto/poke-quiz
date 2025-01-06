@@ -19,7 +19,7 @@ export const getAllPokemonNameAndUrl = async (
     const data = await res.json();
     return data.results;
   } catch (error) {
-    console.error('Error in getAllPokemonNameAndUrl:', error);
+    console.log('Error in getAllPokemonNameAndUrl:', error);
   }
   return [];
 };
@@ -75,6 +75,9 @@ export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
 };
 // 3分ごとにデータをシャッフル
 export const getShuffledSixtyData = async (url: string, array: Pokemon[]) => {
+  console.log('url', url);
+  console.log('array', array);
+
   const res = await fetch(url, {
     method: 'POST',
     headers: {
