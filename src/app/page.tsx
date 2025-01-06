@@ -27,37 +27,48 @@ export default async function Home() {
   //   }
   // );
   console.log(`https://${process.env.VERCEL_URL}`);
-  const shuffledSixtyData = await fetch(
-    `${ORIGINAL_API_URL}/api/pokemon/random`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(allPokemonDate),
-      next: { revalidate: 180 },
+
+  const shuffledSixtyArray = [
+    'https://pokeapi.co/api/v2/pokemon/1/',
+    'https://pokeapi.co/api/v2/pokemon/2/',
+
+    'https://pokeapi.co/api/v2/pokemon/3/',
+  ];
+
+  try {
+    const shuffledSixtyData = await fetch(
+      `${ORIGINAL_API_URL}/api/pokemon/random`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(allPokemonDate),
+        next: { revalidate: 180 },
+      }
+    );
+    if (!shuffledSixtyData.ok) {
+      throw new Error(`API error: ${shuffledSixtyData.status}`);
     }
-  );
-  if (!shuffledSixtyData.ok) {
-    throw new Error(`API error: ${shuffledSixtyData.status}`);
+
+    const shuffledSixtyArray = await shuffledSixtyData.json();
+  } catch (error) {
+    // if (!shuffledTwoHundredData || !shuffledTwoHundredData.ok) {
+    //   console.error(
+    //     'Fetch failed or response not OK:',
+    //     shuffledTwoHundredData?.status,
+    //     ORIGINAL_API_URL
+    //   );
+    //   throw new Error(`API error: ${shuffledTwoHundredData?.status}`);
+    // }
+    // const imageArray = getFiftyPokemonDetailDate(shuffledSixtyArray);
+
+    console.log(`https://${process.env.VERCEL_URL}`);
+    console.log('API Request URL:', `${ORIGINAL_API_URL}/api/pokemon/random`);
+    // console.log('Request Body:', allPokemonDate);
+    // console.log('Response Status:', shuffledSixtyData.status);
+    console.log('imageArray', shuffledSixtyArray);
   }
-
-  const shuffledSixtyArray = await shuffledSixtyData.json();
-
-  // if (!shuffledTwoHundredData || !shuffledTwoHundredData.ok) {
-  //   console.error(
-  //     'Fetch failed or response not OK:',
-  //     shuffledTwoHundredData?.status,
-  //     ORIGINAL_API_URL
-  //   );
-  //   throw new Error(`API error: ${shuffledTwoHundredData?.status}`);
-  // }
-  // const imageArray = getFiftyPokemonDetailDate(shuffledSixtyArray);
-  console.log(`https://${process.env.VERCEL_URL}`);
-  console.log('API Request URL:', `${ORIGINAL_API_URL}/api/pokemon/random`);
-  // console.log('Request Body:', allPokemonDate);
-  console.log('Response Status:', shuffledSixtyData.status);
-  console.log('imageArray', shuffledSixtyArray);
   const fiveImages = makeFiveImageArray(shuffledSixtyArray);
   return (
     <>
