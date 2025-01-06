@@ -11,7 +11,8 @@ export const getAllPokemonNameAndUrl = async (
   }
 
   try {
-    const res = await fetch(url, { cache: 'force-cache' }); //ビルド時のキャッシュの利用を明示
+    const res = await fetch(url); //ビルド時のキャッシュの利用を明示
+    // const res = await fetch(url, { cache: 'force-cache' }); //ビルド時のキャッシュの利用を明示
 
     if (!res.ok) {
       throw new Error('response is not ok');
