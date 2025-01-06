@@ -50,6 +50,7 @@ export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
 
   try {
     for (const pokemon of array) {
+      console.log(pokemon.url);
       const res = await fetch(pokemon.url, { cache: 'force-cache' });
       if (res.ok) {
         const data = await res.json();

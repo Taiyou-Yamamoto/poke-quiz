@@ -14,9 +14,11 @@ export default async function Home() {
     process.env.NEXT_PUBLIC_API_URL || // 環境変数が設定されている場合はこちらを使う
     `https://${process.env.VERCEL_URL}`; //こちらは本番環境用
 
+  console.log(POKEMON_API_URL);
   // SSGで1302匹分のポケモンの名前とURLを取得
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
 
+  console.log(ORIGINAL_API_URL);
   // 3分ごとにデータをシャッフルして取得
   const shuffledData = await getShuffledSixtyData(
     `${ORIGINAL_API_URL}/api`,
