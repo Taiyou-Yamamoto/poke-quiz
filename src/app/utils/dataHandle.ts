@@ -75,9 +75,6 @@ export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
 };
 // 3分ごとにデータをシャッフル
 export const getShuffledSixtyData = async (url: string, array: Pokemon[]) => {
-  console.log('url', url);
-  console.log('array', array);
-
   const res = await fetch(url, {
     method: 'POST',
     headers: {
@@ -87,27 +84,11 @@ export const getShuffledSixtyData = async (url: string, array: Pokemon[]) => {
     next: { revalidate: 180 },
   });
 
-  console.log('Response status:', res.status);
-  console.log('Response headers:', res.headers);
-
-  const responseBody = await res.text();
-  console.log('Response Body as Text:', responseBody);
-
-  // JSONパース可能か確認してからパース
-  try {
-    const data = JSON.parse(responseBody);
-    console.log('Response Data as JSON:', data);
-    return data;
-  } catch (jsonError) {
-    console.error('Response is not valid JSON:', responseBody);
-    throw new Error('Failed to parse JSON from response.');
+  if (!res.ok) {
+    throw new Error(
+      `Fetch failed with status ${res.status}: ${res.statusText}`
+    );
   }
-
-  // if (!res.ok) {
-  //   throw new Error(
-  //     `Fetch failed with status ${res.status}: ${res.statusText}`
-  //   );
-  // }
 
   const data = await res.json();
 

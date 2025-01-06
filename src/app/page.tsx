@@ -22,7 +22,6 @@ export default async function Home() {
   // 3分ごとにデータをシャッフルして取得
   const shuffledData = await getShuffledSixtyData(
     `${ORIGINAL_API_URL}/api`,
-    // `https://${process.env.VERCEL_URL}/api`,
     allPokemonDate
   );
 
@@ -60,7 +59,7 @@ export default async function Home() {
         />
       </Head>
       <div className='w-full h-screen  bg-red-300 fixed'>
-        {/* <Background fiveImages={fiveImages} /> */}
+        <Background fiveImages={fiveImages} />
         <MainContent />
       </div>
     </>
