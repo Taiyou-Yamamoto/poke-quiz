@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
     ],
     unoptimized: true, //Imageの最適化設定を無効化
   },
+  experimental: {
+    staticGenerationRetryCount: 3, //静的生成のリトライ回数
+  },
 };
 
 export default nextConfig;
