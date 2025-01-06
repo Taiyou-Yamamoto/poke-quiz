@@ -63,7 +63,7 @@ export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
         ImageArray.push(data.sprites.front_default);
       }
       if (ImageArray.length >= 50) {
-        break; // 必要な数が揃ったらループを終了
+        break;
       }
     }
   } catch (error) {
@@ -88,6 +88,7 @@ export const getShuffledSixtyData = async (url: string, array: Pokemon[]) => {
   return data;
 };
 
+// ５つの配列に分割
 export const makeFiveImageArray = (imageArray: string[]) => {
   const array = [];
 

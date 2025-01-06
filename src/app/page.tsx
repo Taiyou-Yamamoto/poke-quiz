@@ -7,7 +7,6 @@ import {
 import MainContent from '../../features/Home/components/MainContent';
 import Background from '../../features/Home/components/Background';
 import Head from 'next/head';
-import { ImageArray } from '@/app/type';
 
 export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
@@ -18,7 +17,6 @@ export default async function Home() {
   // SSGで1302匹分のポケモンの名前とURLを取得
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
 
-  console.log(`${ORIGINAL_API_URL}/api`);
   // 3分ごとにデータをシャッフルして取得
   const shuffledData = await getShuffledSixtyData(
     `${ORIGINAL_API_URL}/api`,
