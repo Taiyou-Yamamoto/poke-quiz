@@ -2,6 +2,7 @@ import { Pokemon } from '../type';
 import { excludedUrls } from './exclidedUrls';
 
 // 1302匹ぶんのnameとurlをSSGで取得
+// 使った
 export const getAllPokemonNameAndUrl = async (
   url: string
 ): Promise<Pokemon[]> => {
@@ -10,52 +11,21 @@ export const getAllPokemonNameAndUrl = async (
   }
 
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, { cache: 'force-cache' }); //ビルド時のキャッシュの利用を明示
 
     if (!res.ok) {
-      throw new Error('resが帰ってきてません');
+      throw new Error('response is not ok');
     }
     const data = await res.json();
     return data.results;
   } catch (error) {
-    throw error;
+    console.error('Error in getAllPokemonNameAndUrl:', error);
   }
-};
-
-// ランダムな1302匹分のurlを50匹に絞り,fetchし、配列にして返す
-export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
-  const selectedPokemons = array.slice(0, 60);
-
-  const detailPromises = selectedPokemons.map(async (pokemon) => {
-    try {
-      const res = await fetch(pokemon.url);
-      if (!res.ok) {
-        console.error(`Failed to fetch ${pokemon.url}`);
-        return null; // エラーの場合は null を返す
-      }
-      const data = await res.json();
-
-      // 画像が存在しないか除外リストに含まれる場合は無視
-      if (
-        !data.sprites.front_default ||
-        excludedUrls.includes(data.sprites.front_default)
-      ) {
-        return null;
-      }
-
-      return data.sprites.front_default; // 画像URLを返す
-    } catch (error) {
-      console.error(`Error fetching ${pokemon.url}:`, error);
-      return null; // エラーの場合は null を返す
-    }
-  });
-
-  const detailArray = (await Promise.all(detailPromises)).filter(Boolean);
-
-  return detailArray.slice(0, 50);
+  return [];
 };
 
 // 昇順だったポケモン詳細配列をランダムに並び替えする配列
+// 使った
 export const createRandomPokemonData = (array: any[]): any[] => {
   // ここではFisher-Yates Shuffleというアルゴリズムを使用している
   // それを使うとspliceや古い配列の要素を削除しなくて済むので効率的らしい
@@ -74,31 +44,49 @@ export const createRandomPokemonData = (array: any[]): any[] => {
   return array;
 };
 
-// // 50の各ポケモンの画像データを取得
-// export const getFiftyPokemonDetailDate = (array: any[]): any[] => {
-//   const eachData: string[] = [];
+// ランダムな1302匹分のurlを50匹に絞り,fetchし、配列にして返す
+export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
+  const ImageArray: string[] = [];
 
-//   let i = 0;
-//   while (i < array.length) {
-//     try {
-//       const url = array[i].sprites.front_default;
-//       if (!url || excludedUrls.includes(url)) {
-//         ++i;
+  try {
+    for (const pokemon of array) {
+      const res = await fetch(pokemon.url, { cache: 'force-cache' });
+      if (res.ok) {
+        const data = await res.json();
+        if (
+          !data.sprites.front_default ||
+          excludedUrls.includes(data.sprites.front_default)
+        ) {
+          continue;
+        }
 
-//         continue;
-//       }
+        ImageArray.push(data.sprites.front_default);
+      }
+      if (ImageArray.length >= 50) {
+        break; // 必要な数が揃ったらループを終了
+      }
+    }
+  } catch (error) {
+    console.error('Error in getFiftyAllPokemonDetail:', error);
+  }
 
-//       eachData.push(url);
-//     } catch (error) {
-//       // ポケモンによってurlがない場合があるので、その場合スキップ
-//       continue;
-//     }
+  return ImageArray;
+};
+// 3分ごとにデータをシャッフル
+export const getShuffledSixtyData = async (url: string, array: Pokemon[]) => {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(array),
+    next: { revalidate: 180 },
+  });
 
-//     ++i;
-//   }
+  const data = await res.json();
 
-//   return eachData;
-// };
+  return data;
+};
 
 export const makeFiveImageArray = (imageArray: string[]) => {
   const array = [];
