@@ -20,15 +20,16 @@ export default async function Home() {
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
   console.log(allPokemonDate);
   // 3分ごとにデータをシャッフルして取得
-  const shuffledData = await getShuffledSixtyData(
-    `https://${process.env.VERCEL_URL}/api`,
-    allPokemonDate
-  );
+  // const shuffledData = await getShuffledSixtyData(
+  //   `https://${process.env.VERCEL_URL}/api`,
+  //   allPokemonDate
+  // );
 
   // ５０匹の画像データを取得
-  const imageArray = await getFiftyAllPokemonDetail(shuffledData);
+  // const imageArray = await getFiftyAllPokemonDetail(shuffledData);
+
   // ５つの配列に分割
-  const fiveImages = makeFiveImageArray(imageArray);
+  // const fiveImages = makeFiveImageArray(imageArray);
   return (
     <>
       <Head>
@@ -58,7 +59,7 @@ export default async function Home() {
         />
       </Head>
       <div className='w-full h-screen  bg-red-300 fixed'>
-        <Background fiveImages={fiveImages} />
+        {/* <Background fiveImages={fiveImages} /> */}
         <MainContent />
       </div>
     </>
