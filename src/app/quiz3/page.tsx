@@ -9,12 +9,12 @@ import QuizMain from '../../../features/quiz/components/QuizMain';
 
 const Page = async () => {
   const quiz_id = 3;
-  const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
-  const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
+  // const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
+  // const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
 
-  const quiz = new QuizClass(allPokemonDate);
+  // const quiz = new QuizClass(allPokemonDate);
 
-  quiz.getRandomPokemonData();
+  // quiz.getRandomPokemonData();
   // const quizArray = [];
 
   // const ORIGINAL_API_URL = process.env.NEXT_PUBLIC_API_URL;
