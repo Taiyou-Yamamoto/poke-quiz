@@ -13,7 +13,7 @@ const Page = async () => {
 
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
 
-  // 必要
+  // 1302匹ぶんのnameとurlをSSGで取得
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
   const shuffledData = createRandomPokemonData(allPokemonDate);
 
