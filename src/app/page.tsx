@@ -19,7 +19,7 @@ export default async function Home() {
   console.log(`${ORIGINAL_API_URL}/api/home`);
   // 3分ごとにデータをシャッフルして50匹のデータを取得
   const shuffledFiftyData = await getShuffledFiftyData(
-    `${ORIGINAL_API_URL}/api/home/`,
+    `${ORIGINAL_API_URL}/api/home`,
     allPokemonDate
   );
   // // ５つの配列に分割
