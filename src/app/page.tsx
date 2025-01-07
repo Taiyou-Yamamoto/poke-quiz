@@ -1,7 +1,6 @@
 import {
   getAllPokemonNameAndUrl,
-  getFiftyAllPokemonDetail,
-  getShuffledSixtyData,
+  getShuffledFiftyData,
   makeFiveImageArray,
 } from './utils/dataHandle';
 import MainContent from '../../features/Home/components/MainContent';
@@ -14,16 +13,14 @@ export default async function Home() {
     process.env.NEXT_PUBLIC_API_URL || // 環境変数が設定されている場合はこちらを使う
     `https://poke-quiz-git-main-taiyou-yamamotos-projects.vercel.app`;
 
-  console.log(ORIGINAL_API_URL);
   // SSGで1302匹分のポケモンの名前とURLを取得
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
-
   // 3分ごとにデータをシャッフルして50匹のデータを取得
-  const shuffledFiftyData = await getShuffledSixtyData(
-    `${ORIGINAL_API_URL}/api`,
+  const shuffledFiftyData = await getShuffledFiftyData(
+    `${ORIGINAL_API_URL}/api/home`,
     allPokemonDate
   );
-  // ５つの配列に分割
+  // // ５つの配列に分割
   const fiveImages = makeFiveImageArray(shuffledFiftyData);
   return (
     <>
