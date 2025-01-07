@@ -116,11 +116,11 @@ export const getShuffledFiftyData = async (url: string, array: Pokemon[]) => {
     next: { revalidate: 180 },
   });
 
-  // if (!res.ok) {
-  //   throw new Error(
-  //     `Fetch failed with status ${res.status}: ${res.statusText}`
-  //   );
-  // }
+  if (!res.ok) {
+    throw new Error(
+      `Fetch failed with status ${res.status}: ${res.statusText}`
+    );
+  }
   console.log(res);
 
   const data = await res.json();

@@ -23,7 +23,7 @@ export default async function Home() {
     allPokemonDate
   );
   // // ５つの配列に分割
-  const fiveImages = makeFiveImageArray(shuffledFiftyData);
+  // const fiveImages = makeFiveImageArray(shuffledFiftyData);
   return (
     <>
       <Head>
@@ -53,7 +53,7 @@ export default async function Home() {
         />
       </Head>
       <div className='w-full h-screen  bg-red-300 fixed'>
-        <Background fiveImages={fiveImages} />
+        {/* <Background fiveImages={fiveImages} /> */}
         <MainContent />
       </div>
     </>
