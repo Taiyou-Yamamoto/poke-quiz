@@ -10,14 +10,14 @@ export async function POST(request: Request) {
     const randomArray = createRandomPokemonData(req);
     console.log('randomArray', randomArray);
 
-    const imageArray = await getCustomPokemonData(
-      randomArray,
-      50,
-      getOnlyImage
-    );
+    // const imageArray = await getCustomPokemonData(
+    //   randomArray,
+    //   50,
+    //   getOnlyImage
+    // );
 
-    console.log('imageArray', imageArray);
-    return NextResponse.json(imageArray);
+    // console.log('imageArray', imageArray);
+    return NextResponse.json(randomArray);
   } catch (error) {
     console.error('Error in GET /api', error);
     return NextResponse.json(error);
