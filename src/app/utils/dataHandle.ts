@@ -41,26 +41,44 @@ export const createRandomPokemonData = (array: any[]): any[] => {
   return array;
 };
 
-// ランダムな1302匹分のurlを50匹に絞り,fetchし、配列にして返す
-export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
-  const ImageArray: string[] = [];
+//ポケモンの詳細データを取得する関数
+export const fetchPokemonDetails = async (url: string): Promise<any | null> => {
+  try {
+    const res = await fetch(url, { cache: 'force-cache' });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (error) {
+    console.error(`Failed to fetch data for ${url}`, error);
+  }
+};
+
+// 利用可能な画像を任意の数持っているポケモンか選別し特定の処理を行う
+export const ImageFilter = async (PokemonUrl: string, callback: any) => {
+  const data = await fetchPokemonDetails(PokemonUrl);
+  if (
+    data.sprites.front_default &&
+    !excludedUrls.includes(data.sprites.front_default)
+  ) {
+    return callback(data);
+  } // 無効な場合は null を返す
+};
+
+// 任意の処理がされたデータを任意の数取得
+export const getCustomPokemonData = async (
+  randomArray: Pokemon[], //事前にシャッフルされた配列
+  count: number, //取得する数
+  callback: any //任意の処理
+) => {
+  const DataArray: any[] = [];
 
   try {
-    for (const pokemon of array) {
-      console.log(pokemon.url);
-      const res = await fetch(pokemon.url, { cache: 'force-cache' });
-      if (res.ok) {
-        const data = await res.json();
-        if (
-          !data.sprites.front_default ||
-          excludedUrls.includes(data.sprites.front_default)
-        ) {
-          continue;
-        }
-
-        ImageArray.push(data.sprites.front_default);
+    for (const pokemon of randomArray) {
+      const data = await ImageFilter(pokemon.url, callback);
+      if (data) {
+        DataArray.push(data);
       }
-      if (ImageArray.length >= 50) {
+      if (DataArray.length >= count) {
         break;
       }
     }
@@ -68,11 +86,25 @@ export const getFiftyAllPokemonDetail = async (array: Pokemon[]) => {
     console.error('Error in getFiftyAllPokemonDetail:', error);
   }
 
-  return ImageArray;
+  return DataArray;
 };
 
+//画像データのみ取得
+export const getOnlyImage = async (data: any) => {
+  return data.sprites.front_default;
+};
+
+// 画像データと日本語名を取得
+export const getImageAndJPName = async (data: any) => {};
+
+// 画像データと日本語名と鳴き声を取得
+export const getImageAndJPNameAndCries = async (data: any) => {};
+
+// 画像データと日本語名とテキストを取得
+export const getImageAndJPNameAndText = async (data: any) => {};
+
 // 3分ごとにデータをシャッフル
-export const getShuffledSixtyData = async (url: string, array: Pokemon[]) => {
+export const getShuffledFiftyData = async (url: string, array: Pokemon[]) => {
   const res = await fetch(url, {
     method: 'POST',
     headers: {
