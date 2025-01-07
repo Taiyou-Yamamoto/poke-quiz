@@ -105,11 +105,6 @@ export const getImageAndJPNameAndText = async (data: any) => {};
 
 // 3分ごとにデータをシャッフル
 export const getShuffledFiftyData = async (url: string, array: Pokemon[]) => {
-  // console.log('url', url);
-  // console.log('array', array);
-  // const res = await fetch(url, {
-  //   cache: 'no-store',
-  // });
   const res = await fetch(url, {
     method: 'POST',
     headers: {

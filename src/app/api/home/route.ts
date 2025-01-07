@@ -14,10 +14,8 @@ import { getCustomPokemonData } from '../../utils/dataHandle';
 export async function POST(request: Request) {
   try {
     const req = await request.json();
-    console.log('req', req);
 
     const randomArray = createRandomPokemonData(req);
-    console.log('randomArray', randomArray);
 
     const imageArray = await getCustomPokemonData(
       randomArray,
@@ -25,7 +23,6 @@ export async function POST(request: Request) {
       getOnlyImage
     );
 
-    console.log('imageArray', imageArray);
     return NextResponse.json(imageArray);
   } catch (error) {
     console.error('Error in GET /api', error);
