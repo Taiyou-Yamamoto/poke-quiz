@@ -15,6 +15,7 @@ export default async function Home() {
 
   // SSGで1302匹分のポケモンの名前とURLを取得
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
+
   console.log(ORIGINAL_API_URL);
   console.log(`${ORIGINAL_API_URL}/api/home`);
   // 3分ごとにデータをシャッフルして50匹のデータを取得
@@ -23,7 +24,7 @@ export default async function Home() {
     allPokemonDate
   );
   // // ５つの配列に分割
-  // const fiveImages = makeFiveImageArray(shuffledFiftyData);
+  const fiveImages = makeFiveImageArray(shuffledFiftyData);
   return (
     <>
       <Head>
@@ -53,7 +54,7 @@ export default async function Home() {
         />
       </Head>
       <div className='w-full h-screen  bg-red-300 fixed'>
-        {/* <Background fiveImages={fiveImages} /> */}
+        <Background fiveImages={fiveImages} />
         <MainContent />
       </div>
     </>

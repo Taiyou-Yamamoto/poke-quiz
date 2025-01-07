@@ -11,7 +11,7 @@ export const postScore = async (calculatedScore: number, quiz_id: number) => {
       quiz_id: quiz_id,
     });
 
-    console.log('Response:', response.data);
+    // console.log('Response:', response.data);
   } catch (error) {
     console.log(error);
   }
