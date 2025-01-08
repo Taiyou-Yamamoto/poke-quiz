@@ -18,7 +18,7 @@ export const getAllPokemonNameAndUrl = async (
     const data = await res.json();
     return data.results;
   } catch (error) {
-    console.log('Error in getAllPokemonNameAndUrl:', error);
+    console.error('Error in getAllPokemonNameAndUrl:', error);
   }
   return [];
 };
@@ -61,7 +61,7 @@ export const ImageFilter = async (PokemonUrl: string, callback: any) => {
     !excludedUrls.includes(data.sprites.front_default)
   ) {
     return callback(data);
-  } // 無効な場合は null を返す
+  }
 };
 
 // 任意の処理がされたデータを任意の数取得
@@ -89,19 +89,40 @@ export const getCustomPokemonData = async (
   return DataArray;
 };
 
+/********  以下の関数がgetCustomPokemonDataのcallbackとして使用  *********/
+
 //画像データのみ取得
-export const getOnlyImage = async (data: any) => {
+export const getOnlyImage = (data: any) => {
   return data.sprites.front_default;
 };
 
 // 画像データと日本語名を取得
-export const getImageAndJPName = async (data: any) => {};
+export const getImage_JPName = async (data: any) => {
+  const pokemonNameData: any = await fetch(data.species.url, {
+    cache: 'no-store',
+  });
+
+  const pokemonNames = await pokemonNameData.json();
+
+  let count: number = 0;
+  while (pokemonNames.names[count].language.name !== 'ja-Hrkt') {
+    count++;
+  }
+  const pokemonJpName = pokemonNames.names[count].name;
+
+  return {
+    image: getOnlyImage(data),
+    name: pokemonJpName,
+  };
+};
 
 // 画像データと日本語名と鳴き声を取得
-export const getImageAndJPNameAndCries = async (data: any) => {};
+export const getImage_JPName_Cries = async (data: any) => {};
 
 // 画像データと日本語名とテキストを取得
-export const getImageAndJPNameAndText = async (data: any) => {};
+export const getImage_JPName_Text = async (data: any) => {};
+
+/*****************************  ここまで  *******************************/
 
 // 3分ごとにデータをシャッフル
 export const getShuffledFiftyData = async (url: string, array: Pokemon[]) => {
@@ -115,13 +136,10 @@ export const getShuffledFiftyData = async (url: string, array: Pokemon[]) => {
   });
 
   if (!res.ok) {
-    // throw new Error(
-    //   `Fetch failed with status ${res.status}: ${res.statusText}`
-
-    // );
-    console.log('ダメだった', res);
+    throw new Error(
+      `Fetch failed with status ${res.status}: ${res.statusText}`
+    );
   }
-  console.log(res);
 
   const data = await res.json();
 
