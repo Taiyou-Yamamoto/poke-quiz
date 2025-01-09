@@ -1,6 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
+import quiz1 from '/home';
 
 const Header = () => {
   const [toggle, setToggle] = useState<boolean>(false);
@@ -23,7 +24,7 @@ const Header = () => {
       case '/':
         setBgmSrc('/bgm/iwashiro_kokage_biyori.mp3');
         break;
-      case '/quiz':
+      case '/quiz1':
         setBgmSrc('/bgm/iwashiro_pokemoso_battle_1.mp3');
         break;
       case '/quiz2':
