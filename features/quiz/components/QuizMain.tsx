@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import QuizImage from './QuizImage';
 import Input from './Input';
-import { Quiz, quizArrayProps } from '@/app/type';
+import { Quiz, quizArrayProps, quizArrays } from '@/app/type';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +15,7 @@ import { postScore } from '@/app/utils/axiosHandle';
 import QuizStatus from './QuizStatus';
 import RetryAndHome from './RetryAndHome';
 
-const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
+const QuizMain = ({ quizArray, quiz_id }: quizArrays) => {
   const router = useRouter();
   const [second, setSecond] = useState<number>(10);
   const [count, setCount] = useState<number>(0);
@@ -29,20 +29,18 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
     setIsLoading(true);
     setScore(0);
     setCount(0);
-    //setSecond(10)を消すとdetailArrayを依存配列にもつuseEffectが処理されなくなる
-    //input入力&&secondが０の時に再挑戦すると、useEffectが処理されない
     setSecond(10);
     setYourResult([]);
     router.replace(`/quiz${quiz_id}`);
   };
+
   const goToHome = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setScore(0);
-    setCount(0);
     router.push('/');
     router.refresh();
   };
 
+  // resultのメッセージ
   let resultMessage;
   if (calculatedScore > 7000) {
     resultMessage = <div>すごいぞ！君はオーキド博士級だ！</div>;
@@ -52,9 +50,11 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
     resultMessage = <div>がんばれ！君は虫取り少年級だ！</div>;
   }
 
+  // resultの演出音の設定
   useEffect(() => {
     if (count > 9 || second <= 0) {
       const resultUrl = calculatedScore > 4000 ? '/result_high' : '/result_low';
+
       // 検索パラメータを変更しBGMを変更
       window.history.replaceState(null, '', resultUrl);
 
@@ -63,16 +63,16 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
     }
   }, [count, second]);
 
-  // fetchが完了したら時間を50にしてloadingを解除
+  // quizArrayが更新されたらloadingを解除,secondを10に戻し再スタート
   useEffect(() => {
-    if (Array.isArray(detailArray) && detailArray.length > 0) {
+    if (Array.isArray(quizArray) && quizArray.length > 0) {
       console.log('datail更新!!!!!!!!!!!');
       setIsLoading(false);
       setSecond(10);
     } else {
-      console.log('detailArray 更新が検知されませんでした');
+      console.error('quizArray 更新が検知されませんでした');
     }
-  }, [detailArray]);
+  }, [quizArray]);
 
   // カウントダウン制御
   useEffect(() => {
@@ -87,12 +87,9 @@ const QuizMain = ({ quizArray, detailArray, quiz_id }: quizArrayProps) => {
     };
 
     const AnswerTime = setInterval(countdown, 1000);
-    console.log('answer', AnswerTime);
-    console.log('second', second);
-    console.log('calculatedScore', calculatedScore);
 
     return () => clearInterval(AnswerTime);
-  }, [count, isLoading]);
+  }, [isLoading]);
 
   return (
     <div
