@@ -24,6 +24,10 @@ export type quizArrayProps = {
   quiz_id: number;
 };
 
+export type quizArrays = {
+  quizArray: Quiz[];
+  quiz_id: number;
+};
 export type scoreCalculateProps = {
   score: number;
   second: number;
