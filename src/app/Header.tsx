@@ -1,7 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
-import quiz1 from '/home';
 
 const Header = () => {
   const [toggle, setToggle] = useState<boolean>(false);
