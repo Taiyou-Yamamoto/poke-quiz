@@ -89,6 +89,48 @@ export const getCustomPokemonData = async (
   return DataArray;
 };
 
+export const getSpeciesData = async (data: any) => {
+  const pokemonDetailResponse: any = await fetch(data.species.url, {
+    cache: 'no-store',
+  });
+
+  return await pokemonDetailResponse.json();
+};
+
+export const getJPName = async (speciesData: any[]) => {
+  const pokemonNames = await getSpeciesData(speciesData);
+
+  const PokemonJPName = pokemonNames.names.find(
+    (pokemonData: any) => pokemonData.language.name === 'ja-Hrkt'
+  );
+  return PokemonJPName;
+};
+
+export const getText = async (speciesData: any[]) => {
+  const pokemonNames = await getSpeciesData(speciesData);
+
+  //flavor_text_entriesがない場合はnullを返す
+  if (!pokemonNames.flavor_text_entries) {
+    return null;
+  }
+
+  // 日本語のテキストを取得
+  const JPEntry = pokemonNames.flavor_text_entries.find(
+    (pokemonData: any) => pokemonData.language.name === 'ja'
+  );
+
+  // 見つからなければ null を返す
+  if (!JPEntry) {
+    return null;
+  }
+
+  // 日本語テキストが見つかった場合のみデータを返す
+  return JPEntry.flavor_text;
+};
+
+export const getCries = async (data: any) => {
+  return data.cries.latest;
+};
 /********  以下の関数がgetCustomPokemonDataのcallbackとして使用  *********/
 
 //画像データのみ取得
@@ -97,12 +139,27 @@ export const getOnlyImage = (data: any) => {
 };
 
 // 画像データと日本語名を取得
-export const getImage_JPName = async (data: any) => {
-  const pokemonNameData: any = await fetch(data.species.url, {
-    cache: 'no-store',
-  });
 
-  const pokemonNames = await pokemonNameData.json();
+// export const getImage_JPName = async (data: any) => {
+//   const pokemonNameData: any = await fetch(data.species.url, {
+//     cache: 'no-store',
+//   });
+
+//   const pokemonNames = await pokemonNameData.json();
+
+//   let count: number = 0;
+//   while (pokemonNames.names[count].language.name !== 'ja-Hrkt') {
+//     count++;
+//   }
+//   const pokemonJpName = pokemonNames.names[count].name;
+
+//   return {
+//     image: getOnlyImage(data),
+//     name: pokemonJpName,
+//   };
+// };
+export const getImage_JPName = async (data: any) => {
+  const pokemonNames = await getSpeciesData(data);
 
   let count: number = 0;
   while (pokemonNames.names[count].language.name !== 'ja-Hrkt') {
@@ -116,32 +173,24 @@ export const getImage_JPName = async (data: any) => {
   };
 };
 
-// 画像データと日本語名と鳴き声を取得
-export const getImage_JPName_Cries = async (data: any) => {
-  const { image, name } = await getImage_JPName(data);
-  return { image, name, cry: data.cries.latest };
-};
-
 // 画像データと日本語名とテキストを取得
 export const getImage_JPName_Text = async (data: any) => {
+  const pokemonNames = await getSpeciesData(data);
   const { image, name } = await getImage_JPName(data);
-  const pokemonNameData: any = await fetch(data.species.url, {
-    cache: 'no-store',
-  });
 
   //flavor_text_entriesがない場合はnullを返す
-  const pokemonNames = await pokemonNameData.json();
+
   if (!pokemonNames.flavor_text_entries) {
     return null;
   }
 
   // 日本語のテキストを取得
-  const jaTextEntry = pokemonNames.flavor_text_entries.find(
+  const JPEntry = pokemonNames.flavor_text_entries.find(
     (pokemonData: any) => pokemonData.language.name === 'ja'
   );
 
   // 見つからなければ null を返す
-  if (!jaTextEntry) {
+  if (!JPEntry) {
     return null;
   }
 
@@ -149,10 +198,45 @@ export const getImage_JPName_Text = async (data: any) => {
   return {
     image,
     name,
-    text: jaTextEntry.flavor_text,
+    text: JPEntry.flavor_text,
   };
 };
-// console.log(pokemonNames.flavor_text_entries[count]);
+// export const getImage_JPName_Text = async (data: any) => {
+//   const { image, name } = await getImage_JPName(data);
+//   const pokemonNameData: any = await fetch(data.species.url, {
+//     cache: 'no-store',
+//   });
+
+//   //flavor_text_entriesがない場合はnullを返す
+//   const pokemonNames = await pokemonNameData.json();
+//   if (!pokemonNames.flavor_text_entries) {
+//     return null;
+//   }
+
+//   // 日本語のテキストを取得
+//   const JPEntry = pokemonNames.flavor_text_entries.find(
+//     (pokemonData: any) => pokemonData.language.name === 'ja'
+//   );
+
+//   // 見つからなければ null を返す
+//   if (!JPEntry) {
+//     return null;
+//   }
+
+//   // 日本語テキストが見つかった場合のみデータを返す
+//   return {
+//     image,
+//     name,
+//     text: JPEntry.flavor_text,
+//   };
+// };
+
+// 画像データと日本語名と鳴き声を取得
+export const getImage_JPName_Cries = async (data: any) => {
+  const pokemonNames = await getSpeciesData(data);
+  const { image, name } = await getImage_JPName(data);
+  return { image, name, cry: data.cries.latest };
+};
 
 /*****************************  ここまで  *******************************/
 
