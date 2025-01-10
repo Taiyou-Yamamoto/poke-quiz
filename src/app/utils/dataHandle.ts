@@ -117,10 +117,42 @@ export const getImage_JPName = async (data: any) => {
 };
 
 // 画像データと日本語名と鳴き声を取得
-export const getImage_JPName_Cries = async (data: any) => {};
+export const getImage_JPName_Cries = async (data: any) => {
+  const { image, name } = await getImage_JPName(data);
+  return { image, name, cry: data.cries.latest };
+};
 
 // 画像データと日本語名とテキストを取得
-export const getImage_JPName_Text = async (data: any) => {};
+export const getImage_JPName_Text = async (data: any) => {
+  const { image, name } = await getImage_JPName(data);
+  const pokemonNameData: any = await fetch(data.species.url, {
+    cache: 'no-store',
+  });
+
+  //flavor_text_entriesがない場合はnullを返す
+  const pokemonNames = await pokemonNameData.json();
+  if (!pokemonNames.flavor_text_entries) {
+    return null;
+  }
+
+  // 日本語のテキストを取得
+  const jaTextEntry = pokemonNames.flavor_text_entries.find(
+    (pokemonData: any) => pokemonData.language.name === 'ja'
+  );
+
+  // 見つからなければ null を返す
+  if (!jaTextEntry) {
+    return null;
+  }
+
+  // 日本語テキストが見つかった場合のみデータを返す
+  return {
+    image,
+    name,
+    text: jaTextEntry.flavor_text,
+  };
+};
+// console.log(pokemonNames.flavor_text_entries[count]);
 
 /*****************************  ここまで  *******************************/
 
