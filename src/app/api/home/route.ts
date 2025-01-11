@@ -1,4 +1,4 @@
-import { createRandomPokemonData, getOnlyImage } from '@/app/utils/dataHandle';
+import { createRandomPokemonData, getImage } from '@/app/utils/dataHandle';
 import { NextResponse } from 'next/server';
 import { getCustomPokemonData } from '../../utils/dataHandle';
 
@@ -8,11 +8,7 @@ export async function POST(request: Request) {
 
     const randomArray = createRandomPokemonData(req);
 
-    const imageArray = await getCustomPokemonData(
-      randomArray,
-      50,
-      getOnlyImage
-    );
+    const imageArray = await getCustomPokemonData(randomArray, 50, getImage);
 
     return NextResponse.json(imageArray);
   } catch (error) {
