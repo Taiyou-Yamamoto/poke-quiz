@@ -63,3 +63,19 @@ export type QuizStatusProps = {
   count: number;
   quiz_id: number;
 };
+
+export type PokemonData =
+  | {
+      image: string;
+      name: string;
+    }
+  | {
+      image: string;
+      name: string;
+      text: string | null;
+    }
+  | {
+      image: string;
+      name: string;
+      cry: string;
+    };
