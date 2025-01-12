@@ -12,6 +12,7 @@ const Header = () => {
 
   const controlToggle = () => {
     if (firstPlay && audioRef.current) {
+      audioRef.current.volume = 0.3;
       audioRef.current.play();
       setFirstPlay(false);
     }
@@ -47,6 +48,7 @@ const Header = () => {
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.src = bgmSrc;
+      audioRef.current.volume = 0.15;
       audioRef.current.load();
       if (toggle) {
         audioRef.current.play().catch((e) => console.error(e));
