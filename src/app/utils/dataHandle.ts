@@ -1,5 +1,5 @@
-import { Pokemon, PokemonData } from '../type';
 import { excludedUrls } from './exclidedUrls';
+import { Pokemon, PokemonData } from './type';
 
 // 1302匹ぶんのnameとurlをSSGで取得
 export const getAllPokemonNameAndUrl = async (
