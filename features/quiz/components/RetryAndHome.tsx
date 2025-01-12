@@ -12,7 +12,6 @@ const RetryAndHome = ({
 }) => {
   return (
     <div className='flex flex-col relative'>
-      {' '}
       <form onSubmit={oneMore}>
         <button type='submit' className='my-5 yellow-button'>
           再挑戦する
