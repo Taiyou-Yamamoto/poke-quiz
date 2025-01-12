@@ -1,5 +1,10 @@
-import { Pokemon } from '../type';
-import { createRandomPokemonData, getAllPokemonNameAndUrl } from './dataHandle';
+import { Pokemon } from './type';
+import {
+  createRandomPokemonData,
+  getAllPokemonNameAndUrl,
+  getCustomPokemonData,
+  getImage_JPName,
+} from './dataHandle';
 import { excludedUrls } from './exclidedUrls';
 
 class QuizClass {
@@ -17,13 +22,7 @@ class QuizClass {
   getRandomPokemonData = async () => {
     this.quizArray = createRandomPokemonData(this.allPokemonData).slice(0, 19);
 
-    const quizDetailData = this.quizArray.map(async (pokemon) => {
-      const res = await fetch(pokemon.url, { cache: 'no-store' });
-      return res.json();
-    });
-
-    console.log(this.quizArray);
-    return await Promise.all(quizDetailData);
+    getCustomPokemonData(this.quizArray, 20, getImage_JPName);
   };
 
   getImageAndJPName = async (quizDetailData: any[]) => {};
