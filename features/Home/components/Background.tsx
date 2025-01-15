@@ -1,5 +1,5 @@
 'use client';
-import { ImageArray } from '@/app/type';
+import { ImageArray } from '@/app/utils/type';
 import Image from 'next/image';
 import React from 'react';
 
