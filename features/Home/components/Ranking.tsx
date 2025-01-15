@@ -1,10 +1,8 @@
-import { RankingProps } from '@/app/type';
+import { RankingProps } from '@/app/utils/type';
 import React, { useEffect } from 'react';
 
 const Ranking = ({ rankData, quizId }: RankingProps) => {
-  useEffect(() => {
-    console.log('rankData', rankData);
-  }, [rankData]);
+  useEffect(() => {}, [rankData]);
   return (
     <div className='font-DotJP h-full w-full my-3 text-4xl font-extrabold '>
       <div className='mb-5 text-3xl mx-auto text-center gray-shadow'>
