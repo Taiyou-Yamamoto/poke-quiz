@@ -10,7 +10,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { a11yProps, TabPanel } from '@/app/utils/MaterialUI';
 import Ranking from './Ranking';
-import { RankData } from '@/app/type';
+import { RankData } from '@/app/utils/type';
 
 const MainContent = () => {
   const [toggle, SetToggle] = useState<boolean>(false);
@@ -48,7 +48,7 @@ const MainContent = () => {
         quiz3: res.quiz3.length <= 10 ? makeFullArray(res.quiz3) : res.quiz3,
       };
 
-      console.log('updatedRes', updatedRes);
+      // console.log('updatedRes', updatedRes);
       SetRankData(updatedRes);
     };
 
@@ -57,7 +57,7 @@ const MainContent = () => {
   }, []);
 
   useEffect(() => {
-    console.log(rankData);
+    // console.log(rankData);
   }, [rankData]);
 
   return (
