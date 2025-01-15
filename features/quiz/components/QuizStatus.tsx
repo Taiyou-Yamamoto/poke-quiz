@@ -1,10 +1,10 @@
-import { QuizStatusProps } from '@/app/type';
+import { QuizStatusProps } from '@/app/utils/type';
 import React from 'react';
 
 const QuizStatus = ({ second, count, quiz_id }: QuizStatusProps) => {
   return (
     <>
-      <div className='h-[7rem] text-2xl text-white gray-shadow'>
+      <div className='h-[4rem] text-2xl text-white gray-shadow'>
         残り
         <span
           className={second < 11 ? 'text-red-600 font-PokeGB' : 'font-PokeGB'}
