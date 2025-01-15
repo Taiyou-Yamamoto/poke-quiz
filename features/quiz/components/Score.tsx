@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { scoreCalculateProps } from '@/app/type';
+import { scoreCalculateProps } from '@/app/utils/type';
 import React, { useEffect } from 'react';
 
 const Score = ({
