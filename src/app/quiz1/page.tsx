@@ -2,62 +2,32 @@ import React from 'react';
 import {
   createRandomPokemonData,
   getAllPokemonNameAndUrl,
+  getCustomPokemonData,
+  getImage_JPName,
 } from '../utils/dataHandle';
-import { excludedUrls } from '../utils/exclidedUrls';
 import QuizMain from '../../../features/quiz/components/QuizMain';
-// これを消し
-//
+
 const Page = async () => {
-  // 修正必須
-  // const quizArray = [];
-
-  // const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
-
-  // // 1302匹ぶんのnameとurlをSSGで取得
-  // const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
-  // const shuffledData = createRandomPokemonData(allPokemonDate);
-
-  // // これはquizに必要な分のデータ
-  // const quizData = shuffledData.slice(0, 19);
-
-  // // そして20匹分のnameとurlのurlだけをfetchして詳細データを取得
-  // const quizDetailData = quizData.map(async (pokemon) => {
-  //   const res = await fetch(pokemon.url, {
-  //     cache: 'no-store',
-  //   });
-  //   return res.json();
-  // });
-  // // 全ての非同期が完了
-  // const detailArray = await Promise.all(quizDetailData);
-  // console.log(detailArray);
-
-  // // 以上のデータを元に10匹分のデータを取得する。初めに画像データより10匹を選別
-  // for (let i = 0; quizArray.length < 10; ++i) {
-  //   const imageData = detailArray[i].sprites.front_default;
-  //   if (!imageData || excludedUrls.includes(imageData)) {
-  //     continue;
-  //   }
-  //   const pokemonSpecies = await fetch(detailArray[i].species.url);
-  //   const pokemonName = await pokemonSpecies.json();
-
-  //   const pokemonJpName = pokemonName.names[0].name;
-
-  //   // quizArrayはresult画面でも活用
-  //   quizArray.push({
-  //     image: imageData,
-  //     name: pokemonJpName,
-  //   });
-  // }
-
+  const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
   const quiz_id = 1;
 
+  // 1302匹ぶんのnameとurlをSSGで取得
+  const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);
+
+  // 昇順だったポケモン詳細配列をランダムに並び替えする配列
+  const shuffledData = createRandomPokemonData(allPokemonDate);
+
+  // 1０匹の日本語名と画像データを取得
+  const Image_JPName = await getCustomPokemonData(
+    shuffledData,
+    10,
+    getImage_JPName
+  );
+
+  const quizArray = Image_JPName;
   return (
     <>
-      {/* <QuizMain
-        quizArray={quizArray}
-        detailArray={detailArray}
-        quiz_id={quiz_id}
-      /> */}
+      <QuizMain quizArray={quizArray} quiz_id={quiz_id} />
     </>
   );
 };
