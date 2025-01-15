@@ -1,6 +1,6 @@
 'use client';
 
-import { InputProps } from '@/app/type';
+import { InputProps } from '@/app/utils/type';
 import { audioPlay } from '@/app/utils/seHandle';
 import React, { useState } from 'react';
 
@@ -16,6 +16,7 @@ const Input = ({
     console.log(e.target.value);
     setValue(e.target.value);
   };
+
   const judgeAnswer = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (value === PokemonName) {
