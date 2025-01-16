@@ -38,6 +38,7 @@ const Header = () => {
     if (cryRef.current) {
       cryRef.current.volume = 1;
       if (controlCries?.cry) {
+        cryRef.current.pause();
         cryRef.current.src = controlCries.cry;
       }
       cryRef.current.play();
