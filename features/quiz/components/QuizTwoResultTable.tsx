@@ -18,23 +18,32 @@ const QuizTwoResultTable = ({
   );
 
   const [cryURL, setCryURL] = useState<string>('');
-  const [play] = useSound(cryURL, {
+  const [play, { stop }] = useSound(cryURL, {
     onend: () => {
       console.info('Sound ended!');
     },
   });
 
-  useEffect(() => {
-    console.log(quizArray);
-  }, []);
-
   const playCryInResult = (index: number) => {
-    setIsPlayArray((array) => {});
+    stop();
+    setIsPlayArray((prev) => {
+      const array = prev.map((_, i) => {
+        return index === i;
+      });
+
+      return array;
+    });
     if (quizArray[index].cry) {
+      console.log(quizArray[index].cry);
       setCryURL(quizArray[index].cry);
     }
     play();
   };
+
+  useEffect(() => {
+    play();
+  }, [cryURL]);
+
   return (
     <table className='w-[500px] mt-10'>
       <thead>
