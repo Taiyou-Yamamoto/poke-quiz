@@ -3,10 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import Input from './Input';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle } from '@fortawesome/free-regular-svg-icons';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import Isloading from './Isloading';
 import Score from './Score';
 import { postScore } from '@/app/utils/axiosHandle';
@@ -15,15 +11,20 @@ import RetryAndHome from './RetryAndHome';
 import QuizOne from './QuizOne';
 import QuizTwo from './QuizTwo';
 import QuizThree from './QuizThree';
-import { Quiz1, QuizMainProps } from '@/app/utils/type';
+import { QuizMainProps } from '@/app/utils/type';
+import QuizOneResultTable from './QuizOneResultTable';
+import QuizTwoResultTable from './QuizTwoResultTable';
+import QuizThreeResultTable from './QuizThreeResultTable';
+import QuizStartScreen from './QuizStartScreen';
 
 const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
   const router = useRouter();
-  const [second, setSecond] = useState<number>(60);
+  const [second, setSecond] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [calculatedScore, setCalculatedScore] = useState<number>(0);
   const [yourResult, setYourResult] = useState<string[]>([]);
+  const [quizStart, setQuizStart] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const oneMore = (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,8 +32,9 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
     setIsLoading(true);
     setScore(0);
     setCount(0);
-    setSecond(60);
+    setSecond(10);
     setYourResult([]);
+    setQuizStart(true);
     router.replace(`/quiz${quiz_id}`);
   };
 
@@ -54,7 +56,7 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
 
   // resultの演出音の設定
   useEffect(() => {
-    if (count > 9 || second <= 0) {
+    if (!quizStart && (count > 9 || second <= 0)) {
       const resultUrl = calculatedScore > 4000 ? '/result_high' : '/result_low';
 
       // 検索パラメータを変更しBGMを変更
@@ -63,7 +65,7 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
       // laravelでスコアを登録するAPIを叩く
       postScore(calculatedScore, quiz_id);
     }
-  }, [count, second]);
+  }, [quizStart, count, second]);
 
   // quizArrayが更新されたらloadingを解除,secondを10に戻し再スタート
   useEffect(() => {
@@ -78,7 +80,7 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
 
   // カウントダウン制御
   useEffect(() => {
-    if (isLoading || count >= 10) return;
+    if (quizStart || isLoading || count >= 10) return;
     const countdown = () => {
       setSecond((prev) => {
         if (prev <= 1) {
@@ -91,7 +93,7 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
     const AnswerTime = setInterval(countdown, 1000);
 
     return () => clearInterval(AnswerTime);
-  }, [isLoading]);
+  }, [isLoading, quizStart]);
 
   return (
     <div
@@ -103,9 +105,11 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
     >
       {isLoading ? (
         <Isloading />
+      ) : quizStart ? (
+        <QuizStartScreen setQuizStart={setQuizStart} />
       ) : count > 9 || second <= 0 ? (
         <>
-          <div className=' w-full flex flex-col justify-center items-center bg-red-300 py-11'>
+          <div className='h-full w-full flex flex-col justify-center items-center bg-red-300 py-11'>
             <Score
               score={score}
               second={second}
@@ -118,59 +122,22 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
             </div>
 
             {/* テーブル */}
-            <table className='mt-10'>
-              <thead>
-                <tr>
-                  <th colSpan={2} className='mr-10'>
-                    答え
-                  </th>
-                  <th colSpan={2} className='ml-10'>
-                    あなたの回答
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {quizArray.map((pokemon: Quiz1, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>
-                        <Image
-                          src={pokemon.image}
-                          width={80}
-                          height={80}
-                          key={pokemon.image}
-                          alt={''}
-                        />
-                      </td>
-                      <td>
-                        <h3 className='mr-5 text-white gray-shadow font-extrabold text-2xl'>
-                          {pokemon.name}
-                        </h3>
-                      </td>
-                      <td>
-                        <h3 className='min-w-36 text-white gray-shadow  font-extrabold text-2xl'>
-                          {yourResult[index]}
-                        </h3>
-                      </td>
-                      <td>
-                        {' '}
-                        {pokemon.name == yourResult[index] ? (
-                          <FontAwesomeIcon
-                            icon={faCircle}
-                            className='text-lime-500 gray-shadow font-extrabold text-2xl'
-                          />
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faXmark}
-                            className='text-red-600 gray-shadow font-extrabold text-2xl'
-                          />
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            {quiz_id === 1 ? (
+              <QuizOneResultTable
+                quizArray={quizArray}
+                yourResult={yourResult}
+              />
+            ) : quiz_id === 2 ? (
+              <QuizTwoResultTable
+                quizArray={quizArray}
+                yourResult={yourResult}
+              />
+            ) : (
+              <QuizThreeResultTable
+                quizArray={quizArray}
+                yourResult={yourResult}
+              />
+            )}
 
             <RetryAndHome
               oneMore={oneMore}
