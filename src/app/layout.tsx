@@ -29,19 +29,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ja'>
+    <html lang='ja' className='fixed'>
       <Provider>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className='fixed z-50'>
-            <Header />
-          </div>
+          <Header />
 
-          <div>
-            <Suspense fallback={<Loading />}>{children}</Suspense>
-            <SpeedInsights />
-          </div>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <SpeedInsights />
         </body>
       </Provider>
     </html>
