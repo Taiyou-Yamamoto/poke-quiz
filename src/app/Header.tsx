@@ -9,7 +9,7 @@ import { ToggleSwitch } from './utils/MaterialUI';
 const Header = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [bgmSrc, setBgmSrc] = useState<string>('');
-  const [firstPlay, setFirstPlay] = useState<boolean>(true);
+  // const [firstPlay, setFirstPlay] = useState<boolean>(true);
   const pathname = usePathname();
 
   //BGM用
@@ -18,16 +18,6 @@ const Header = () => {
   // const cryRef = useRef<HTMLAudioElement>(null);
   //Header.tsxとQuizTwoを連携するためのコンテキスト
   // const controlCries = useContext(ControlCriesContext);
-
-  // BGM用のトグルボタン関数
-  const controlToggle = () => {
-    if (firstPlay && audioRef.current) {
-      audioRef.current.volume = 0.3;
-      audioRef.current.play();
-      setFirstPlay(false);
-    }
-    setToggle((prev) => !prev);
-  };
 
   //鳴き声再生後、再生状態をfalseへ
   // const switchIsPlay = () => {
@@ -56,18 +46,17 @@ const Header = () => {
   //   }
   // }, [controlCries?.isPlaying]);
 
-  useEffect(() => {
+  // BGM用のトグルボタン関数
+  const controlToggle = () => {
     if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.src = bgmSrc;
-      audioRef.current.volume = 0.15;
-      audioRef.current.load();
-      if (toggle) {
-        audioRef.current.play().catch((e) => console.error(e));
-      }
+      // if (firstPlay && audioRef.current) {
+      console.log(audioRef.current);
+      audioRef.current.volume = 0.3;
+      audioRef.current.play();
+      // setFirstPlay(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bgmSrc]);
+    setToggle((prev) => !prev);
+  };
 
   useEffect(() => {
     switch (pathname) {
@@ -96,7 +85,6 @@ const Header = () => {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.pause();
       audioRef.current.src = bgmSrc;
       audioRef.current.volume = 0.15;
       audioRef.current.load();
@@ -116,16 +104,16 @@ const Header = () => {
   }, [toggle]);
 
   return (
-    <div className='absolute flex flex-row items-center justify-center z-50 top-12 left-14 bg-orange-400 rounded-2xl shadow'>
+    <div className='fixed flex flex-row items-center justify-center z-50 top-12 left-14 bg-orange-400 rounded-2xl shadow'>
       {/* BGM用 */}
       <audio
         ref={audioRef}
         loop={!(pathname === '/result_high' || pathname === '/result_low')}
       />
-      <ToggleSwitch checked={toggle} onChange={controlToggle} />
-      <span className='w-full mr-3 font-semibold  text-white dark:text-gray-300 gray-shadow'>
+      <span className='w-full ml-3 font-semibold  text-white dark:text-gray-300 gray-shadow'>
         BGM
       </span>
+      <ToggleSwitch checked={toggle} onChange={controlToggle} />
     </div>
   );
 };
