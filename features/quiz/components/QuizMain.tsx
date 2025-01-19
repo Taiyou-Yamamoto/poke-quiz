@@ -99,14 +99,14 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
     <div
       className={
         isLoading
-          ? 'bg-white  min-h-screen w-full font-DotJP flex justify-center items-center'
-          : 'bg-red-300  min-h-screen  w-full font-DotJP'
+          ? 'bg-white  min-h-screen w-screen font-DotJP flex justify-center items-center'
+          : 'bg-red-300  min-h-screen w-screen font-DotJP'
       }
     >
       {isLoading ? (
         <Isloading />
       ) : quizStart ? (
-        <QuizStartScreen setQuizStart={setQuizStart} />
+        <QuizStartScreen setQuizStart={setQuizStart} quiz_id={quiz_id} />
       ) : count > 9 || second <= 0 ? (
         <>
           <div className='h-full w-full flex flex-col justify-center items-center bg-red-300 py-11'>
