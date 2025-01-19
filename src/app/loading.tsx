@@ -3,7 +3,7 @@ import React from 'react';
 
 const Loading = () => {
   return (
-    <div className='min-h-screen flex flex-row justify-center items-center'>
+    <div className='min-h-screen w-screen flex flex-row justify-center items-center'>
       <div className='font-PokeGB text-3xl'>
         <span
           className='inline-block myBounce'

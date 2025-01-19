@@ -38,12 +38,10 @@ export function a11yProps(index: number) {
   };
 }
 
-export function ToggleSwitch({
-  checked,
-  onChange,
-}: {
-  checked: any;
-  onChange: any;
-}) {
-  return <Switch {...label} checked={checked} onChange={onChange} />;
+export function ToggleSwitch({ checked }: { checked: any }) {
+  return (
+    <>
+      <Switch {...label} checked={checked} />
+    </>
+  );
 }

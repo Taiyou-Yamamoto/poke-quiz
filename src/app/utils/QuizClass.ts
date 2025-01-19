@@ -1,11 +1,9 @@
 import { Pokemon } from './type';
 import {
   createRandomPokemonData,
-  getAllPokemonNameAndUrl,
   getCustomPokemonData,
   getImage_JPName,
 } from './dataHandle';
-import { excludedUrls } from './exclidedUrls';
 
 class QuizClass {
   allPokemonData: Pokemon[];
