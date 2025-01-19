@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Switch from '@mui/material/Switch';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -7,6 +8,8 @@ interface TabPanelProps {
   index: number;
   value: number;
 }
+
+const label = { inputProps: { 'aria-label': 'Size switch demo' } };
 
 export function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -33,4 +36,14 @@ export function a11yProps(index: number) {
     id: `full-width-tab-${index}`,
     'aria-controls': `full-width-tabpanel-${index}`,
   };
+}
+
+export function ToggleSwitch({
+  checked,
+  onChange,
+}: {
+  checked: any;
+  onChange: any;
+}) {
+  return <Switch {...label} checked={checked} onChange={onChange} />;
 }
