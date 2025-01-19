@@ -104,16 +104,18 @@ const Header = () => {
   }, [toggle]);
 
   return (
-    <div className='fixed flex flex-row items-center justify-center z-50 top-12 left-14 bg-orange-400 rounded-2xl shadow'>
+    <div className='fixed flex flex-row items-center justify-center z-50 sm:top-12 sm:left-14 top-4 left-4  bg-amber-300 rounded-2xl shadow'>
       {/* BGM用 */}
       <audio
         ref={audioRef}
         loop={!(pathname === '/result_high' || pathname === '/result_low')}
       />
-      <span className='w-full ml-3 font-semibold  text-white dark:text-gray-300 gray-shadow'>
-        BGM
-      </span>
-      <ToggleSwitch checked={toggle} onChange={controlToggle} />
+      <div onClick={controlToggle} className='cursor-pointer'>
+        <span className='w-full ml-3 font-semibold  text-white dark:text-gray-300 gray-shadow'>
+          BGM
+        </span>
+        <ToggleSwitch checked={toggle} />
+      </div>
     </div>
   );
 };
