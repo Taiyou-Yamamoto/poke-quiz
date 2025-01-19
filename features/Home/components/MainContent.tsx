@@ -62,8 +62,11 @@ const MainContent = () => {
 
   return (
     <div className='h-full w-full z-50'>
-      <div className='relative z-50 start top-14 left-3/4'>
-        <button className='yellow-button' onClick={toggleSwitch}>
+      <div className='sm:relative z-50 sm:top-14 sm:left-3/4 fixed top-4 right-4'>
+        <button
+          className=' w-[10rem] bg-yellow-400 active:bg-yellow-500 active:ring-blue-700 gray-shadow max-w-[150px] font-extrabold text-white py-1 sm:py-2 px-2 sm:px-4 rounded-md border-solid border-4 ring-4 hover:ring-blue-500 shadow-2xl hover:shadow-none transition-all duration-200'
+          onClick={toggleSwitch}
+        >
           {toggle ? '戻る' : 'ランキング'}
         </button>
       </div>
@@ -73,7 +76,8 @@ const MainContent = () => {
           <div className='relative flex justify-center items-center h-screen'>
             <Box
               sx={{
-                maxWidth: '500px',
+                maxWidth: { xs: '90%', sm: '400px' },
+                maxheight: { xs: '60vh', sm: '70vh' },
                 width: '100%',
                 boxShadow: 10,
                 bgcolor: 'rgba(255, 255, 255, 0.9)',
@@ -104,7 +108,7 @@ const MainContent = () => {
                       borderTopLeftRadius: 16,
                       bgcolor: 'rgb(246, 63, 63)',
                       fontWeight: 'bold',
-                      fontSize: '1rem',
+                      fontSize: { xs: '0.75rem', sm: '1rem' },
                     }}
                   />
                   <Tab
@@ -113,7 +117,7 @@ const MainContent = () => {
                     sx={{
                       bgcolor: '#38a4f1',
                       fontWeight: 'bold',
-                      fontSize: '1rem',
+                      fontSize: { xs: '0.75rem', sm: '1rem' },
                     }}
                     className={'gray-shadow'}
                   />
@@ -124,7 +128,7 @@ const MainContent = () => {
                       borderTopRightRadius: 16,
                       bgcolor: 'rgba(255, 224, 50, 0.931)',
                       fontWeight: 'bold',
-                      fontSize: '1rem',
+                      fontSize: { xs: '0.75rem', sm: '1rem' },
                     }}
                     className={'gray-shadow'}
                   />
@@ -148,7 +152,7 @@ const MainContent = () => {
           <div className='absolute inset-0 z-10 flex flex-col items-center justify-center'>
             <div className=''>
               <Image
-                className='animate-chime mx-auto w-[40rem] h-[15rem]'
+                className='animate-chime mx-auto sm:w-[40rem] sm:h-[15rem] w-[20rem] h-[8rem]'
                 src='/images/Poke-quiz.png'
                 alt='My Image'
                 width={500}
