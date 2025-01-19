@@ -11,7 +11,7 @@ const RetryAndHome = ({
   calculatedScore: number;
 }) => {
   return (
-    <div className='flex flex-col relative'>
+    <div className='flex flex-col relative mb-7'>
       <form onSubmit={oneMore}>
         <button type='submit' className='my-5 yellow-button'>
           再挑戦する

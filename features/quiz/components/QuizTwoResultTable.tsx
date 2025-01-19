@@ -3,7 +3,7 @@ import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faPause, faPlay, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 const QuizTwoResultTable = ({
   quizArray,
@@ -40,71 +40,59 @@ const QuizTwoResultTable = ({
   return (
     <>
       <audio ref={cryRef} onEnded={resetIsPlayArray}></audio>
-      <table className='w-[500px] mt-10'>
-        <thead>
-          <tr>
-            <th colSpan={3} className='mr-10 pr-5'>
-              答え
-            </th>
-            <th colSpan={2} className='ml-10 pl-5'>
-              あなたの回答
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {quizArray.map((pokemon: PokemonData, index: number) => {
-            return (
-              <tr key={index}>
-                <td className='my-3'>
-                  <button
-                    onClick={() => {
-                      playCryInResult(index);
-                    }}
-                    className='h-10 w-10 bg-slate-200 rounded-full shadow'
-                  >
-                    <FontAwesomeIcon
-                      icon={isPlayArray[index] ? faPause : faPlay}
-                    />
-                  </button>
-                </td>
-                <td>
-                  <Image
-                    src={pokemon.image}
-                    width={80}
-                    height={80}
-                    key={pokemon.image}
-                    alt={''}
-                    className='pl-3'
-                  />
-                </td>
-                <td>
-                  <h3 className='mr-5 text-white gray-shadow font-extrabold text-2xl'>
-                    {pokemon.name}
-                  </h3>
-                </td>
-                <td>
-                  <h3 className='flex justify-center items-center pl-5 min-w-36 text-white gray-shadow  font-extrabold text-2xl'>
-                    {yourResult[index]}
-                  </h3>
-                </td>
-                <td>
-                  {pokemon.name == yourResult[index] ? (
-                    <FontAwesomeIcon
-                      icon={faCircle}
-                      className='text-lime-500 gray-shadow font-extrabold text-2xl'
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faXmark}
-                      className='text-red-600 gray-shadow font-extrabold text-2xl'
-                    />
-                  )}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className='grid gap-6 grid-cols-1 sm:grid-cols-2 mt-10'>
+        {quizArray.map((pokemon, index) => (
+          <div
+            key={index}
+            className='relative bg-orange-100 rounded-lg shadow-lg p-4 flex flex-col items-center'
+          >
+            <h3 className='absolute top-2 left-2 gray-shadow font-extrabold'>
+              No.{index + 1}
+            </h3>
+            {/* ポケモン画像 */}
+            <Image
+              src={pokemon.image}
+              width={100}
+              height={100}
+              alt={pokemon.name}
+              className='rounded-full mb-4'
+            />
+
+            {/* 正解 */}
+            <div className='flex flex-col justify-start'>
+              <h3 className='text-xl font-extrabold text-white gray-shadow mb-2'>
+                正解: {pokemon.name}
+              </h3>
+
+              {/* あなたの回答 */}
+              <h3 className='text-xl font-extrabold text-gray-700 mb-4'>
+                回答: {yourResult[index]}
+              </h3>
+            </div>
+
+            {/* 正誤アイコン */}
+            {pokemon.name === yourResult[index] ? (
+              <FontAwesomeIcon
+                icon={faCircle}
+                className='absolute top-2 right-2 text-lime-500 text-3xl'
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faXmark}
+                className='absolute top-2 right-2 text-red-600 text-3xl'
+              />
+            )}
+            <button
+              onClick={() => {
+                playCryInResult(index);
+              }}
+              className='h-10 w-10 bg-slate-200 rounded-full shadow'
+            >
+              <FontAwesomeIcon icon={isPlayArray[index] ? faPause : faPlay} />
+            </button>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
