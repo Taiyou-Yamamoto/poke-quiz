@@ -148,16 +148,6 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
         </>
       ) : (
         <div className=' min-h-screen w-full flex flex-col justify-center items-center'>
-          {/* あとで背景として使う */}
-          {/* <video
-            autoPlay
-            muted
-            loop
-            className='absolute inset-0 w-full h-full object-cover'
-          >
-            <source src='/background/モンスターボール風.mp4' type='video/mp4' />
-          </video> */}
-
           <QuizStatus second={second} count={count} quiz_id={quiz_id} />
 
           {quiz_id === 1 ? (
