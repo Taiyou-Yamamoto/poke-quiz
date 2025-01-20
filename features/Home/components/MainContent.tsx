@@ -63,10 +63,7 @@ const MainContent = () => {
   return (
     <div className='h-full w-full z-50'>
       <div className='sm:relative z-50 sm:top-14 sm:left-3/4 fixed top-4 right-4'>
-        <button
-          className=' w-[10rem] bg-yellow-400 active:bg-yellow-500 active:ring-blue-700 gray-shadow max-w-[150px] font-extrabold text-white py-1 sm:py-2 px-2 sm:px-4 rounded-md border-solid border-4 ring-4 hover:ring-blue-500 shadow-2xl hover:shadow-none transition-all duration-200'
-          onClick={toggleSwitch}
-        >
+        <button className='yellow-button' onClick={toggleSwitch}>
           {toggle ? '戻る' : 'ランキング'}
         </button>
       </div>
