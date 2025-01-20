@@ -18,15 +18,15 @@ const QuizStatus = ({ second, count, quiz_id }: QuizStatusProps) => {
           {count + 1}問目
         </h1>
         {quiz_id == 1 ? (
-          <h2 className='text-3xl text-white  font-extrabold gray-shadow'>
+          <h2 className='w-4/5 text-3xl text-white  font-extrabold gray-shadow'>
             このポケモンの名前は？
           </h2>
         ) : quiz_id == 2 ? (
-          <h2 className='text-3xl text-white  font-extrabold gray-shadow'>
+          <h2 className='w-4/5 text-3xl text-white  font-extrabold gray-shadow'>
             これはどのポケモンの鳴き声？
           </h2>
         ) : (
-          <h2 className='text-3xl text-white  font-extrabold gray-shadow'>
+          <h2 className='w-4/5 text-3xl text-white  font-extrabold gray-shadow'>
             これはどのポケモンの図鑑説明？
           </h2>
         )}
