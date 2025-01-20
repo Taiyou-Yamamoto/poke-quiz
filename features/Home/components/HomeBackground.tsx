@@ -3,7 +3,7 @@ import { ImageArray } from '@/app/utils/type';
 import Image from 'next/image';
 import React from 'react';
 
-const Background = ({ fiveImages }: ImageArray) => {
+const HomeBackground = ({ fiveImages }: ImageArray) => {
   const [First, Second, Third, Fourth, Fifth] = fiveImages;
 
   const ArrayRepeater = (array: string[], times: number) => {
@@ -110,4 +110,4 @@ const Background = ({ fiveImages }: ImageArray) => {
   );
 };
 
-export default Background;
+export default HomeBackground;
