@@ -4,7 +4,7 @@ import {
   makeFiveImageArray,
 } from './utils/dataHandle';
 import MainContent from '../../features/Home/components/MainContent';
-import Background from '../../features/Home/components/Background';
+import Background from '../../features/Home/components/HomeBackground';
 import Head from 'next/head';
 
 export default async function Home() {
