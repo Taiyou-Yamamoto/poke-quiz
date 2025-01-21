@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import { usePathname } from 'next/navigation';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import useSound from 'use-sound';
-import { ControlCriesContext } from './Provider';
+import React, { useEffect, useRef, useState } from 'react';
 import { ToggleSwitch } from './utils/MaterialUI';
 
 const Header = () => {
@@ -14,37 +12,6 @@ const Header = () => {
 
   //BGM用
   const audioRef = useRef<HTMLAudioElement>(null);
-  //QuizTwoの鳴き声再生用
-  // const cryRef = useRef<HTMLAudioElement>(null);
-  //Header.tsxとQuizTwoを連携するためのコンテキスト
-  // const controlCries = useContext(ControlCriesContext);
-
-  //鳴き声再生後、再生状態をfalseへ
-  // const switchIsPlay = () => {
-  //   controlCries?.setIsPlaying(false);
-  // };
-
-  //ここでquiz2の音声をコントロールする
-  // useEffect(() => {
-  //   if (cryRef.current) {
-  //     cryRef.current.volume = 1;
-  //     if (controlCries?.cry) {
-  //       cryRef.current.pause();
-  //       cryRef.current.src = controlCries.cry;
-  //     }
-  //     cryRef.current.play();
-
-  //     if (controlCries?.setIsPlaying) {
-  //       controlCries.setIsPlaying(true);
-  //     }
-  //   }
-  // }, [controlCries?.cry]);
-
-  // useEffect(() => {
-  //   if (controlCries?.isPlaying) {
-  //     cryRef.current?.play();
-  //   }
-  // }, [controlCries?.isPlaying]);
 
   // BGM用のトグルボタン関数
   const controlToggle = () => {
@@ -87,7 +54,6 @@ const Header = () => {
     if (audioRef.current) {
       audioRef.current.src = bgmSrc;
       audioRef.current.volume = 0.15;
-      audioRef.current.load();
       if (toggle) {
         audioRef.current.play().catch((e) => console.error(e));
       }
