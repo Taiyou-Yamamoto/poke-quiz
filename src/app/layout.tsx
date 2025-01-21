@@ -5,7 +5,7 @@ import './globals.css';
 import { Suspense } from 'react';
 import Loading from './loading';
 import Header from './Header';
-import Provider from './Provider';
+import Head from 'next/head';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -30,16 +30,40 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ja'>
-      <Provider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <Header />
+      <Head>
+        <title>Poke-Quiz</title>
+        <meta property='og:title' content='Poke-Quiz' />
+        <meta
+          property='og:description'
+          content='ポケモンの名前を当てるクイズ。問題の種類は３っつ。目指せポケモンマスター!'
+        />
+        <meta
+          property='og:image'
+          content='https://localhost:3000/background/A97CCB17-E670-41E7-8D99-777C73E69C69_1_201_a.jpeg'
+        />
+        <meta property='og:url' content='http://localhost:3000' />
+        <meta
+          name='twitter:card'
+          content='https://localhost:3000/background/A97CCB17-E670-41E7-8D99-777C73E69C69_1_201_a.jpeg'
+        />
+        <meta name='twitter:title' content='Poke-Quiz' />
+        <meta
+          name='twitter:description'
+          content='クイズを解いて高スコアを目指せ！君がポケモンマスターだ！'
+        />
+        <meta
+          name='twitter:image'
+          content='https://localhost:3000/background/A97CCB17-E670-41E7-8D99-777C73E69C69_1_201_a.jpeg'
+        />
+      </Head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Header />
 
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-          <SpeedInsights />
-        </body>
-      </Provider>
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
