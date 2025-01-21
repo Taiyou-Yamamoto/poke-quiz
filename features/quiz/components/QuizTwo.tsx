@@ -4,18 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 
-import { ControlCriesContext } from '@/app/Provider';
 const QuizTwo = ({ cry }: { cry: string }) => {
-  // const controlCries = useContext(ControlCriesContext);
   const cryRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-
-  /** 流れの説明
-   * 1.QuizTwo.tsxでcryの変更を監視
-   * 2.QuizTwo.tsxでcryが変更されたら、ContextにcryとIsPlayの状態をセット
-   * 3.Header.tsxでContextのcryの変更があった場合に、cryを再生
-   * 4.Header.tsxでContextのcryの再生が終わったらContextのIsPlayをfalseへセット
-   */
 
   useEffect(() => {
     if (cryRef.current) {
