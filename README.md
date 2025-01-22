@@ -60,6 +60,12 @@ Poke-Quiz は、ポケモンの名前を当てるクイズアプリです。 エ
 - フロントエンド: Vercel
 - バックエンド: Heroku
 
+# 画面遷移図
+
+![MacBook Air - 1](https://github.com/user-attachments/assets/337d1630-795d-4974-af99-0c07bd212de5)
+
+[Figma でデザインを見る]"https://embed.figma.com/design/1eN0OLjIgtudjqbNjhQlMF/portfolio-%E6%BC%94%E7%BF%92?node-id=0-1&embed-host=share"
+
 # BGM について
 
 このアプリケーションでは、ユーザー体験を重視し,Header.tsx での BGM 管理を行っています。以下に設計の意図と具体的な仕組みを説明します。
