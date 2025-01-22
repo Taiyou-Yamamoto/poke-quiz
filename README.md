@@ -236,13 +236,12 @@ calculatedData = score _ 1.1 _ (second _ Math.pow(score, 0.7)) _ 10;
 
 Qiite: https://qiita.com/Taiyou-Yamamoto/items/3fd3561f579ec756a303
 
-公式ドキュメント: https://github.com/joshwcomeau/use-sound
-
 ### 2. useSound
 
 - **理由:** 動的な src 変更への非対応
   useSound は音声ファイルの src を動的に変更する用途には向いておらず、ライブラリの設計思想とも異なるため、採用を見送りました
 
+公式ドキュメント: https://github.com/joshwcomeau/use-sound
 Qiite: https://qiita.com/Taiyou-Yamamoto/private/715cb702d3835cf471e7
 
 ※ この記事は学習目的で作成したもので、現時点では限定公開としています。
