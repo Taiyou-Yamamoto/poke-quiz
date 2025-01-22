@@ -5,8 +5,8 @@ import React from 'react';
 
 const XPost = ({ calculatedScore }: { calculatedScore: number }) => {
   const tweetContent = encodeURIComponent(
-    `poke-quizで${calculatedScore}を獲得しました！みんなもやってみよう！` +
-      `https://poke-quiz-gwh7dfwmt-taiyou-yamamotos-projects.vercel.app/`
+    `poke-quizで${calculatedScore}を獲得しました！みんなもやってみよう！\n\n` +
+      `https://poke-quiz-gwh7dfwmt-taiyou-yamamotos-projects.vercel.app`
   );
 
   return (
