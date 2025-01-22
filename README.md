@@ -221,10 +221,9 @@ calculatedData = score _ 1.1 _ Math.pow(score, 0.7) _ 10 _ 0.95;
 **2.〇〇秒でクリアした場合**
 
 ```react:qiita.rb
+//second = 残り秒数
 calculatedData = score _ 1.1 _ (second _ Math.pow(score, 0.7)) _ 10;
 ```
-
-これにより
 
 # 採用を見送った技術と学習内容
 
