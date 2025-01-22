@@ -10,7 +10,7 @@ export default async function Home() {
   const POKEMON_API_URL = process.env.NEXT_PUBLIC_POKEMON_API_URL;
   const ORIGINAL_API_URL =
     process.env.NEXT_PUBLIC_API_URL || // 環境変数が設定されている場合はこちらを使う
-    `https://poke-quiz-git-main-taiyou-yamamotos-projects.vercel.app`;
+    `poke-quiz-taiyou-yamamotos-projects.vercel.app`;
 
   // SSGで1302匹分のポケモンの名前とURLを取得
   const allPokemonDate = await getAllPokemonNameAndUrl(POKEMON_API_URL!);

@@ -40,15 +40,15 @@ export default function RootLayout({
         />
         <meta
           property='og:image'
-          content='https://poke-quiz-git-main-taiyou-yamamotos-projects.vercel.app/background/A97CCB17-E670-41E7-8D99-777C73E69C69_1_201_a.jpeg'
+          content='https://poke-quiz-taiyou-yamamotos-projects.vercel.app/background/A97CCB17-E670-41E7-8D99-777C73E69C69_1_201_a.jpeg'
         />
         <meta
           property='og:url'
-          content='http://poke-quiz-git-main-taiyou-yamamotos-projects.vercel.app'
+          content='http://poke-quiz-taiyou-yamamotos-projects.vercel.app'
         />
         <meta
           name='twitter:card'
-          content='https://poke-quiz-git-main-taiyou-yamamotos-projects.vercel.app/background/A97CCB17-E670-41E7-8D99-777C73E69C69_1_201_a.jpeg'
+          content='https://poke-quiz-taiyou-yamamotos-projects.vercel.app/background/A97CCB17-E670-41E7-8D99-777C73E69C69_1_201_a.jpeg'
         />
         <meta name='twitter:title' content='Poke-Quiz' />
         <meta
@@ -57,7 +57,7 @@ export default function RootLayout({
         />
         <meta
           name='twitter:image'
-          content='https://poke-quiz-git-main-taiyou-yamamotos-projects.vercel.app/background/A97CCB17-E670-41E7-8D99-777C73E69C69_1_201_a.jpeg'
+          content='https://poke-quiz-taiyou-yamamotos-projects.vercel.app/background/A97CCB17-E670-41E7-8D99-777C73E69C69_1_201_a.jpeg'
         />
       </Head>
       <body
