@@ -19,7 +19,7 @@ import QuizStartScreen from './QuizStartScreen';
 
 const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
   const router = useRouter();
-  const [second, setSecond] = useState<number>(0);
+  const [second, setSecond] = useState<number>(50);
   const [count, setCount] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [calculatedScore, setCalculatedScore] = useState<number>(0);
@@ -32,7 +32,7 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
     setIsLoading(true);
     setScore(0);
     setCount(0);
-    setSecond(10);
+    setSecond(50);
     setYourResult([]);
     setQuizStart(true);
     router.replace(`/quiz${quiz_id}`);
@@ -72,7 +72,7 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
     if (Array.isArray(quizArray) && quizArray.length > 0) {
       console.log('quizArray', quizArray);
       setIsLoading(false);
-      setSecond(10);
+      setSecond(50);
     } else {
       console.error('quizArray 更新が検知されませんでした');
     }

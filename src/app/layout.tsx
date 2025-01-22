@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import Loading from './loading';
 import Header from './Header';
 import Head from 'next/head';
+import { ImageResponse, unstable_createNodejsStream } from '@vercel/og';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
