@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Isloading from './Isloading';
 import Score from './Score';
 import { postScore } from '@/app/utils/axiosHandle';
-import QuizStatus from './QuizStatus';
+// import QuizStatus from './QuizStatus';
 import RetryAndHome from './RetryAndHome';
 import QuizOne from './QuizOne';
 import QuizTwo from './QuizTwo';
@@ -148,21 +148,52 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
         </>
       ) : (
         <div className=' min-h-screen w-full flex flex-col justify-center items-center'>
-          <QuizStatus second={second} count={count} quiz_id={quiz_id} />
+          <div className='h-[4rem] text-2xl text-white gray-shadow'>
+            残り
+            <span
+              className={
+                second < 11 ? 'text-red-600 font-PokeGB' : 'font-PokeGB'
+              }
+            >
+              {second}
+            </span>
+            秒
+          </div>
 
-          {quiz_id === 1 ? (
-            <QuizOne image={quizArray[count].image} />
-          ) : quiz_id === 2 ? (
-            <QuizTwo cry={quizArray[count].cry ?? ''} />
-          ) : (
-            <QuizThree text={quizArray[count].text ?? ''} />
-          )}
-          <Input
-            PokemonName={quizArray[count].name}
-            setCount={setCount}
-            setScore={setScore}
-            setYourResult={setYourResult}
-          />
+          <div className='flex flex-col items-center justify-center bg-orange-200 px-2 py-6 rounded-lg shadow-lg'>
+            <div className='flex flex-col gap-4 justify-center items-center'>
+              <h1 className='flex font-PokeGB text-3xl text-white font-extrabold gray-shadow '>
+                {count + 1}問目
+              </h1>
+              {quiz_id == 1 ? (
+                <h2 className='w-full my-2 text-3xl text-white  font-extrabold gray-shadow'>
+                  このポケモンの名前は？
+                </h2>
+              ) : quiz_id == 2 ? (
+                <h2 className='w-full my-2 text-3xl text-white  font-extrabold gray-shadow'>
+                  これはどのポケモンの鳴き声？
+                </h2>
+              ) : (
+                <h2 className='w-full my-2 text-3xl text-white  font-extrabold gray-shadow'>
+                  これはどのポケモンの図鑑説明？
+                </h2>
+              )}
+            </div>
+
+            {quiz_id === 1 ? (
+              <QuizOne image={quizArray[count].image} />
+            ) : quiz_id === 2 ? (
+              <QuizTwo cry={quizArray[count].cry ?? ''} />
+            ) : (
+              <QuizThree text={quizArray[count].text ?? ''} />
+            )}
+            <Input
+              PokemonName={quizArray[count].name}
+              setCount={setCount}
+              setScore={setScore}
+              setYourResult={setYourResult}
+            />
+          </div>
         </div>
       )}
     </div>

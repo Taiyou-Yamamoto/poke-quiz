@@ -32,8 +32,8 @@ const Input = ({
   };
 
   return (
-    <div className='block'>
-      <form onSubmit={judgeAnswer} className='shadow'>
+    <div className='flex items-center justify-center'>
+      <form onSubmit={judgeAnswer}>
         <input
           type='text'
           className='text-3xl w-[14rem] font-extrabold rounded border-4 border-y-slate-700'
@@ -43,7 +43,6 @@ const Input = ({
           autoFocus
         />
       </form>
-      <div>{PokemonName}</div>
     </div>
   );
 };

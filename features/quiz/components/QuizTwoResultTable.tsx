@@ -44,7 +44,7 @@ const QuizTwoResultTable = ({
         {quizArray.map((pokemon, index) => (
           <div
             key={index}
-            className='relative bg-orange-100 rounded-lg shadow-lg p-4 flex flex-col items-center'
+            className='relative bg-orange-200 rounded-lg shadow-lg p-4 flex flex-col items-center'
           >
             <h3 className='absolute top-2 left-2 gray-shadow font-extrabold'>
               No.{index + 1}
@@ -55,7 +55,7 @@ const QuizTwoResultTable = ({
               width={100}
               height={100}
               alt={pokemon.name}
-              className='rounded-full mb-4'
+              className='mb-4'
             />
 
             {/* 正解 */}
