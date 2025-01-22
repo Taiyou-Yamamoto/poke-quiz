@@ -22,6 +22,23 @@ export const metadata: Metadata = {
   title: 'Poke-Quiz!',
   description:
     'ポケモン好きによるポケモン好きのためのクイズアプリ！君は何問解けるかな?。目指せポケモンマスター!',
+
+  twitter: {
+    card: 'summary_large_image',
+    images:
+      'https://poke-quiz-taiyou-yamamotos-projects.vercel.app/images/Poke-quiz.png',
+  },
+  openGraph: {
+    title: 'Poke-Quiz!',
+    description:
+      'ポケモン好きによるポケモン好きのためのクイズアプリ！君は何問解けるかな?。目指せポケモンマスター!',
+    siteName: `Poke-Quiz!`,
+    images: {
+      url: 'https://poke-quiz-taiyou-yamamotos-projects.vercel.app/images/Poke-quiz.png',
+      width: 1200,
+      height: 600,
+    },
+  },
 };
 
 export default function RootLayout({
