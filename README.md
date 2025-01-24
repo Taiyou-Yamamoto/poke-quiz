@@ -18,6 +18,10 @@ Poke-Quiz は、ポケモンの名前を当てるクイズアプリです。 エ
 
   動く背景や効果音、懐かしのドット絵で、ポケモンの世界観を感じられます。
 
+## プレイする
+
+[Poke-Quiz]https://poke-quiz-taiyou-yamamotos-projects.vercel.app/
+
 ## なぜ Poke-Quiz を作ったのか？
 
 私自身がポケモン好きであることはもちろんですが、このアプリには以下のような目的があります：
