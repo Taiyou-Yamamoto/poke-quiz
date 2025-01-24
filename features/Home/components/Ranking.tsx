@@ -30,7 +30,7 @@ const Ranking = ({ rankData, quizId }: RankingProps) => {
               {index + 1}位:
             </span>
             <span className='ml-3 text-center w-full '>
-              {item.score ? item.score : '--------'}
+              {item.score ? item.score : '---------'}
             </span>
           </li>
         ))}
