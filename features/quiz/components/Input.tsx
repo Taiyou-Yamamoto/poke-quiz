@@ -13,7 +13,6 @@ const Input = ({
   const [value, setValue] = useState<string>('');
 
   const handleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setValue(e.target.value);
   };
 
