@@ -31,6 +31,7 @@ export type quizMain = {
   quiz_id: number;
 };
 export type scoreCalculateProps = {
+  count: number;
   score: number;
   second: number;
   calculatedScore: number;
