@@ -204,7 +204,6 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
               setScore={setScore}
               setYourResult={setYourResult}
             />
-            {quizArray[count].name}
           </div>
         </div>
       )}
