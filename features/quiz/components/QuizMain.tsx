@@ -58,14 +58,18 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
   useEffect(() => {
     if (!quizStart && (count > 9 || second <= 0)) {
       const resultUrl = calculatedScore > 4000 ? '/result_high' : '/result_low';
-
       // 検索パラメータを変更しBGMを変更
       window.history.replaceState(null, '', resultUrl);
+    }
+  }, [quizStart, count, second]);
 
+  useEffect(() => {
+    if (calculatedScore > 0) {
+      console.log('calculatedScore確認用', calculatedScore);
       // laravelでスコアを登録するAPIを叩く
       postScore(calculatedScore, quiz_id);
     }
-  }, [quizStart, count, second]);
+  }, [calculatedScore]);
 
   // quizArrayが更新されたらloadingを解除,secondを10に戻し再スタート
   useEffect(() => {
@@ -117,6 +121,7 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
         <>
           <div className='h-full w-full flex flex-col justify-center items-center bg-red-300 py-11'>
             <Score
+              count={count}
               score={score}
               second={second}
               calculatedScore={calculatedScore}
@@ -199,7 +204,7 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
               setScore={setScore}
               setYourResult={setYourResult}
             />
-            {/* {quizArray[count].name} */}
+            {quizArray[count].name}
           </div>
         </div>
       )}
