@@ -48,7 +48,7 @@ const MainContent = () => {
         quiz3: res.quiz3.length <= 10 ? makeFullArray(res.quiz3) : res.quiz3,
       };
 
-      // console.log('updatedRes', updatedRes);
+      console.log('updatedRes', updatedRes);
       SetRankData(updatedRes);
     };
 

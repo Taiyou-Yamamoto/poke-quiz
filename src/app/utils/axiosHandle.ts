@@ -6,7 +6,7 @@ const api = axios.create({
 
 export const postScore = async (calculatedScore: number, quiz_id: number) => {
   try {
-    const response = await api.post('post', {
+    const response = await api.post('/post', {
       calculatedScore: calculatedScore,
       quiz_id: quiz_id,
     });
@@ -17,7 +17,7 @@ export const postScore = async (calculatedScore: number, quiz_id: number) => {
 
 export const getScore = async () => {
   try {
-    const response = await api.get('get');
+    const response = await api.get('/get');
     return response.data;
   } catch (error) {
     console.error(error);
