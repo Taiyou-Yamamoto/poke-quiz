@@ -10,6 +10,7 @@ export const postScore = async (calculatedScore: number, quiz_id: number) => {
       calculatedScore: calculatedScore,
       quiz_id: quiz_id,
     });
+    return response;
   } catch (error) {
     console.error(error);
   }
