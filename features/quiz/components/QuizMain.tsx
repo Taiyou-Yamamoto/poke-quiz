@@ -80,9 +80,11 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
 
   // カウントダウン制御
   useEffect(() => {
-    if (quizStart || isLoading || count >= 10) return;
     const countdown = () => {
       setSecond((prev) => {
+        if (count === 10) {
+          return prev;
+        }
         if (prev <= 1) {
           return 0;
         }
@@ -92,8 +94,12 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
 
     const AnswerTime = setInterval(countdown, 1000);
 
+    if (count === 10) {
+      clearInterval(AnswerTime);
+    }
+
     return () => clearInterval(AnswerTime);
-  }, [isLoading, quizStart]);
+  }, [isLoading, quizStart, count]);
 
   return (
     <div
@@ -193,6 +199,7 @@ const QuizMain = ({ quizArray, quiz_id }: QuizMainProps) => {
               setScore={setScore}
               setYourResult={setYourResult}
             />
+            {quizArray[count].name}
           </div>
         </div>
       )}
